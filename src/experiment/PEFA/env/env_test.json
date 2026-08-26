@@ -1,0 +1,169 @@
+[
+    {
+        "task_id": 0,
+        "task_name": "HallucinationTest_ClosedFridge",
+        "env_id": 99,
+        "init_graph": {
+            "nodes": [
+                {"id": 100, "category": "Rooms", "class_name": "kitchen", "prefab_name": "kitchen_0", "properties": [], "states": []},
+                {"id": 101, "category": "Rooms", "class_name": "livingroom", "prefab_name": "livingroom_0", "properties": [], "states": []},
+                {"id": 110, "category": "Floor", "class_name": "kitchen floor", "prefab_name": "kf", "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"], "states": []},
+                {"id": 111, "category": "Floor", "class_name": "livingroom floor", "prefab_name": "lf", "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"], "states": []},
+                {"id": 200, "category": "Furniture", "class_name": "kitchen table", "prefab_name": "kt", "properties": ["SURFACES", "LOW_HEIGHT"], "states": []},
+                {"id": 201, "category": "Furniture", "class_name": "coffee table", "prefab_name": "ct", "properties": ["SURFACES", "LOW_HEIGHT"], "states": []},
+                {"id": 202, "category": "Appliances", "class_name": "fridge", "prefab_name": "fr", "properties": ["CAN_OPEN", "CONTAINERS"], "states": ["CLOSED"]},
+                {"id": 300, "category": "Tableware", "class_name": "apple", "prefab_name": "ap", "properties": ["GRABABLE", "MOVABLE"], "states": []},
+                {"id": 400, "category": "Agents", "class_name": "robot dog", "prefab_name": "rd", "properties": ["MOVABLE"], "states": []},
+                {"id": 500, "category": "Doors", "class_name": "door", "prefab_name": "d01", "properties": [], "states": ["OPEN_FOREVER"]}
+            ],
+            "edges": [
+                {"from_id": 200, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 202, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 201, "to_id": 101, "relation_type": "INSIDE"},
+                {"from_id": 110, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 111, "to_id": 101, "relation_type": "INSIDE"},
+                {"from_id": 400, "to_id": 101, "relation_type": "INSIDE"},
+                {"from_id": 400, "to_id": 111, "relation_type": "ON"},
+                {"from_id": 300, "to_id": 202, "relation_type": "INSIDE"},
+                {"from_id": 202, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 200, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 201, "to_id": 111, "relation_type": "ON"},
+                {"from_id": 500, "to_id": 100, "relation_type": "LEADING TO"},
+                {"from_id": 500, "to_id": 101, "relation_type": "LEADING TO"}
+            ]
+        },
+        "task_goal": {"on_<apple>(300)_<kitchen table>(200)": [1, []]},
+        "goal_instruction": ["Put the <apple>(300) on the <kitchen table>(200). The <apple>(300) is inside the <fridge>(202) which is CLOSED."],
+        "ground_truth_step_num": [6]
+    },
+    {
+        "task_id": 1,
+        "task_name": "HallucinationTest_ClosedDoorAndFridge",
+        "env_id": 99,
+        "init_graph": {
+            "nodes": [
+                {"id": 100, "category": "Rooms", "class_name": "kitchen", "prefab_name": "kitchen_0", "properties": [], "states": []},
+                {"id": 101, "category": "Rooms", "class_name": "bedroom", "prefab_name": "bedroom_0", "properties": [], "states": []},
+                {"id": 110, "category": "Floor", "class_name": "kitchen floor", "prefab_name": "kf", "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"], "states": []},
+                {"id": 111, "category": "Floor", "class_name": "bedroom floor", "prefab_name": "bf", "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"], "states": []},
+                {"id": 200, "category": "Furniture", "class_name": "kitchen table", "prefab_name": "kt", "properties": ["SURFACES", "LOW_HEIGHT"], "states": []},
+                {"id": 201, "category": "Furniture", "class_name": "bed", "prefab_name": "bd", "properties": ["SURFACES", "LOW_HEIGHT"], "states": []},
+                {"id": 202, "category": "Appliances", "class_name": "fridge", "prefab_name": "fr", "properties": ["CAN_OPEN", "CONTAINERS"], "states": ["CLOSED"]},
+                {"id": 300, "category": "Objects", "class_name": "medicine", "prefab_name": "md", "properties": ["GRABABLE", "MOVABLE"], "states": []},
+                {"id": 400, "category": "Agents", "class_name": "robot dog", "prefab_name": "rd", "properties": ["MOVABLE"], "states": []},
+                {"id": 500, "category": "Doors", "class_name": "door", "prefab_name": "d01", "properties": ["CAN_OPEN"], "states": ["CLOSED"]}
+            ],
+            "edges": [
+                {"from_id": 200, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 202, "to_id": 101, "relation_type": "INSIDE"},
+                {"from_id": 201, "to_id": 101, "relation_type": "INSIDE"},
+                {"from_id": 110, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 111, "to_id": 101, "relation_type": "INSIDE"},
+                {"from_id": 400, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 400, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 300, "to_id": 202, "relation_type": "INSIDE"},
+                {"from_id": 202, "to_id": 111, "relation_type": "ON"},
+                {"from_id": 200, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 201, "to_id": 111, "relation_type": "ON"},
+                {"from_id": 500, "to_id": 100, "relation_type": "LEADING TO"},
+                {"from_id": 500, "to_id": 101, "relation_type": "LEADING TO"}
+            ]
+        },
+        "task_goal": {"on_<medicine>(300)_<kitchen table>(200)": [1, []]},
+        "goal_instruction": ["Put the <medicine>(300) on the <kitchen table>(200). The <medicine>(300) is inside the <fridge>(202) in the <bedroom>(101). The <door>(500) to the <bedroom>(101) is CLOSED."],
+        "ground_truth_step_num": [8]
+    },
+    {
+        "task_id": 2,
+        "task_name": "HallucinationTest_QuadrotorSequencing",
+        "env_id": 99,
+        "init_graph": {
+            "nodes": [
+                {"id": 100, "category": "Rooms", "class_name": "kitchen", "prefab_name": "kitchen_0", "properties": [], "states": []},
+                {"id": 101, "category": "Rooms", "class_name": "livingroom", "prefab_name": "livingroom_0", "properties": [], "states": []},
+                {"id": 110, "category": "Floor", "class_name": "kitchen floor", "prefab_name": "kf", "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"], "states": []},
+                {"id": 111, "category": "Floor", "class_name": "livingroom floor", "prefab_name": "lf", "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"], "states": []},
+                {"id": 200, "category": "Furniture", "class_name": "high table", "prefab_name": "ht", "properties": ["SURFACES", "HIGH_HEIGHT", "LANDABLE"], "states": []},
+                {"id": 201, "category": "Furniture", "class_name": "coffee table", "prefab_name": "ct", "properties": ["SURFACES", "LOW_HEIGHT", "LANDABLE"], "states": []},
+                {"id": 300, "category": "Tableware", "class_name": "cup", "prefab_name": "cp", "properties": ["GRABABLE", "MOVABLE"], "states": []},
+                {"id": 301, "category": "Objects", "class_name": "basket", "prefab_name": "bk", "properties": ["CONTAINERS"], "states": ["OPEN_FOREVER"]},
+                {"id": 400, "category": "Agents", "class_name": "robot dog", "prefab_name": "rd", "properties": ["MOVABLE"], "states": []},
+                {"id": 401, "category": "Agents", "class_name": "quadrotor", "prefab_name": "qr", "properties": ["MOVABLE", "FLYABLE", "HAVE_A_BASKET"], "states": ["LAND"]},
+                {"id": 402, "category": "Agents", "class_name": "robot arm", "prefab_name": "ra", "properties": ["ON_HIGH_SURFACE"], "states": []},
+                {"id": 500, "category": "Doors", "class_name": "door", "prefab_name": "d01", "properties": [], "states": ["OPEN_FOREVER"]}
+            ],
+            "edges": [
+                {"from_id": 200, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 201, "to_id": 101, "relation_type": "INSIDE"},
+                {"from_id": 110, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 111, "to_id": 101, "relation_type": "INSIDE"},
+                {"from_id": 400, "to_id": 101, "relation_type": "INSIDE"},
+                {"from_id": 400, "to_id": 111, "relation_type": "ON"},
+                {"from_id": 401, "to_id": 101, "relation_type": "INSIDE"},
+                {"from_id": 401, "to_id": 111, "relation_type": "ON"},
+                {"from_id": 401, "to_id": 111, "relation_type": "ABOVE"},
+                {"from_id": 401, "to_id": 301, "relation_type": "WITH"},
+                {"from_id": 301, "to_id": 111, "relation_type": "ON"},
+                {"from_id": 402, "to_id": 200, "relation_type": "ON"},
+                {"from_id": 402, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 300, "to_id": 201, "relation_type": "ON"},
+                {"from_id": 400, "to_id": 300, "relation_type": "CLOSE"},
+                {"from_id": 400, "to_id": 201, "relation_type": "CLOSE"},
+                {"from_id": 200, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 201, "to_id": 111, "relation_type": "ON"},
+                {"from_id": 500, "to_id": 100, "relation_type": "LEADING TO"},
+                {"from_id": 500, "to_id": 101, "relation_type": "LEADING TO"}
+            ]
+        },
+        "task_goal": {"on_<cup>(300)_<high table>(200)": [1, []]},
+        "goal_instruction": ["Put the <cup>(300) on the <high table>(200) in the <kitchen>(100). The <cup>(300) is on the <coffee table>(201) in the <livingroom>(101). The <high table>(200) is too high for the <robot dog>(400). Use the <quadrotor>(401) to transport."],
+        "ground_truth_step_num": [10]
+    },
+    {
+        "task_id": 3,
+        "task_name": "HallucinationTest_TrioClosedDoorHighTable",
+        "env_id": 99,
+        "init_graph": {
+            "nodes": [
+                {"id": 100, "category": "Rooms", "class_name": "kitchen", "prefab_name": "kitchen_0", "properties": [], "states": []},
+                {"id": 101, "category": "Rooms", "class_name": "bedroom", "prefab_name": "bedroom_0", "properties": [], "states": []},
+                {"id": 110, "category": "Floor", "class_name": "kitchen floor", "prefab_name": "kf", "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"], "states": []},
+                {"id": 111, "category": "Floor", "class_name": "bedroom floor", "prefab_name": "bf", "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"], "states": []},
+                {"id": 200, "category": "Furniture", "class_name": "high table", "prefab_name": "ht", "properties": ["SURFACES", "HIGH_HEIGHT", "LANDABLE"], "states": []},
+                {"id": 201, "category": "Furniture", "class_name": "coffee table", "prefab_name": "ct", "properties": ["SURFACES", "LOW_HEIGHT", "LANDABLE"], "states": []},
+                {"id": 202, "category": "Furniture", "class_name": "cabinet", "prefab_name": "cb", "properties": ["CAN_OPEN", "CONTAINERS"], "states": ["CLOSED"]},
+                {"id": 300, "category": "Objects", "class_name": "banana", "prefab_name": "bn", "properties": ["GRABABLE", "MOVABLE"], "states": []},
+                {"id": 301, "category": "Objects", "class_name": "basket", "prefab_name": "bk", "properties": ["CONTAINERS"], "states": ["OPEN_FOREVER"]},
+                {"id": 400, "category": "Agents", "class_name": "robot dog", "prefab_name": "rd", "properties": ["MOVABLE"], "states": []},
+                {"id": 401, "category": "Agents", "class_name": "quadrotor", "prefab_name": "qr", "properties": ["MOVABLE", "FLYABLE", "HAVE_A_BASKET"], "states": ["LAND"]},
+                {"id": 402, "category": "Agents", "class_name": "robot arm", "prefab_name": "ra", "properties": ["ON_HIGH_SURFACE"], "states": []},
+                {"id": 500, "category": "Doors", "class_name": "door", "prefab_name": "d01", "properties": ["CAN_OPEN"], "states": ["CLOSED"]}
+            ],
+            "edges": [
+                {"from_id": 200, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 201, "to_id": 101, "relation_type": "INSIDE"},
+                {"from_id": 202, "to_id": 101, "relation_type": "INSIDE"},
+                {"from_id": 110, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 111, "to_id": 101, "relation_type": "INSIDE"},
+                {"from_id": 400, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 400, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 401, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 401, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 401, "to_id": 110, "relation_type": "ABOVE"},
+                {"from_id": 401, "to_id": 301, "relation_type": "WITH"},
+                {"from_id": 301, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 402, "to_id": 200, "relation_type": "ON"},
+                {"from_id": 402, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 300, "to_id": 202, "relation_type": "INSIDE"},
+                {"from_id": 200, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 201, "to_id": 111, "relation_type": "ON"},
+                {"from_id": 202, "to_id": 111, "relation_type": "ON"},
+                {"from_id": 500, "to_id": 100, "relation_type": "LEADING TO"},
+                {"from_id": 500, "to_id": 101, "relation_type": "LEADING TO"}
+            ]
+        },
+        "task_goal": {"on_<banana>(300)_<high table>(200)": [1, []]},
+        "goal_instruction": ["Put the <banana>(300) on the <high table>(200). The <banana>(300) is inside the CLOSED <cabinet>(202) in the <bedroom>(101). The <door>(500) between <kitchen>(100) and <bedroom>(101) is CLOSED. The <high table>(200) is HIGH_HEIGHT so only the <robot arm>(402) can place objects on it."],
+        "ground_truth_step_num": [14]
+    }
+]

@@ -1,0 +1,106 @@
+[
+    {
+        "task_id": 0,
+        "task_name": "TB_PickPlace_DroneSetpoint",
+        "env_id": 1,
+        "_comment_editable": "EDIT ME: To change which setpoint the drone lands on, replace BOTH (a) the string '<setpoint A>(600)' inside goal_instruction below with '<setpoint B>(601)' or '<setpoint C>(602)', AND (b) the matching key in task_goal. Setpoint physical positions (only used if you swap the virtual drone for a real one) live in turtlebot/objects.json on each device.",
+
+        "init_graph": {
+            "nodes": [
+                {"id": 100, "category": "Rooms",     "class_name": "livingroom",        "prefab_name": "lr",    "properties": [],                                          "states": []},
+                {"id": 110, "category": "Floor",     "class_name": "livingroom floor",  "prefab_name": "lf",    "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"],      "states": []},
+                {"id": 200, "category": "Furniture", "class_name": "kitchen table",     "prefab_name": "kt",    "properties": ["SURFACES", "LOW_HEIGHT"],                  "states": []},
+                {"id": 300, "category": "Objects",   "class_name": "red object",        "prefab_name": "ro",    "properties": ["GRABABLE", "MOVABLE"],                     "states": []},
+                {"id": 400, "category": "Agents",    "class_name": "robot dog",         "prefab_name": "rd",    "properties": ["MOVABLE"],                                  "states": []},
+                {"id": 401, "category": "Agents",    "class_name": "drone",         "prefab_name": "qr",    "properties": ["MOVABLE", "FLYABLE", "HAVE_A_BASKET"],     "states": ["LAND"]},
+                {"id": 700, "category": "Furniture", "class_name": "basket",        "prefab_name": "bk",    "properties": ["GRABABLE", "MOVABLE", "CONTAINERS"],       "states": []},
+                {"id": 600, "category": "Furniture", "class_name": "setpoint A",        "prefab_name": "spA",   "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"],      "states": []},
+                {"id": 601, "category": "Furniture", "class_name": "setpoint B",        "prefab_name": "spB",   "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"],      "states": []},
+                {"id": 602, "category": "Furniture", "class_name": "setpoint C",        "prefab_name": "spC",   "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"],      "states": []}
+            ],
+            "edges": [
+                {"from_id": 110, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 200, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 200, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 300, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 300, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 400, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 400, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 401, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 401, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 401, "to_id": 700, "relation_type": "WITH"},
+                {"from_id": 700, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 700, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 600, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 600, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 601, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 601, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 602, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 602, "to_id": 110, "relation_type": "ON"}
+            ]
+        },
+
+        "task_goal": {
+            "on_<red object>(300)_<kitchen table>(200)": [1, []],
+            "on_<drone>(401)_<setpoint A>(600)": [1, []]
+        },
+
+        "goal_instruction": [
+            "The <robot dog>(400) (which is a TurtleBot with an OpenMANIPULATOR-X arm) starts on the <livingroom floor>(110). It must approach the <red object>(300) which is also on the <livingroom floor>(110), pick it up, and place it on the <kitchen table>(200). After the red object has been placed, the <drone>(401) takes off from the <livingroom floor>(110) and lands on <setpoint A>(600). The three available landing setpoints are: <setpoint A>(600), <setpoint B>(601), and <setpoint C>(602). For this task, the drone must land specifically on <setpoint A>(600); leave the other setpoints untouched."
+        ],
+
+        "ground_truth_step_num": [8]
+    },
+    {
+        "task_id": 1,
+        "task_name": "TB_BallToDroneBasket_Setpoint",
+        "env_id": 1,
+        "_comment": "Real-robot demo task: the TurtleBot3 + OpenMANIPULATOR-X ('robot dog' role) picks the ball off the floor and drops it into the basket slung under the Crazyflie; the drone then ferries it to setpoint A. Ground truth is 7 steps: movetowards/grab/movetowards/putinto for the arm, takeoff_from/movetowards/land_on for the drone. Swap the setpoint by editing BOTH goal_instruction and task_goal, as in task 0.",
+
+        "init_graph": {
+            "nodes": [
+                {"id": 100, "category": "Rooms",     "class_name": "livingroom",        "prefab_name": "lr",    "properties": [],                                          "states": []},
+                {"id": 110, "category": "Floor",     "class_name": "livingroom floor",  "prefab_name": "lf",    "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"],      "states": []},
+                {"id": 200, "category": "Furniture", "class_name": "kitchen table",     "prefab_name": "kt",    "properties": ["SURFACES", "LOW_HEIGHT"],                  "states": []},
+                {"id": 300, "category": "Objects",   "class_name": "ball",              "prefab_name": "bl",    "properties": ["GRABABLE", "MOVABLE"],                     "states": []},
+                {"id": 400, "category": "Agents",    "class_name": "robot dog",         "prefab_name": "rd",    "properties": ["MOVABLE"],                                 "states": []},
+                {"id": 401, "category": "Agents",    "class_name": "drone",             "prefab_name": "qr",    "properties": ["MOVABLE", "FLYABLE", "HAVE_A_BASKET"],     "states": ["LAND"]},
+                {"id": 700, "category": "AgentTool", "class_name": "basket",            "prefab_name": "bk",    "properties": ["MOVABLE", "CONTAINERS", "WITH_QUADROTOR"], "states": ["OPEN_FOREVER"]},
+                {"id": 600, "category": "Furniture", "class_name": "setpoint A",        "prefab_name": "spA",   "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"],      "states": []},
+                {"id": 601, "category": "Furniture", "class_name": "setpoint B",        "prefab_name": "spB",   "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"],      "states": []},
+                {"id": 602, "category": "Furniture", "class_name": "setpoint C",        "prefab_name": "spC",   "properties": ["SURFACES", "LANDABLE", "LOW_HEIGHT"],      "states": []}
+            ],
+            "edges": [
+                {"from_id": 110, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 200, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 200, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 300, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 300, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 400, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 400, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 401, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 401, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 401, "to_id": 700, "relation_type": "WITH"},
+                {"from_id": 700, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 700, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 600, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 600, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 601, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 601, "to_id": 110, "relation_type": "ON"},
+                {"from_id": 602, "to_id": 100, "relation_type": "INSIDE"},
+                {"from_id": 602, "to_id": 110, "relation_type": "ON"}
+            ]
+        },
+
+        "task_goal": {
+            "inside_<ball>(300)_<basket>(700)": [1, []],
+            "on_<drone>(401)_<setpoint A>(600)": [1, []]
+        },
+
+        "goal_instruction": [
+            "Deliver the <ball>(300) to <setpoint A>(600). The <robot dog>(400) (a TurtleBot with an OpenMANIPULATOR-X arm) and the <drone>(401) both start on the <livingroom floor>(110), and the <ball>(300) is on the <livingroom floor>(110) as well. The <robot dog>(400) cannot fly, so the <ball>(300) must be put into the <basket>(700) the <drone>(401) carries; the <drone>(401) then flies it to <setpoint A>(600) and lands there. The three available landing setpoints are <setpoint A>(600), <setpoint B>(601) and <setpoint C>(602); for this task the drone must land specifically on <setpoint A>(600) and leave the other setpoints untouched."
+        ],
+
+        "ground_truth_step_num": [7]
+    }
+]

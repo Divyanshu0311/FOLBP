@@ -220,8 +220,9 @@ class Get_env_info:
                     if edge['relation_type'] == 'INSIDE' and self.id2node[edge['from_id']]['category'] == 'Floor' and edge['to_id'] == node['id']:
                         room2floor[node['id']] = edge['from_id']
 
-        if class_name == 'quadrotor':
+        if class_name in ('quadrotor', 'drone'):
 
+            with_quadrotor = None
             for edge in self.graph['edges']:
                 if edge['from_id'] == id and edge['relation_type'] == 'WITH':
                      with_quadrotor = edge['to_id']

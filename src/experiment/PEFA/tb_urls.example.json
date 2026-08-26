@@ -1,0 +1,6 @@
+{
+  "_comment": "Map PEFA agent class_name (lowercased; spaces preserved) to the HTTP URL of that device's web_client.py. Pass to PEFA via --tb_urls path/to/this.json. Each device runs its own web_client.py and owns its own objects.json.",
+
+  "robot dog": "http://192.168.0.102:8080",
+  "drone": "http://192.168.0.103:8080"
+}

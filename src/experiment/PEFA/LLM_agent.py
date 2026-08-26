@@ -62,7 +62,13 @@ class LLM_agent:
 
 	def get_action(self, observation, chat_agent_info, goal):
 
-		satisfied, unsatisfied = self.check_progress(observation, goal) 
+		# Update agent_node from current observation so states (FLYING/LAND etc.) stay in sync
+		for node in observation['nodes']:
+			if node['id'] == self.agent_node['id']:
+				self.agent_node = node
+				break
+
+		satisfied, unsatisfied = self.check_progress(observation, goal)
 		# print(f"satisfied: {satisfied}")
 		if len(satisfied) > 0:
 			self.unsatisfied = unsatisfied
@@ -112,7 +118,7 @@ class LLM_agent:
 					self.reachable_objects.append(self.id2node[y])
 				if r == 'ABOVE' and 'LANDABLE' in self.id2node[y]['properties']:
 					self.landable_surfaces = self.id2node[y]
-
+	
 		self.unreached_objects = copy.deepcopy(obs['nodes'])
 		for node in obs['nodes']:
 			if node == self.grabbed_objects or node in self.reachable_objects:

@@ -14,7 +14,11 @@ Please choose the best available action to achieve the goal as soon as possible.
 
 Note: The actions given in instruction for the agent to perform may be multiple steps, but you only need to pick the most suitable one from your list of available actions that can complete at least the first step of the instruction. Other actions in the instruction are performed in subsequent steps.
 
-Note: If there is an action in the available actionlist that can satisfy the instruction, the first sentence in the output needs to be "YES I CAN."
+Note: You MUST copy one action VERBATIM from the available actions list above. Do NOT invent or paraphrase actions. Every action begins with a bracketed verb like [takeoff_from], [movetowards], or [land_on] and uses the exact <class_name>(id) format, e.g. "[land_on] <livingroom floor>(5)". Never drop the brackets, the angle brackets, or the (id).
+
+Note: Currently-flying quadrotors can directly pick [movetowards] <target>(id) — they do NOT need to land first before moving. Only use [land_on] when arriving at the final surface, and only if that surface has the LANDABLE property.
+
+Note: If there is an action in the available actionlist that can satisfy the instruction, the first sentence in the output needs to be "YES I CAN." Then on the next line output ONLY the chosen action exactly as it appears in the list.
 
 Note: if there is not an action in the available actionlist that can satisfy the instruction, then output the possible reasons, such as the agent does not have the ability to execute the current instruction and needs the assistance of other types of agents; or the current agent is not in the state of executing this instruction and an additional action needs to be performed as a prerequisite before the instruction can be executed; or the current state already meets the requirements of the task instructions and no other actions need to be performed. The first sentence in the output needs to be "SORRY I CANNOT."
 

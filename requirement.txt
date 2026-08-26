@@ -1,7 +1,28 @@
-torch
-ipdb
-scipy
-tqdm
-sentence_transformers
-openai
+# Planner-side dependencies (conda env `coherent`, python 3.10).
+# The simulator side has its own env — see OmniGibson/scripts/setup.sh.
+
+# LLM backends
+google-genai
+openai          # only the original OpenAI-backed baselines
 backoff
+
+# FOLBP symbolic layer
+z3-solver
+
+# Benchmark reporting (scipy is optional; report.py falls back to an exact
+# permutation test when it is missing)
+scipy
+numpy
+
+# Real-robot / simulator bridges
+requests
+websocket-client
+
+# Misc
+PyYAML
+tqdm
+ipdb
+
+# Only needed by the MCTS baseline
+torch
+sentence_transformers

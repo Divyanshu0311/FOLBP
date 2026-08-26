@@ -541,7 +541,9 @@
                 []
             ]
         },
-        "ground_truth_step_num":[5],
+        "ground_truth_step_num": [
+            5
+        ],
         "goal_instruction": [
             "The <quadrotor>(22) lands on the <high kitchen table>(35)."
         ]
@@ -1088,8 +1090,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[4],
+        },
+        "ground_truth_step_num": [
+            4
+        ],
         "goal_instruction": [
             "The <quadrotor>(22) lands on the <dining table>(13)."
         ]
@@ -1654,8 +1658,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[5],
+        },
+        "ground_truth_step_num": [
+            5
+        ],
         "goal_instruction": [
             "Put the <bread>(26) into the <plate>(51) which is on the <dining table>(13) and put the <milkbox>(30) into the <microwave>(15). The <bread>(26) is originally in the <microwave>(15)."
         ]
@@ -2209,8 +2215,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[4],
+        },
+        "ground_truth_step_num": [
+            4
+        ],
         "goal_instruction": [
             "Put the <silver coin>(48) and <battery>(39) into the <box>(52)."
         ]
@@ -2755,8 +2763,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[8],
+        },
+        "ground_truth_step_num": [
+            8
+        ],
         "goal_instruction": [
             "Put the <cup>(19) on the <coffee table>(12). The <cup>(19) is originally in the <fridge>(14) which is in the <kitchen>(6)."
         ]
@@ -3302,12 +3312,14 @@
                 1,
                 []
             ],
-            "inside_<plate>(53)_<fridge>(14)":[
+            "inside_<plate>(53)_<fridge>(14)": [
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[6],
+        },
+        "ground_truth_step_num": [
+            6
+        ],
         "goal_instruction": [
             "Put the <apple>(17) into the <plate>(53) which is in the <fridge>(14). The <plate>(53) is in the <fridge>(14) which is in the <kitchen>(6)."
         ]
@@ -3856,8 +3868,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[7],
+        },
+        "ground_truth_step_num": [
+            7
+        ],
         "goal_instruction": [
             "Put the <hat>(20) on the <bed>(27)."
         ]
@@ -4405,8 +4419,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[8],
+        },
+        "ground_truth_step_num": [
+            8
+        ],
         "goal_instruction": [
             "Put the <notebook>(43) on the <coffee table>(12)."
         ]
@@ -4950,8 +4966,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[5],
+        },
+        "ground_truth_step_num": [
+            5
+        ],
         "goal_instruction": [
             "Put the <socks>(29) on the <bed>(28)."
         ]
@@ -5509,8 +5527,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[9],
+        },
+        "ground_truth_step_num": [
+            9
+        ],
         "goal_instruction": [
             "The <quadrotor>(22) lands on the <high kitchen table>(35) with the <plate>(51) in the <basket>(25)."
         ]
@@ -6069,8 +6089,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[10],
+        },
+        "ground_truth_step_num": [
+            10
+        ],
         "goal_instruction": [
             "The <quadrotor>(22) lands on the <high kitchen table>(35) with the <banana>(18) in the <basket>(25). The <banana>(18) is originally in the <fridge>(14) which is in the <kitchen>(6)."
         ]
@@ -6623,8 +6645,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[11],
+        },
+        "ground_truth_step_num": [
+            11
+        ],
         "goal_instruction": [
             "The <quadrotor>(22) lands on the <high kitchen table>(35) with the <orange>(49) in the <basket>(25). The <orange>(49) is originally in the <bedroom>(0)."
         ]
@@ -7178,8 +7202,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[12],
+        },
+        "ground_truth_step_num": [
+            12
+        ],
         "goal_instruction": [
             "The <quadrotor>(22) lands on the <high kitchen table>(35) with the <bag of chips>(37) and <bag of tea>(38) in the <basket>(25)."
         ]
@@ -7730,8 +7756,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[9],
+        },
+        "ground_truth_step_num": [
+            9
+        ],
         "goal_instruction": [
             "The <quadrotor>(22) lands on the <high kitchen table>(35) with the <knife>(54) in the <basket>(25)."
         ]
@@ -8277,8 +8305,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[14],
+        },
+        "ground_truth_step_num": [
+            14
+        ],
         "goal_instruction": [
             "Put the <sunglasses>(55) into the <cabinet>(34). The <cabinet>(34) is originally in the <childroom>(2)."
         ]
@@ -8827,8 +8857,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[14],
+        },
+        "ground_truth_step_num": [
+            14
+        ],
         "goal_instruction": [
             "Put the <milkbox>(30) into the <fridge>(14)."
         ]
@@ -9391,12 +9423,14 @@
                 1,
                 []
             ],
-            "on_<plate>(51)_<dining table>(13)":[
+            "on_<plate>(51)_<dining table>(13)": [
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[12],
+        },
+        "ground_truth_step_num": [
+            12
+        ],
         "goal_instruction": [
             "Put the <bread>(26) and <knife>(54) into the <plate>(51) which is on the <dining table>(13). The <bread>(26) is originally in the <microwave>(15)."
         ]
@@ -9946,8 +9980,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[14],
+        },
+        "ground_truth_step_num": [
+            14
+        ],
         "goal_instruction": [
             "Put the <baby bottle>(36) into the <fridge>(14)."
         ]
@@ -10497,8 +10533,10 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[14],
+        },
+        "ground_truth_step_num": [
+            14
+        ],
         "goal_instruction": [
             "Put the <toy car>(46) into the <toy box>(45) and put the <dinner napkin>(41) on the <dining table>(13)."
         ]
@@ -11046,556 +11084,11 @@
                 1,
                 []
             ]
-       },
-        "ground_truth_step_num":[14],
+        },
+        "ground_truth_step_num": [
+            14
+        ],
         "goal_instruction": [
             "Put the <textbook>(44) on the <high table>(33). "
         ]
-    },
-    {
-        "task_id": 20,
-        "task_name": "MultiAgent_0",
-        "env_id": 0,
-        "init_graph": {
-            "nodes": [
-                {
-                    "id": 0,
-                    "category": "Rooms",
-                    "class_name": "bedroom",
-                    "prefab_name": "bedroom_0",
-                    "properties": [],
-                    "states": []
-                },
-                {
-                    "id": 1,
-                    "category": "Floor",
-                    "class_name": "bedroom floor",
-                    "prefab_name": "bedroom_0_floor",
-                    "properties": [
-                        "SURFACES",
-                        "LANDABLE",
-                        "LOW_HEIGHT"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 2,
-                    "category": "Rooms",
-                    "class_name": "childroom",
-                    "prefab_name": "childroom_0",
-                    "properties": [],
-                    "states": []
-                },
-                {
-                    "id": 3,
-                    "category": "Floor",
-                    "class_name": "childroom floor",
-                    "prefab_name": "childroom_0_floor",
-                    "properties": [
-                        "SURFACES",
-                        "LANDABLE",
-                        "LOW_HEIGHT"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 4,
-                    "category": "Rooms",
-                    "class_name": "livingroom",
-                    "prefab_name": "livingroom_0",
-                    "properties": [],
-                    "states": []
-                },
-                {
-                    "id": 5,
-                    "category": "Floor",
-                    "class_name": "livingroom floor",
-                    "prefab_name": "livingroom_0_floor",
-                    "properties": [
-                        "SURFACES",
-                        "LANDABLE",
-                        "LOW_HEIGHT"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 6,
-                    "category": "Rooms",
-                    "class_name": "kitchen",
-                    "prefab_name": "kitchen_0",
-                    "properties": [],
-                    "states": []
-                },
-                {
-                    "id": 7,
-                    "category": "Floor",
-                    "class_name": "kitchen floor",
-                    "prefab_name": "kitchen_0_floor",
-                    "properties": [
-                        "SURFACES",
-                        "LANDABLE",
-                        "LOW_HEIGHT"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 8,
-                    "category": "Doors",
-                    "class_name": "door",
-                    "prefab_name": "Door_0_4",
-                    "properties": [
-                        "CAN_OPEN"
-                    ],
-                    "states": [
-                        "CLOSED"
-                    ]
-                },
-                {
-                    "id": 9,
-                    "category": "Doors",
-                    "class_name": "door",
-                    "prefab_name": "Door_2_4",
-                    "properties": [
-                        "CAN_OPEN"
-                    ],
-                    "states": [
-                        "OPEN_FOREVER"
-                    ]
-                },
-                {
-                    "id": 10,
-                    "category": "Doors",
-                    "class_name": "door",
-                    "prefab_name": "Door_4_6",
-                    "properties": [],
-                    "states": [
-                        "OPEN_FOREVER"
-                    ]
-                },
-                {
-                    "id": 11,
-                    "category": "Furniture",
-                    "class_name": "sofa",
-                    "prefab_name": "sofa_0",
-                    "properties": [
-                        "SURFACES",
-                        "LOW_HEIGHT"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 12,
-                    "category": "Furniture",
-                    "class_name": "coffee table",
-                    "prefab_name": "coffeetable_0",
-                    "properties": [
-                        "SURFACES",
-                        "LOW_HEIGHT"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 13,
-                    "category": "Furniture",
-                    "class_name": "dining table",
-                    "prefab_name": "diningtable_0",
-                    "properties": [
-                        "SURFACES",
-                        "HIGH_HEIGHT",
-                        "LANDABLE"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 14,
-                    "category": "Appliances",
-                    "class_name": "fridge",
-                    "prefab_name": "fridge_0",
-                    "properties": [
-                        "CAN_OPEN",
-                        "HAS_SWITCH",
-                        "CONTAINERS",
-                        "HAS_PLUG"
-                    ],
-                    "states": [
-                        "CLOSED"
-                    ]
-                },
-                {
-                    "id": 22,
-                    "category": "Agents",
-                    "class_name": "quadrotor",
-                    "prefab_name": "quadrotor_0",
-                    "properties": [
-                        "MOVABLE",
-                        "FLYABLE",
-                        "HAVE_A_BASKET"
-                    ],
-                    "states": [
-                        "LAND"
-                    ]
-                },
-                {
-                    "id": 23,
-                    "category": "Agents",
-                    "class_name": "robot dog",
-                    "prefab_name": "aliengo_0",
-                    "properties": [
-                        "MOVABLE"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 24,
-                    "category": "Agents",
-                    "class_name": "robot arm",
-                    "prefab_name": "franka_0",
-                    "properties": [
-                        "ON_HIGH_SURFACE"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 25,
-                    "category": "AgentTool",
-                    "class_name": "basket",
-                    "prefab_name": "quadrotor_0_basket",
-                    "properties": [
-                        "MOVABLE",
-                        "CONTAINERS",
-                        "WITH_QUADROTOR"
-                    ],
-                    "states": [
-                        "OPEN_FOREVER"
-                    ]
-                },
-                {
-                    "id": 26,
-                    "category": "Food",
-                    "class_name": "bread",
-                    "prefab_name": "bread_1",
-                    "properties": [
-                        "GRABABLE",
-                        "MOVABLE",
-                        "HEATABLE",
-                        "ON_HIGH_SURFACE"
-                    ],
-                    "states": [
-                        "HOT"
-                    ]
-                },
-                {
-                    "id": 27,
-                    "category": "Furniture",
-                    "class_name": "bed",
-                    "prefab_name": "bed_0",
-                    "properties": [
-                        "SURFACES",
-                        "LOW_HEIGHT"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 28,
-                    "category": "Furniture",
-                    "class_name": "bed",
-                    "prefab_name": "bed_1",
-                    "properties": [
-                        "SURFACES",
-                        "LOW_HEIGHT"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 32,
-                    "category": "Furniture",
-                    "class_name": "kitchen table",
-                    "prefab_name": "kitchentable_0",
-                    "properties": [
-                        "SURFACES",
-                        "LOW_HEIGHT"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 33,
-                    "category": "Furniture",
-                    "class_name": "high table",
-                    "prefab_name": "high_table_bedroom",
-                    "properties": [
-                        "SURFACES",
-                        "HIGH_HEIGHT",
-                        "LANDABLE"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 34,
-                    "category": "Furniture",
-                    "class_name": "cabinet",
-                    "prefab_name": "cabinet_childroom",
-                    "properties": [
-                        "CONTAINERS",
-                        "CAN_OPEN",
-                        "LOW_HEIGHT",
-                        "SURFACES"
-                    ],
-                    "states": [
-                        "CLOSED"
-                    ]
-                },
-                {
-                    "id": 35,
-                    "category": "Furniture",
-                    "class_name": "high kitchen table",
-                    "prefab_name": "high_kitchentable_kitchen",
-                    "properties": [
-                        "SURFACES",
-                        "HIGH_HEIGHT",
-                        "LANDABLE"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 38,
-                    "category": "Food",
-                    "class_name": "bag of tea",
-                    "prefab_name": "bag_of_tea_kitchen",
-                    "properties": [
-                        "GRABABLE",
-                        "MOVABLE"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 40,
-                    "category": "Electronics",
-                    "class_name": "flashlight",
-                    "prefab_name": "flashlight_childroom",
-                    "properties": [
-                        "GRABABLE",
-                        "MOVABLE"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 49,
-                    "category": "Food",
-                    "class_name": "orange",
-                    "prefab_name": "orange_kitchen",
-                    "properties": [
-                        "GRABABLE",
-                        "MOVABLE"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 50,
-                    "category": "Agents",
-                    "class_name": "robot arm",
-                    "prefab_name": "robot_arm_bedroom",
-                    "properties": [
-                        "ON_HIGH_SURFACE"
-                    ],
-                    "states": []
-                },
-                {
-                    "id": 52,
-                    "category": "Containers",
-                    "class_name": "box",
-                    "prefab_name": "box_0",
-                    "properties": [
-                        "CONTAINERS",
-                        "MOVABLE",
-                        "ON_HIGH_SURFACE"
-                    ],
-                    "states": [
-                        "OPEN_FOREVER"
-                    ]
-                }
-            ],
-            "edges": [
-                {
-                    "from_id": 1,
-                    "to_id": 0,
-                    "relation_type": "INSIDE"
-                },
-                {
-                    "from_id": 3,
-                    "to_id": 2,
-                    "relation_type": "INSIDE"
-                },
-                {
-                    "from_id": 5,
-                    "to_id": 4,
-                    "relation_type": "INSIDE"
-                },
-                {
-                    "from_id": 7,
-                    "to_id": 6,
-                    "relation_type": "INSIDE"
-                },
-                {
-                    "from_id": 8,
-                    "to_id": 0,
-                    "relation_type": "LEADING TO"
-                },
-                {
-                    "from_id": 8,
-                    "to_id": 4,
-                    "relation_type": "LEADING TO"
-                },
-                {
-                    "from_id": 9,
-                    "to_id": 2,
-                    "relation_type": "LEADING TO"
-                },
-                {
-                    "from_id": 9,
-                    "to_id": 4,
-                    "relation_type": "LEADING TO"
-                },
-                {
-                    "from_id": 10,
-                    "to_id": 4,
-                    "relation_type": "LEADING TO"
-                },
-                {
-                    "from_id": 10,
-                    "to_id": 6,
-                    "relation_type": "LEADING TO"
-                },
-                {
-                    "from_id": 11,
-                    "to_id": 5,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 12,
-                    "to_id": 5,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 13,
-                    "to_id": 5,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 14,
-                    "to_id": 7,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 22,
-                    "to_id": 5,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 22,
-                    "to_id": 4,
-                    "relation_type": "INSIDE"
-                },
-                {
-                    "from_id": 23,
-                    "to_id": 7,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 23,
-                    "to_id": 6,
-                    "relation_type": "INSIDE"
-                },
-                {
-                    "from_id": 24,
-                    "to_id": 13,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 24,
-                    "to_id": 4,
-                    "relation_type": "INSIDE"
-                },
-                {
-                    "from_id": 22,
-                    "to_id": 25,
-                    "relation_type": "WITH"
-                },
-                {
-                    "from_id": 25,
-                    "to_id": 5,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 27,
-                    "to_id": 1,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 28,
-                    "to_id": 3,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 32,
-                    "to_id": 7,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 33,
-                    "to_id": 1,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 34,
-                    "to_id": 3,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 35,
-                    "to_id": 7,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 38,
-                    "to_id": 7,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 40,
-                    "to_id": 32,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 49,
-                    "to_id": 1,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 50,
-                    "to_id": 33,
-                    "relation_type": "ON"
-                },
-                {
-                    "from_id": 50,
-                    "to_id": 0,
-                    "relation_type": "INSIDE"
-                },
-                {
-                    "from_id": 52,
-                    "to_id": 33,
-                    "relation_type": "ON"
-                }
-            ]
-        },
-        "task_goal": {
-            "inside_<flashlight>(40)_<box>(52)": [
-                1,
-                []
-            ]
-       },
-        "ground_truth_step_num":[13],
-        "goal_instruction": [
-            "Put the <flashlight>(40) into the <box>(52)."
-        ]
-    }
-]
+    }]

@@ -1,4 +1,7 @@
 import json
+import sys
+import time
+from pathlib import Path
 from LLM_agent import LLM_agent
 from args import get_args
 from LLM_oracle import ArenaMP
@@ -6,9 +9,34 @@ from get_env_info import Get_env_info
 import traceback
 import argparse
 
-args = get_args()
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from bench.eventlog import EVENTS
+from bench.llm_meter import METER
+from bench.record import write_task_record
 
-def write_log_to_file(log_message, file_name=f'./log/{args.env}.txt'):
+
+def record_task(args, task_id, env_id, task_name, goal, gt_steps,
+                success, steps, wall_clock_s, status='completed', detail=''):
+    """Write the per-task benchmark record, if --record_path was given."""
+    if not getattr(args, 'record_path', None):
+        return
+    write_task_record(
+        Path(args.record_path),
+        arm=args.arm, seed=args.seed, env=args.env, task_id=task_id,
+        env_id=env_id, task_name=task_name, goal=goal,
+        success=success, gt_steps=gt_steps, executed_steps=steps,
+        wall_clock_s=wall_clock_s, llm=METER.snapshot(),
+        model=args.lm_id, temperature=args.t,
+        flags={'mode': args.mode},
+        failures=[{'kind': status, 'detail': detail[:2000]}] if detail else [],
+        status=status,
+    )
+
+args = get_args()
+# No-op unless --event_log / $COHERENT_EVENT_LOG is set.
+EVENTS.open(args.event_log)
+
+def write_log_to_file(log_message, file_name=f'./log/log_test.txt'):
         with open(file_name, 'a') as file:  
             file.write(log_message + '\n')  
 
@@ -87,8 +115,11 @@ if __name__ == '__main__':
         steps = 0
         # import ipdb ;ipdb.set_trace()
 
+        METER.reset()
+        t0 = time.time()
         try:
             success, steps, saved_info = arena.run()
+            print(success)
         except Exception as e:
 
             print(f"An error occurred: {e}")
@@ -97,8 +128,24 @@ if __name__ == '__main__':
             write_log_to_file(f"An error occurred: {e}")
             write_log_to_file(error_info+'\n\n')
             success = False
+            # Record the crash from inside the child, where the LLM counters
+            # still exist — the sweep parent can only write a contentless stub.
+            record_task(args, task_id, env_id, task_name, goal_instruction,
+                        ground_truth_step_num, success=False, steps=steps,
+                        wall_clock_s=time.time() - t0, status='crashed',
+                        detail=error_info)
             raise Exception
             # input('STOP')
+        record_task(args, task_id, env_id, task_name, goal_instruction,
+                    ground_truth_step_num, success=success, steps=steps,
+                    wall_clock_s=time.time() - t0)
+        EVENTS.emit('RESULT', title='success' if success else 'failure',
+                    body=f'{steps} steps executed (ground truth {ground_truth_step_num})',
+                    success=bool(success), steps=steps,
+                    gt_steps=ground_truth_step_num,
+                    llm=METER.snapshot().get('total_calls'),
+                    wall_clock_s=round(time.time() - t0, 1))
+
         print(f'---------Env:{env_id}---Task:{task_id}-------------------------')
         print('success' if success else 'failure')
         print('steps:', steps)
@@ -110,9 +157,11 @@ if __name__ == '__main__':
         else:
             failed_tasks.append(task_id)
 
-    write_log_to_file('average steps:', sum(steps_list)/len(steps_list) if len(steps_list) > 0 else None)
-    write_log_to_file('successful tasks:', success_tasks if len(success_tasks) > 0 else None)
-    write_log_to_file('failed tasks:', failed_tasks if len(failed_tasks) > 0 else None)
+    write_log_to_file(f'average steps: {sum(steps_list)/len(steps_list) if len(steps_list) > 0 else None}')
+    write_log_to_file(f'successful tasks: {success_tasks if len(success_tasks) > 0 else None}')
+    write_log_to_file(f'failed tasks: {failed_tasks if len(failed_tasks) > 0 else None}')
     print('average steps:', sum(steps_list)/len(steps_list) if len(steps_list) > 0 else None)
     print('successful tasks:', success_tasks if len(success_tasks) > 0 else None )
     print('failed tasks:', failed_tasks if len(failed_tasks) > 0 else None)    
+
+    EVENTS.close()
