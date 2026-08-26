@@ -183,6 +183,11 @@ class LogSet:
 
 
 
+# See _franka_move_to_pose. ~9.6 s at the 25 Hz action timestep; converging moves
+# on this benchmark take roughly 58 steps.
+FRANKA_MOVE_STEP_BUDGET = 240
+
+
 class SkillSet(DistanceSet):
     def __init__(self, task_name, agents):
         super().__init__()
@@ -543,6 +548,13 @@ class SkillSet(DistanceSet):
             done = success = True
             return done, success, info
 
+        # A new target restarts the budget in _franka_move_to_pose. Without this a
+        # multi-waypoint move would spend one budget across all of its legs.
+        wp_state = self.agents_waypoint_dict[agent_name]
+        if wp_state.get("move_wp") != waypoint_ind:
+            wp_state["move_wp"] = waypoint_ind
+            wp_state["move_steps"] = 0
+
         sub_done, sub_success, sub_info = self._franka_move_to_pose(agent_name, waypoint_pos[waypoint_ind], waypoint_ori[waypoint_ind])
         print('_franka_move_to_pose---',"move_done:", sub_done, "move_success:", sub_success, "move_info:", sub_info)
         if sub_done and sub_success:
@@ -587,6 +599,29 @@ class SkillSet(DistanceSet):
         print('compute_inverse_kinematics---',"actions:", actions, "succ:", succ)
 
         if succ:
+            # Budget the convergence loop.
+            #
+            # The controller has no notion of giving up: it declares the move done
+            # only on reaching tolerance, or on the arm going still
+            # (mean |joint velocity| < 0.01). A pose near the edge of the franka's
+            # reach satisfies neither -- IK returns a best-effort solution, the arm
+            # creeps toward it and jitters, and the caller loops forever. The
+            # simulator then never publishes a Result and the WebSocket bridge
+            # times out at 60 s, which reads to the planner as a failed action even
+            # though nothing about the action was wrong.
+            #
+            # 240 steps at the 25 Hz action timestep is ~9.6 s. The moves that do
+            # converge here take about 58.
+            wp_state = self.agents_waypoint_dict[agent_name]
+            wp_state["move_steps"] = wp_state.get("move_steps", 0) + 1
+            if wp_state["move_steps"] > FRANKA_MOVE_STEP_BUDGET:
+                print("_franka_move_to_pose--- gave up after %d steps (delta still "
+                      "above tolerance); reporting 'not reached' rather than hanging"
+                      % wp_state["move_steps"])
+                done = True
+                info["errorFlag"] = 1  # "Not reach"
+                return done, success, info
+
             self.agents_dict[agent_name].apply_action(actions)
             self.agents_dict[agent_name].attach()
             
@@ -601,8 +636,18 @@ class SkillSet(DistanceSet):
                 done = True
             else:
                 joint_velocities = np.abs(self.agents_dict[agent_name].get_joint_velocities()).mean()
-            
-                if joint_velocities < 0.01:
+
+                # This is the "the arm has stopped, it is never getting there"
+                # test, and at 0.01 it fired far too early. Measured on the Merom
+                # pick: the gripper was closing on the apple at ~0.003 m/step and
+                # had reached 0.038 m -- a couple of steps short of the 0.03 m
+                # tolerance -- when the mean joint velocity dipped under 0.01 and
+                # the move was abandoned as unreachable.
+                #
+                # 0.002 lets the controller finish its approach. Runaway is not a
+                # risk: FRANKA_MOVE_STEP_BUDGET above caps the whole move, so the
+                # worst case is a clean give-up rather than a longer stall.
+                if joint_velocities < 0.002:
                     done = True
                     info["errorFlag"] = 1  # "Not reach"
                 

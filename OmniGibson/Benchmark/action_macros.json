@@ -1,0 +1,59 @@
+{
+  "_comment": [
+    "One planner action -> the sequence of sim text-actions that carries it out.",
+    "",
+    "PEFA and FOLBP speak semantic actions ('[movetowards] <fridge>(40)'). Some of",
+    "them need several sim commands: the house demo's fridge is only openable from",
+    "a specific pose reached via two waypoints, its door is a joint link rather than",
+    "the object, and the flight to the terrace routes through a doorway waypoint.",
+    "Those waypoints are navigation detail, not decisions, so they belong here",
+    "rather than in the planner's action space -- a symbolic planner would never",
+    "invent 'flying_waypoint_out_livingroom_p1', and padding the benchmark's step",
+    "count with them would misreport it.",
+    "",
+    "Keys are matched against the action AFTER the env json's name_mapping has been",
+    "applied, which is the form the bridge receives. Values are '<op> <target>'",
+    "strings, or ['<op>', [a, b]] for the two-argument ops. Anything with no entry",
+    "passes through untouched -- which is every action in the Merom demo.",
+    "",
+    "Merom needs no macros at all; it is listed empty on purpose, so that an absent",
+    "task name reads as 'not configured' rather than 'nothing to do'.",
+    "A key may be scoped to one agent as '<agent>|<action>', which wins over the bare form. That is how the arm's grab becomes grabfrombasket while the dog's grab of the same object stays an ordinary grab."
+  ],
+  "Merom_1_int_Task1": {
+    "franka_0|[grab] apple_agveuv_0": [
+      [
+        "grabfrombasket",
+        [
+          "apple_agveuv_0",
+          "quadrotor_0"
+        ]
+      ]
+    ]
+  },
+  "house_double_floor_lower_Task1": {
+    "[movetowards] fridge_xyejdx_0": [
+      "movetowards fridge_xyejdx_0_open_door-p1",
+      "movetowards fridge_xyejdx_0_open_door-p2"
+    ],
+    "[open] fridge_xyejdx_0": [
+      "open fridge_xyejdx_0-j_link_1"
+    ],
+    "[movetowards] kebab_cewhbv_0": [
+      "movetowards fridge_xyejdx_0_grab_kebab_cewhbv_0"
+    ],
+    "[movetowards] pedestal_table_dmghrm_0": [
+      "movetowards flying_waypoint_out_livingroom_p1",
+      "movetowards flying_waypoint_over_pedestal_table_dmghrm_0"
+    ],
+    "franka_0|[grab] kebab_cewhbv_0": [
+      [
+        "grabfrombasket",
+        [
+          "kebab_cewhbv_0",
+          "quadrotor_0"
+        ]
+      ]
+    ]
+  }
+}

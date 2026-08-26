@@ -16,7 +16,7 @@ cfg["scene"] = {
   
   "type": "InteractiveTraversableScene",
   "scene_model": "Merom_1_int",
-  "scene_file": "/home/pjlab/liukehui/COHERENT-OmniGibson/Benchmark/tasks/Merom_1_int_best.json",
+  "scene_file": os.path.join(TASK_ROOT, "Merom_1_int_best.json"),
   "floor_plane_visible": True
 }
 

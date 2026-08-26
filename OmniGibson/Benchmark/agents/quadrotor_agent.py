@@ -1,5 +1,18 @@
+import os
 import sys
-sys.path.append("/home/pjlab/.local/share/ov/pkg/isaac_sim-2022.2.0/exts/omni.isaac.quadrotor")
+
+# omni.isaac.quadrotor is a custom extension COHERENT copies into Isaac Sim's
+# exts/ directory.  Isaac's setup_python_env.sh bakes in the list of extension
+# paths at install time, so it never picks up extensions added afterwards --
+# hence this manual sys.path entry.  ISAAC_PATH is exported by Isaac's
+# setup_conda_env.sh; fall back to the default install location.
+_isaac_root = os.environ.get(
+    "ISAAC_PATH",
+    os.path.expanduser("~/.local/share/ov/pkg/isaac_sim-2022.2.0"),
+)
+_quadrotor_ext = os.path.join(_isaac_root, "exts", "omni.isaac.quadrotor")
+if _quadrotor_ext not in sys.path:
+    sys.path.append(_quadrotor_ext)
 
 
 import numpy as np

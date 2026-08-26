@@ -16,7 +16,7 @@ cfg["scene"] = {
   
   "type": "InteractiveTraversableScene",
   "scene_model": "grocery_store_cafe",
-  "scene_file": "/home/pjlab/liukehui/COHERENT-OmniGibson/Benchmark/tasks/house_double_floor_lower_best_Task1.json",
+  "scene_file": os.path.join(TASK_ROOT, "house_double_floor_lower_best_Task1.json"),
   "floor_plane_visible": True
 }
 
