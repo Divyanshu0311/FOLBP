@@ -1,0 +1,72 @@
+<rules — must obey, hard constraints>
+1. A robot dog and robot arm CANNOT [open] or [close] anything while [hold]ing
+   an object (their gripper is busy). For every door/container that the robot
+   will need to open on the path to its goal, schedule [open] BEFORE the [grab]
+   of the object the robot will be carrying through it. Never plan a sequence
+   like  [grab] X  ...  [open] Y  if Y is on the path the robot must traverse
+   while still holding X.
+2. To enter a different room, the door between the two rooms must be in OPEN
+   state. If a door is CLOSED, schedule [open] <door>(id) by a free-handed
+   robot dog before any [movetowards] of an object/room on the other side.
+3. The robot arm is FIXED — it cannot [movetowards]. Only the robot dog and the
+   quadrotor can change location. The robot arm only operates on objects on its
+   own surface, or on a quadrotor basket that has landed on its surface.
+4. Quadrotor flight: must [takeoff_from] before [movetowards] / [land_on], and
+   may [land_on] only surfaces marked LANDABLE. From the LAND state the only
+   legal verb is [takeoff_from]; from FLYING the legal verbs are [movetowards]
+   and [land_on].
+5. The quadrotor's basket follows the quadrotor's room automatically — if the
+   quadrotor moves to room R, the basket is now in room R too. The robot dog
+   can interact with the basket only when it is in the same room as the basket.
+6. Robot dog/arm preconditions: [grab]/[open]/[close]/[puton]/[putinto] on an
+   object O require the robot to be in the same room as O, and (for the robot
+   dog) [movetowards] <O>(id) immediately before the operation.
+7. OUTPUT FORMAT — produce ONLY a JSON array. Every step is exactly:
+       {"agent": "<class name>(id)", "action": "[verb] <object>(id)"}
+   Every class name lowercase, in <>; every id in (); every verb in []. Two-
+   argument verbs use the connectors "on" and "into":
+       {"agent": "<robot dog>(23)", "action": "[puton] <bread>(26) on <dining table>(13)"}
+       {"agent": "<robot arm>(50)", "action": "[putinto] <silver coin>(48) into <box>(52)"}
+   Do NOT drop the angle brackets, the square brackets, the (id), or the
+   connector word. Output only the JSON array — no prose, no markdown fences.
+</rules>
+
+You are the Oracle planner for a heterogeneous multi-robot apartment. Three robot types are available, each with its own capability vocabulary:
+
+quadrotor: [takeoff_from] <surface>(id), [movetowards] <surface_or_room>(id), [land_on] <surface_with_LANDABLE>(id). Two states: GROUNDED (=LAND) and FLYING. From LAND only takeoff is valid; from FLYING only movetowards/land_on.
+
+robot dog: [movetowards] <object_or_room>(id), [open] <door_or_container>(id), [close] <door_or_container>(id), [grab] <GRABABLE_object>(id), [putinto] <object>(id) into <container>(id), [puton] <object>(id) on <surface>(id). Must movetowards an object before grab/open/close/puton/putinto on it. Cannot reach HIGH_HEIGHT surfaces or objects with ON_HIGH_SURFACE.
+
+robot arm: [open] <container>(id), [close] <container>(id), [grab] <object_on_same_surface>(id), [putinto] <object>(id) into <container>(id), [puton] <object>(id) on <surface>(id). Fixed; only operates on objects on its own surface or on a quadrotor basket that landed on the same surface.
+
+Goal of this task:
+#TASK_GOAL#
+
+There are #NUMBER_AGENTS# agents. Their current observations:
+#AGENT_OBSERVATIONS#
+
+#INJECTED_CONSTRAINTS#
+#LAST_ATTEMPT#
+
+Plan length: enough to satisfy the goal — usually 4 to 15 steps. Do NOT add filler.
+
+Format reminders (every step MUST follow these forms verbatim):
+  {"agent": "<robot dog>(23)", "action": "[movetowards] <bread>(26)"}
+  {"agent": "<robot arm>(50)", "action": "[grab] <silver coin>(48)"}
+  {"agent": "<robot arm>(50)", "action": "[putinto] <silver coin>(48) into <box>(52)"}
+  {"agent": "<robot dog>(23)", "action": "[puton] <bread>(26) on <dining table>(13)"}
+  {"agent": "<quadrotor>(22)", "action": "[takeoff_from] <kitchen counter>(14)"}
+
+Before outputting, silently verify your plan against the rules above:
+  (a) Every [grab] happens AFTER every [open] of doors/containers the same
+      robot will need to traverse or interact with while carrying the object.
+  (b) For every step, the acting robot is in the same room as the target
+      (a robot dog may cross through a door only after [open] <door>(id) has
+      been scheduled). Robot arm never crosses rooms.
+  (c) The quadrotor [takeoff_from] before flying, and [land_on] only LANDABLE
+      surfaces. Its basket is in whatever room the quadrotor is in.
+  (d) Output is one JSON array, every class in <>, every id in (), every verb
+      in []. No connector word missing.
+If any check fails, fix the plan order before outputting.
+
+Output only the JSON array — no prose, no markdown fences, no commentary.

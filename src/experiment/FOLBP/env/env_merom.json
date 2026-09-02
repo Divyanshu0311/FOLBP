@@ -1,0 +1,220 @@
+[
+ {
+  "task_id": 0,
+  "task_name": "Merom_1_int_Task1",
+  "env_id": "merom",
+  "init_graph": {
+   "nodes": [
+    {
+     "id": 4,
+     "category": "Rooms",
+     "class_name": "livingroom",
+     "prefab_name": "living_room_0",
+     "properties": [],
+     "states": []
+    },
+    {
+     "id": 5,
+     "category": "Floor",
+     "class_name": "livingroom floor",
+     "prefab_name": "living_room_0_floor",
+     "properties": [
+      "SURFACES",
+      "LANDABLE",
+      "LOW_HEIGHT"
+     ],
+     "states": []
+    },
+    {
+     "id": 10,
+     "category": "Furniture",
+     "class_name": "coffee table",
+     "prefab_name": "coffee_table_fqluyq_0",
+     "properties": [
+      "SURFACES",
+      "LOW_HEIGHT"
+     ],
+     "states": []
+    },
+    {
+     "id": 11,
+     "category": "Furniture",
+     "class_name": "breakfast table",
+     "prefab_name": "breakfast_table_skczfi_0",
+     "properties": [
+      "SURFACES",
+      "HIGH_HEIGHT",
+      "LANDABLE"
+     ],
+     "states": []
+    },
+    {
+     "id": 12,
+     "category": "Containers",
+     "class_name": "wicker basket",
+     "prefab_name": "wicker_basket_dgkhyn_0",
+     "properties": [
+      "CONTAINERS",
+      "SURFACES"
+     ],
+     "states": [
+      "OPEN_FOREVER"
+     ]
+    },
+    {
+     "id": 20,
+     "category": "Agents",
+     "class_name": "quadrotor",
+     "prefab_name": "quadrotor_0",
+     "properties": [
+      "MOVABLE",
+      "FLYABLE",
+      "HAVE_A_BASKET"
+     ],
+     "states": [
+      "LAND"
+     ]
+    },
+    {
+     "id": 21,
+     "category": "Agents",
+     "class_name": "robot dog",
+     "prefab_name": "aliengo_0",
+     "properties": [
+      "MOVABLE"
+     ],
+     "states": []
+    },
+    {
+     "id": 22,
+     "category": "Agents",
+     "class_name": "robot arm",
+     "prefab_name": "franka_0",
+     "properties": [
+      "ON_HIGH_SURFACE"
+     ],
+     "states": []
+    },
+    {
+     "id": 23,
+     "category": "AgentTool",
+     "class_name": "basket",
+     "prefab_name": "quadrotor_0_basket",
+     "properties": [
+      "MOVABLE",
+      "CONTAINERS",
+      "WITH_QUADROTOR"
+     ],
+     "states": [
+      "OPEN_FOREVER"
+     ]
+    },
+    {
+     "id": 30,
+     "category": "Food",
+     "class_name": "apple",
+     "prefab_name": "apple_agveuv_0",
+     "properties": [
+      "GRABABLE",
+      "MOVABLE"
+     ],
+     "states": []
+    }
+   ],
+   "edges": [
+    {
+     "from_id": 5,
+     "to_id": 4,
+     "relation_type": "INSIDE"
+    },
+    {
+     "from_id": 10,
+     "to_id": 5,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 11,
+     "to_id": 5,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 12,
+     "to_id": 11,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 20,
+     "to_id": 5,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 20,
+     "to_id": 4,
+     "relation_type": "INSIDE"
+    },
+    {
+     "from_id": 21,
+     "to_id": 5,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 21,
+     "to_id": 4,
+     "relation_type": "INSIDE"
+    },
+    {
+     "from_id": 22,
+     "to_id": 11,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 22,
+     "to_id": 4,
+     "relation_type": "INSIDE"
+    },
+    {
+     "from_id": 20,
+     "to_id": 23,
+     "relation_type": "WITH"
+    },
+    {
+     "from_id": 23,
+     "to_id": 5,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 23,
+     "to_id": 4,
+     "relation_type": "INSIDE"
+    },
+    {
+     "from_id": 30,
+     "to_id": 10,
+     "relation_type": "ON"
+    }
+   ]
+  },
+  "task_goal": {
+   "inside_<apple>(30)_<wicker basket>(12)": [
+    1,
+    []
+   ]
+  },
+  "goal_instruction": [
+   "Put the <apple>(30) into the <wicker basket>(12). The <apple>(30) is on the <coffee table>(10), and the <wicker basket>(12) is on the <breakfast table>(11), which is a high surface only the <robot arm>(22) can reach."
+  ],
+  "ground_truth_step_num": [
+   9
+  ],
+  "name_mapping": {
+   "apple(30)": "apple_agveuv_0",
+   "coffee table(10)": "coffee_table_fqluyq_0",
+   "breakfast table(11)": "breakfast_table_skczfi_0",
+   "wicker basket(12)": "wicker_basket_dgkhyn_0",
+   "quadrotor(20)": "quadrotor_0",
+   "robot dog(21)": "aliengo_0",
+   "robot arm(22)": "franka_0",
+   "basket(23)": "quadrotor_0_basket"
+  }
+ }
+]

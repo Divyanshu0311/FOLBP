@@ -1,0 +1,210 @@
+[
+ {
+  "task_id": 0,
+  "task_name": "house_double_floor_lower_Task1",
+  "env_id": 0,
+  "init_graph": {
+   "nodes": [
+    {
+     "id": 4,
+     "class_name": "livingroom",
+     "category": "Rooms",
+     "properties": [],
+     "states": []
+    },
+    {
+     "id": 5,
+     "class_name": "livingroom floor",
+     "category": "Floor",
+     "properties": [
+      "SURFACES",
+      "LANDABLE",
+      "LOW_HEIGHT"
+     ],
+     "states": []
+    },
+    {
+     "id": 20,
+     "class_name": "quadrotor",
+     "category": "Agents",
+     "properties": [
+      "MOVABLE",
+      "FLYABLE",
+      "HAVE_A_BASKET"
+     ],
+     "states": [
+      "LAND"
+     ]
+    },
+    {
+     "id": 21,
+     "class_name": "robot dog",
+     "category": "Agents",
+     "properties": [
+      "MOVABLE"
+     ],
+     "states": []
+    },
+    {
+     "id": 22,
+     "class_name": "robot arm",
+     "category": "Agents",
+     "properties": [
+      "ON_HIGH_SURFACE"
+     ],
+     "states": []
+    },
+    {
+     "id": 23,
+     "class_name": "basket",
+     "category": "AgentTool",
+     "properties": [
+      "MOVABLE",
+      "CONTAINERS",
+      "WITH_QUADROTOR"
+     ],
+     "states": [
+      "OPEN_FOREVER"
+     ]
+    },
+    {
+     "id": 40,
+     "class_name": "fridge",
+     "category": "Containers",
+     "properties": [
+      "CONTAINERS",
+      "SURFACES"
+     ],
+     "states": [
+      "CLOSED"
+     ]
+    },
+    {
+     "id": 41,
+     "class_name": "kebab",
+     "category": "Food",
+     "properties": [
+      "GRABABLE",
+      "MOVABLE"
+     ],
+     "states": []
+    },
+    {
+     "id": 42,
+     "class_name": "pedestal table",
+     "category": "Furniture",
+     "properties": [
+      "SURFACES",
+      "HIGH_HEIGHT",
+      "LANDABLE"
+     ],
+     "states": []
+    },
+    {
+     "id": 43,
+     "class_name": "grill",
+     "category": "Furniture",
+     "properties": [
+      "SURFACES",
+      "HIGH_HEIGHT"
+     ],
+     "states": []
+    }
+   ],
+   "edges": [
+    {
+     "from_id": 5,
+     "to_id": 4,
+     "relation_type": "INSIDE"
+    },
+    {
+     "from_id": 40,
+     "to_id": 5,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 42,
+     "to_id": 5,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 43,
+     "to_id": 42,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 41,
+     "to_id": 40,
+     "relation_type": "INSIDE"
+    },
+    {
+     "from_id": 20,
+     "to_id": 5,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 20,
+     "to_id": 4,
+     "relation_type": "INSIDE"
+    },
+    {
+     "from_id": 21,
+     "to_id": 5,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 21,
+     "to_id": 4,
+     "relation_type": "INSIDE"
+    },
+    {
+     "from_id": 22,
+     "to_id": 42,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 22,
+     "to_id": 4,
+     "relation_type": "INSIDE"
+    },
+    {
+     "from_id": 20,
+     "to_id": 23,
+     "relation_type": "WITH"
+    },
+    {
+     "from_id": 23,
+     "to_id": 5,
+     "relation_type": "ON"
+    },
+    {
+     "from_id": 23,
+     "to_id": 4,
+     "relation_type": "INSIDE"
+    }
+   ]
+  },
+  "task_goal": {
+   "on_<kebab>(41)_<grill>(43)": [
+    1,
+    []
+   ]
+  },
+  "goal_instruction": [
+   "Put the <kebab>(41) on the <grill>(43). The <kebab>(41) is inside the CLOSED <fridge>(40), so it cannot be seen or grabbed until the <fridge>(40) is opened. The <grill>(43) is on the <pedestal table>(42), which only the <robot arm>(22) can reach."
+  ],
+  "ground_truth_step_num": [
+   11
+  ],
+  "name_mapping": {
+   "fridge(40)": "fridge_xyejdx_0",
+   "kebab(41)": "kebab_cewhbv_0",
+   "pedestal table(42)": "pedestal_table_dmghrm_0",
+   "grill(43)": "grill_sxfjac_0",
+   "quadrotor(20)": "quadrotor_0",
+   "robot dog(21)": "aliengo_0",
+   "robot arm(22)": "franka_0",
+   "basket(23)": "quadrotor_0_basket"
+  }
+ }
+]

@@ -1,0 +1,68 @@
+Your previous plan was rejected by a symbolic precondition checker. Repair it.
+
+The checker forward-simulates the plan and verifies each step's preconditions
+against the scene. It found the FIRST step whose preconditions do not hold, and
+returned the exact atoms that are missing. Everything before that step is fine.
+
+FAILING STEP INDEX: #FAILED_STEP_INDEX#
+FAILING STEP:       #FAILED_STEP#
+MISSING ATOMS:      #MISSING_PRECONDS#
+UNSAT CORE LABELS:  #UNSAT_CORE#
+
+What each atom means (the atom is FALSE at that point in the plan, and must be
+made true before the failing step can run):
+
+  same_room(A, O)             — robot A is not in the same room as object O.
+                                Fix: move A into O's room; if the connecting door
+                                is CLOSED, a free-handed robot dog must [open] it first.
+  close(A, O)                 — robot A is not adjacent to O.
+                                Fix: insert [movetowards] <O>(id) by A immediately before.
+  movetowards_reachable(A, O) — A cannot reach O yet; resolves to one of the two above.
+  not_holding(A)              — A's gripper is full, but this verb needs it empty
+                                ([open]/[close]/[grab] all require an empty gripper).
+                                Fix: put the held object down first, or — better —
+                                re-order the plan so the [open]/[close] happens BEFORE
+                                the [grab] that fills the gripper.
+  hold(A, O)                  — A is not holding O, but this step tries to place it.
+                                Fix: [movetowards] <O>(id) then [grab] <O>(id) first.
+  state_open(O)               — container/door O is shut. Fix: a free-handed robot
+                                dog or robot arm must [open] <O>(id) first.
+  state_closed(O)             — O is already open; the [open] is redundant. Drop it.
+  state_flying(A)             — the quadrotor is grounded. Fix: [takeoff_from] its
+                                current surface before [movetowards] / [land_on].
+  state_land(A)               — the quadrotor is airborne but the step needs it landed.
+  landable(O)                 — O is not a LANDABLE surface; the quadrotor cannot land
+                                there. Pick a LANDABLE surface, or hand off via the basket.
+  grabable(O) / surface(O) / container(O)
+                              — O is the wrong kind of object for this verb. Retarget.
+  on(A, O)                    — the quadrotor is not resting on O, so it cannot take
+                                off from O. Use the surface it is actually on.
+
+REPAIR RULES:
+  - Keep the steps before the failing index exactly as they are — they verified clean.
+  - Insert the smallest prerequisite that makes the missing atoms true, then keep the
+    rest of the plan. Re-order rather than insert when the conflict is a gripper
+    conflict (not_holding), because dropping and re-grabbing wastes steps.
+  - Do not restate the goal, do not add filler steps, do not drop steps that were
+    already doing useful work.
+
+The plan you produced (the whole thing, for context):
+#CURRENT_PLAN#
+
+Goal of this task:
+#TASK_GOAL#
+
+There are #NUMBER_AGENTS# agents. Their current observations:
+#AGENT_OBSERVATIONS#
+
+#INJECTED_CONSTRAINTS#
+
+Output the COMPLETE corrected plan as one JSON array, in exactly the same format
+as before — every class name lowercase in <>, every id in (), every verb in [],
+the connectors "on" and "into" preserved:
+  {"agent": "<robot dog>(23)", "action": "[movetowards] <bread>(26)"}
+  {"agent": "<robot dog>(23)", "action": "[puton] <bread>(26) on <dining table>(13)"}
+  {"agent": "<robot arm>(50)", "action": "[putinto] <silver coin>(48) into <box>(52)"}
+  {"agent": "<quadrotor>(22)", "action": "[takeoff_from] <kitchen counter>(14)"}
+
+Output only the JSON array — no prose, no markdown fences, no commentary.

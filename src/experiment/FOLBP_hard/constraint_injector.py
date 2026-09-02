@@ -1,0 +1,179 @@
+"""(D) Constraint Injection — ABLATION FORK: every learned clause is a HARD ban.
+
+This directory is a fork of ../FOLBP/ and `HARD_REASONS` below is the ONLY intended
+difference between them. `diff -r` over the two trees is the check that keeps that
+true; everything else, including the benchmark flags in bench/arms.py, is identical.
+
+The fork exists to measure a claim ../FOLBP/constraint_injector.py only asserts in
+prose: that treating state-dependent failures as hard constraints deadlocks the
+planner. There, only a genuine capability mismatch (a robot arm cannot movetowards)
+earns a permanent ban, while RUNTIME_REJECTION / PRECOND_MISSING / PARSE_FAILURE
+become natural-language hints, because the *combination* is fine and only the state
+at that moment was wrong.
+
+Here every failure class is hard, so a single state-dependent failure is
+over-generalized into "this agent can never [verb] this target_class" and pushed
+into the Plan Validator's forbidden list. The deadlock follows mechanically:
+
+  1. Step [movetowards] <kitchen> by the quadrotor fails once — the agent happened
+     to be in the wrong room.
+  2. The triple (quadrotor, movetowards, kitchen) is banned permanently.
+  3. The goal object is in the kitchen, so every subsequent Oracle plan must use
+     that triple, and PlanValidator rejects each one at step 0.
+  4. LLM_oracle._record_failure_and_inject deliberately learns nothing new from a
+     `forbidden_by_learned_constraint` rejection, so the ban is never revised.
+  5. Zero steps execute, `no_progress_iters` reaches its cap, the task fails.
+
+That terminal state is what the `deadlocked` flag in the per-task record counts.
+"""
+from typing import Iterable, List
+
+from cdcl_engine import LearnedClause
+from plan_validator import PlanValidator
+
+
+# Every FailureClass in conflict_analyzer.py. This one line is the ablation: the
+# soft/hard split that ../FOLBP/ makes deliberately is collapsed to "all hard".
+HARD_REASONS = {'capability_violation', 'runtime_rejection', 'precond_missing',
+                'parse_failure', 'unknown'}
+
+
+PRECOND_HINT = {
+    'not_holding': 'the agent must have empty hands beforehand (drop held items first)',
+    'close':       'the agent must be CLOSE to the target — schedule [movetowards] first',
+    'hold':        'the agent must already be holding the object — schedule [grab] first',
+    'state_open':  'the target must be in OPEN state — schedule [open] first',
+    'state_closed': 'the target must be in CLOSED state — schedule [close] first',
+    'state_flying': 'the agent must be FLYING — schedule [takeoff_from] first',
+    'state_land':  'the agent must be LAND(ed) — schedule [land_on] first',
+    'reachable_room': 'the target room must be reachable — schedule [open] <door> before crossing',
+    'same_room':   'the agent must be in the same room as the target — schedule [movetowards] <target_room> first (open any closed door on the path)',
+    'movetowards_reachable': 'the target is not directly reachable — open any closed door, then movetowards the target_room before movetowards the object',
+    # Static-property mismatches: no insertion can repair these. The Oracle must
+    # re-route through a different target or a different agent.
+    'container':   ('the target does NOT have the CONTAINERS property in this scene — '
+                    'it cannot be [open]ed and you cannot [putinto] it. Pick a different '
+                    'container (must have CONTAINERS), or use [puton] on a flat surface.'),
+    'landable':    ('the target surface does NOT have the LANDABLE property — quadrotor '
+                    'cannot [land_on] it. Pick a different surface tagged LANDABLE '
+                    '(typically dining tables, kitchen tables, high tables, or floors).'),
+    'grabable':    ('the target object does NOT have the GRABABLE property — robots '
+                    'cannot [grab] it. Pick a different object, or check the agent '
+                    'observations to find a similar object that is tagged GRABABLE.'),
+    'ground_reachable': ('the target is out of a ground robot\'s reach — it is a HIGH '
+                    'surface, sits ON a high surface, or is a floor/agent. A robot dog '
+                    'can NEVER [movetowards], [grab], [puton] or [putinto] it, in any '
+                    'state or order. To DELIVER an object to a high surface: the dog '
+                    '[putinto]s it into the quadrotor\'s <basket> while the basket is '
+                    'landed within reach, the quadrotor [land_on]s the high surface, '
+                    'and the robot arm mounted there [grab]s it from the basket and '
+                    'places it. To FETCH from a high surface, reverse the same ferry. '
+                    'For floors, [movetowards] the room itself.'),
+    'quad_movetarget': ('while FLYING the quadrotor can only [movetowards] LANDABLE '
+                    'surfaces (tables, floors) or adjacent open rooms — never loose '
+                    'objects. To interact with an object, [land_on] a LANDABLE surface '
+                    'near it, or let a ground robot handle it.'),
+    'same_surface': ('the robot arm is FIXED and reaches ONLY objects on its own '
+                    'surface. FIRST check whether a DIFFERENT robot arm is already '
+                    'mounted on the surface this step needs — scenes usually have one '
+                    'arm per surface, and picking the right arm is the whole fix. If no '
+                    'arm is in place, the object must be brought to the acting arm\'s '
+                    'surface BEFORE it acts: the quadrotor [land_on]s that surface with '
+                    'the basket, or a robot dog [puton]s the object there.'),
+    'goal_unreached': ('this plan executes but does NOT accomplish the stated goal — '
+                    'most often the wrong object id is targeted (two objects share a '
+                    'class name, e.g. two beds). Re-read the goal and use EXACTLY the '
+                    'ids named in it.'),
+}
+
+
+def _verb_specific_hint(c) -> str:
+    """Verb-aware override for cases where the generic PRECOND_HINT misleads."""
+    if c.failed_precond == 'not_holding' and c.verb in ('open', 'close'):
+        # The classic open-door-while-holding ordering bug. Generic "drop held items
+        # first" is *worse* advice than fixing the plan order: dropping means walking
+        # back later. Tell the Oracle to fix the plan order instead.
+        target_phrase = f'<{c.target_class}>' if c.target_class else 'the door/container'
+        return (f'a {c.agent_class} cannot [{c.verb}] {target_phrase} while holding an object. '
+                f'In the plan, schedule [{c.verb}] {target_phrase} BEFORE the [grab] of any '
+                'object the agent will be carrying through it. Do NOT drop and re-grab — '
+                'reorder grab to happen after the door/container is open.')
+    if c.failed_precond in ('antipattern_open_while_holding', 'antipattern_closed_door_while_holding'):
+        return (f'a {c.agent_class} is currently holding an object AND a door between the '
+                f'agent and a <{c.target_class}> is closed. The agent cannot open a door '
+                'with its hands full. Reorder the plan: [open] all doors on the path BEFORE '
+                'the [grab] of the object you carry through. Do NOT drop and re-grab.')
+    if c.failed_precond == 'antipattern_robot_arm_wrong_room':
+        base = ('robot arms are FIXED — they cannot move between rooms. The chosen arm '
+                'is in a different room from the target. Either pick the robot arm that '
+                'is already in the target\'s room, or have the quadrotor land its basket '
+                'on the chosen arm\'s surface so the target comes to the arm. Check the '
+                'agent observations to confirm each arm\'s current room before reassigning.')
+        if c.context:
+            base += f' Context from validator: {c.context}'
+        return base
+    return ''
+
+
+class ConstraintInjector:
+    def inject(self, clauses: Iterable[LearnedClause], validator: PlanValidator) -> str:
+        clauses = list(clauses)
+        for c in clauses:
+            if c.reason in HARD_REASONS and c.agent_class and c.verb and c.target_class:
+                validator.inject_forbidden(c.agent_class, c.verb, c.target_class)
+        return self._format_for_oracle(clauses)
+
+    def _format_for_oracle(self, clauses: List[LearnedClause]) -> str:
+        if not clauses:
+            return ''
+        hard = [c for c in clauses if c.reason in HARD_REASONS]
+        # Verified structural defects get their own imperative section: the soft
+        # header's "combination is allowed if the precondition is satisfied" is
+        # actively wrong for them — the verifier proved the pattern cannot work as
+        # planned, and an Oracle told the combination is allowed keeps producing it.
+        STATIC_PRECONDS = ('ground_reachable', 'same_surface', 'quad_movetarget',
+                           'goal_unreached')
+        rejected = [c for c in clauses
+                    if c.reason not in HARD_REASONS and c.failed_precond in STATIC_PRECONDS]
+        soft = [c for c in clauses
+                if c.reason not in HARD_REASONS and c.failed_precond not in STATIC_PRECONDS]
+        lines: List[str] = []
+        if hard:
+            lines.append('Hard constraints (DO NOT use these patterns — they are not feasible in this scene):')
+            for c in hard:
+                tgt = f' on objects of class {c.target_class}' if c.target_class else ''
+                lines.append(f'- avoid [{c.verb}] by <{c.agent_class}>{tgt} (cause: {c.reason})')
+        if rejected:
+            lines.append('VERIFIED PLAN DEFECTS — the verifier REJECTED your previous plan for these. '
+                         'The step cannot work as you planned it; produce a DIFFERENT plan that follows '
+                         'the stated route:')
+            for c in rejected:
+                if c.agent_class and c.verb and c.target_class:
+                    prefix = f'[{c.verb}] by <{c.agent_class}> on a <{c.target_class}>'
+                else:
+                    prefix = f'[{c.verb}]' if c.verb else 'the failed step'
+                hint = PRECOND_HINT.get(c.failed_precond, '')
+                if c.context:
+                    hint += f' [{c.context}]'
+                lines.append(f'- {prefix}: {hint}.')
+        if soft:
+            lines.append('State-dependent hints from prior failures (combination is allowed if the precondition is satisfied):')
+            for c in soft:
+                if c.agent_class and c.verb and c.target_class:
+                    prefix = f'when planning [{c.verb}] by <{c.agent_class}> on a <{c.target_class}>'
+                else:
+                    prefix = f'when planning [{c.verb}]' if c.verb else 'when planning the failed step'
+                # 1. Verb-specific override (e.g. open-while-holding antipattern).
+                hint = _verb_specific_hint(c)
+                # 2. Otherwise the canned precondition message.
+                if not hint:
+                    if c.reason == 'runtime_rejection':
+                        hint = ('the per-step executor refused this last time — most likely the agent '
+                                'was not in the right room, the target was hidden, or the agent was '
+                                'already at the target. Re-order so this step runs only after the '
+                                'agent is verifiably in the same room as the target, or skip if the '
+                                'precondition is already satisfied')
+                    else:
+                        hint = PRECOND_HINT.get(c.failed_precond, f'ensure the {c.failed_precond} precondition holds')
+                lines.append(f'- {prefix}: {hint}.')
+        return '\n'.join(lines)
