@@ -1,0 +1,7 @@
+{
+  "_comment": "Map PEFA's 'class(id)' identifiers to physical poses in the robot's local frame. Distances in cm, angles in degrees. Edit for your environment, then pass --objects-file to web_client.py.",
+
+  "red_object(300)":         {"x_cm": 100, "y_cm":  -100, "theta_deg":   70},
+  "ball(300)":               {"x_cm": 100, "y_cm":  -100, "theta_deg":   70, "visual_servo": true},
+  "basket(700)":             {"x_cm":  60, "y_cm":   -60, "theta_deg":    0, "visual_servo": false}
+}
