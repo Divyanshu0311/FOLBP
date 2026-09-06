@@ -1,0 +1,348 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Init Env
+[mode=standalone] Running symbolic planner only (no execution bridge)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:0 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <dining table>(9) with the <cookbook>(28) and <magazine>(26) in the <basket>(23). 
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 21
+['[movetowards] <door>(35)', '[movetowards] <coffee table>(4)', '[movetowards] <chair>(5)', '[movetowards] <chair>(6)', '[movetowards] <low bookshelf>(36)', '[movetowards] <low bookshelf>(37)', '[movetowards] <basket>(23)', '[movetowards] <door>(24)', '[movetowards] <magazine>(26)', '[movetowards] <cookbook>(28)', '[movetowards] <kitchen>(2)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+J. [movetowards] <cookbook>(28)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+J. [movetowards] <cookbook>(28)
+==============================================
+
+[movetowards] <cookbook>(28)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <cookbook>(28) can only complete the "Please movetowards <cookbook>(28)" part of the instruction. The "then grab it" part still needs to be executed later.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:1 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <dining table>(9) with the <cookbook>(28) and <magazine>(26) in the <basket>(23). 
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 21
+['[grab] <cookbook>(28)', '[movetowards] <door>(35)', '[movetowards] <coffee table>(4)', '[movetowards] <chair>(5)', '[movetowards] <chair>(6)', '[movetowards] <low bookshelf>(37)', '[movetowards] <basket>(23)', '[movetowards] <door>(24)', '[movetowards] <magazine>(26)', '[movetowards] <kitchen>(2)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <cookbook>(28)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <cookbook>(28)
+==============================================
+
+[grab] <cookbook>(28)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [grab] <cookbook>(28) can only complete the "grab <cookbook>(28)" part of the instruction. The "movetowards <basket>(23)" and "put <cookbook>(28) into <basket>(23)" parts need to be executed later by myself.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:2 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <dining table>(9) with the <cookbook>(28) and <magazine>(26) in the <basket>(23). 
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 21
+['[puton] <cookbook>(28) on <low bookshelf>(36)', '[movetowards] <door>(35)', '[movetowards] <coffee table>(4)', '[movetowards] <chair>(5)', '[movetowards] <chair>(6)', '[movetowards] <low bookshelf>(37)', '[movetowards] <basket>(23)', '[movetowards] <door>(24)', '[movetowards] <magazine>(26)', '[movetowards] <kitchen>(2)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+G. [movetowards] <basket>(23)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+G. [movetowards] <basket>(23)
+==============================================
+
+[movetowards] <basket>(23)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <basket>(23) only satisfies the first part of the instruction: "Please movetowards <basket>(23)". The second part, "then put <cookbook>(28) into <basket>(23)", still needs to be executed later.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:3 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <dining table>(9) with the <cookbook>(28) and <magazine>(26) in the <basket>(23). 
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 21
+['[putinto] <cookbook>(28) into <basket>(23)', '[movetowards] <door>(35)', '[movetowards] <coffee table>(4)', '[movetowards] <chair>(5)', '[movetowards] <chair>(6)', '[movetowards] <low bookshelf>(36)', '[movetowards] <low bookshelf>(37)', '[movetowards] <door>(24)', '[movetowards] <magazine>(26)', '[movetowards] <kitchen>(2)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I am currently holding the <cookbook>(28) and I am close to the <basket>(23). The first instruction is to put the <cookbook>(28) into the <basket>(23). Action A directly allows me to do this.
+
+A. [putinto] <cookbook>(28) into <basket>(23)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [putinto] <cookbook>(28) into <basket>(23)
+==============================================
+
+[putinto] <cookbook>(28) into <basket>(23)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [putinto] <cookbook>(28) into <basket>(23) only completes the first part of the instruction: "Please put <cookbook>(28) into <basket>(23)". The remaining parts, "then movetowards <magazine>(26), and then grab <magazine>(26)", still need to be executed later.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:4 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <dining table>(9) with the <cookbook>(28) and <magazine>(26) in the <basket>(23). 
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 21
+['[grab] <cookbook>(28)', '[movetowards] <door>(35)', '[movetowards] <coffee table>(4)', '[movetowards] <chair>(5)', '[movetowards] <chair>(6)', '[movetowards] <low bookshelf>(36)', '[movetowards] <low bookshelf>(37)', '[movetowards] <door>(24)', '[movetowards] <magazine>(26)', '[movetowards] <kitchen>(2)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I. [movetowards] <magazine>(26)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I. [movetowards] <magazine>(26)
+==============================================
+
+[movetowards] <magazine>(26)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I am currently performing, [movetowards] <magazine>(26), can only complete the first part of the instruction: "Please movetowards <magazine>(26)". The other parts, "then grab <magazine>(26), and then movetowards <basket>(23)", still need to be executed later by myself.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:5 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <dining table>(9) with the <cookbook>(28) and <magazine>(26) in the <basket>(23). 
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 21
+['[grab] <magazine>(26)', '[movetowards] <door>(35)', '[movetowards] <coffee table>(4)', '[movetowards] <chair>(5)', '[movetowards] <chair>(6)', '[movetowards] <low bookshelf>(36)', '[movetowards] <basket>(23)', '[movetowards] <door>(24)', '[movetowards] <cookbook>(28)', '[movetowards] <kitchen>(2)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I am currently close to the <magazine>(26), so I can directly grab it.
+
+A. [grab] <magazine>(26)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <magazine>(26)
+==============================================
+
+[grab] <magazine>(26)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+As the <robot dog> agent, the action I performed `[grab] <magazine>(26)` can only complete the first part of the instruction "Please grab <magazine>(26)". The other parts, "then movetowards <basket>(23)" and "and then put <magazine>(26) into <basket>(23)", still need to be executed later by myself.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:6 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <dining table>(9) with the <cookbook>(28) and <magazine>(26) in the <basket>(23). 
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 21
+['[puton] <magazine>(26) on <low bookshelf>(37)', '[movetowards] <door>(35)', '[movetowards] <coffee table>(4)', '[movetowards] <chair>(5)', '[movetowards] <chair>(6)', '[movetowards] <low bookshelf>(36)', '[movetowards] <basket>(23)', '[movetowards] <door>(24)', '[movetowards] <cookbook>(28)', '[movetowards] <kitchen>(2)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+G. [movetowards] <basket>(23)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+G. [movetowards] <basket>(23)
+==============================================
+
+[movetowards] <basket>(23)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+As the <robot dog> agent, the action I am currently performing, [movetowards] <basket>(23), can only complete the first part of the instruction: "Please movetowards <basket>(23)". The other part, "then put <magazine>(26) into <basket>(23)", needs to be executed later.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:7 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <dining table>(9) with the <cookbook>(28) and <magazine>(26) in the <basket>(23). 
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 21
+['[putinto] <magazine>(26) into <basket>(23)', '[movetowards] <door>(35)', '[movetowards] <coffee table>(4)', '[movetowards] <chair>(5)', '[movetowards] <chair>(6)', '[movetowards] <low bookshelf>(36)', '[movetowards] <low bookshelf>(37)', '[movetowards] <door>(24)', '[movetowards] <kitchen>(2)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [putinto] <magazine>(26) into <basket>(23)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [putinto] <magazine>(26) into <basket>(23)
+==============================================
+
+[putinto] <magazine>(26) into <basket>(23)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [putinto] <magazine>(26) into <basket>(23) satisfies Hello <robot dog>(21): #Please put <magazine>(26) into <basket>(23).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:8 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <dining table>(9) with the <cookbook>(28) and <magazine>(26) in the <basket>(23). 
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 22
+['[takeoff_from] <livingroom floor>(1)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <livingroom floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <livingroom floor>(1)
+==============================================
+
+[takeoff_from] <livingroom floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [takeoff_from] <livingroom floor>(1) satisfies Hello <quadrotor>(22): Please take off.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:9 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <dining table>(9) with the <cookbook>(28) and <magazine>(26) in the <basket>(23). 
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 22
+['[land_on] <livingroom floor>(1)', '[movetowards] <kitchen>(2)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <kitchen>(2)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <kitchen>(2)
+==============================================
+
+[movetowards] <kitchen>(2)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <kitchen>(2) only partially completes the instruction Hello <quadrotor>(22): #Please movetowards <dining table>(9).#.
+
+This action allows me to move towards the general area where the dining table might be located, assuming the dining table is situated within the kitchen. However, the specific instruction to `movetowards <dining table>(9)` still needs to be executed. I will need to perform a subsequent action to specifically target and move towards the dining table itself once I am closer or within the kitchen.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:10 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <dining table>(9) with the <cookbook>(28) and <magazine>(26) in the <basket>(23). 
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 22
+['[land_on] <kitchen floor>(3)', '[movetowards] <dining table>(9)', '[movetowards] <kitchen table>(11)', '[movetowards] <livingroom>(0)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <dining table>(9)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <dining table>(9)
+==============================================
+
+[movetowards] <dining table>(9)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <dining table>(9) satisfies Hello <quadrotor>(22): Please movetowards <dining table>(9).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:11 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <dining table>(9) with the <cookbook>(28) and <magazine>(26) in the <basket>(23). 
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 22
+['[land_on] <dining table>(9)', '[movetowards] <kitchen floor>(3)', '[movetowards] <kitchen table>(11)', '[movetowards] <livingroom>(0)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <dining table>(9)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <dining table>(9)
+==============================================
+
+[land_on] <dining table>(9)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [land_on] <dining table>(9) satisfies Hello <quadrotor>(22): #Please land on <dining table>(9).#
+==============================================
+
+
+=== Step-by-Step Action Log ===
+  Step  1: <robot dog>(21) -> [movetowards] <cookbook>(28)
+  Step  2: <robot dog>(21) -> [grab] <cookbook>(28)
+  Step  3: <robot dog>(21) -> [movetowards] <basket>(23)
+  Step  4: <robot dog>(21) -> [putinto] <cookbook>(28) into <basket>(23)
+  Step  5: <robot dog>(21) -> [movetowards] <magazine>(26)
+  Step  6: <robot dog>(21) -> [grab] <magazine>(26)
+  Step  7: <robot dog>(21) -> [movetowards] <basket>(23)
+  Step  8: <robot dog>(21) -> [putinto] <magazine>(26) into <basket>(23)
+  Step  9: <quadrotor>(22) -> [takeoff_from] <livingroom floor>(1)
+  Step 10: <quadrotor>(22) -> [movetowards] <kitchen>(2)
+  Step 11: <quadrotor>(22) -> [movetowards] <dining table>(9)
+  Step 12: <quadrotor>(22) -> [land_on] <dining table>(9)
+  Total steps executed: 12
+True
+---------Env:1---Task:12-------------------------
+success
+steps: 12
+-------------------------------------
+average steps: 12.0
+successful tasks: [12]
+failed tasks: None

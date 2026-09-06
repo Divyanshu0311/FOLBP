@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "arm": "folbp",
+  "seed": 0,
+  "env": "env2",
+  "env_id": 3,
+  "task_id": 14,
+  "task_name": "MultiAgent_0",
+  "goal": [
+    "Put the <paper money>(25) into the <shopping basket>(30)."
+  ],
+  "success": true,
+  "gt_steps": 12,
+  "executed_steps": 12,
+  "wall_clock_s": 12.395,
+  "outer_iters": 1,
+  "llm": {
+    "total_calls": 1,
+    "total_errors": 0,
+    "prompt_tokens": 6333,
+    "completion_tokens": 351,
+    "total_tokens": 6684,
+    "llm_latency_s": 12.335,
+    "oracle_calls": 1,
+    "repair_calls": 0,
+    "executor_calls": 0,
+    "judge_calls": 0,
+    "by_role": {
+      "oracle": {
+        "calls": 1,
+        "errors": 0,
+        "prompt_tokens": 6333,
+        "completion_tokens": 351,
+        "latency_s": 12.335
+      },
+      "repair": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "executor": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "judge": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "other": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      }
+    }
+  },
+  "verify": {
+    "mode": "z3",
+    "z3_checks": 2,
+    "z3_unsat_events": 1,
+    "shadow_unsat_events": 0,
+    "unsat_cores": [
+      {
+        "step_index": 1,
+        "core": [
+          "s1_p1_close"
+        ],
+        "missing": [
+          "('close', 20, 25)"
+        ]
+      }
+    ]
+  },
+  "repair": {
+    "mode": "symbolic",
+    "attempts": 1,
+    "successes": 1,
+    "escalations": 0
+  },
+  "cdcl": {
+    "enabled": true,
+    "clauses_learned": 0,
+    "clauses": []
+  },
+  "failures": [],
+  "manifest": {
+    "git_sha": "17554a52792e302921bbb5e5fd3b4049e25b50d4",
+    "git_dirty": true,
+    "arm": "folbp",
+    "seed": 0,
+    "model": "gemini-2.5-flash",
+    "temperature": 0.5,
+    "flags": {
+      "verify": "z3",
+      "repair": "symbolic",
+      "cdcl": true,
+      "max_oracle_plans": 0,
+      "max_replan_attempts": 5,
+      "executor_mode": "deterministic"
+    },
+    "timestamp": "2026-08-12T02:14:15+0530",
+    "host": "LAPTOP-3HB7L6DU",
+    "python": "3.10.12",
+    "argv": [
+      "--env",
+      "env2",
+      "--task",
+      "14",
+      "--arm",
+      "folbp",
+      "--seed",
+      "0",
+      "--record_path",
+      "/home/cpp/sc627/COHERENT/results/bench/runs/folbp/seed0/env2/task14.json",
+      "--lm_id",
+      "gemini-2.5-flash",
+      "--t",
+      "0.5",
+      "--api_key",
+      "<redacted>",
+      "--verify",
+      "z3",
+      "--repair",
+      "symbolic",
+      "--cdcl",
+      "--executor_mode",
+      "deterministic"
+    ]
+  },
+  "oracle_plans": 1
+}

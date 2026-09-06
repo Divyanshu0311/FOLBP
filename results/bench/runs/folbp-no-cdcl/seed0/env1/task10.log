@@ -1,0 +1,98 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env1 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=False lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-no-cdcl seed=0 verify=z3 repair=symbolic max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=10 env_id=1 name=MultiAgent_0 gt_steps=14
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <plate>(40) into the <fridge>(7).
+[FOLBP][TASK] agents: [('robot arm', 20), ('robot dog', 21), ('quadrotor', 22), ('robot arm', 44)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 14 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot arm>(20) action=[grab] <plate>(40)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(22) action=[takeoff_from] <kitchen floor>(3)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(22) action=[movetowards] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[3]: agent=<quadrotor>(22) action=[land_on] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[4]: agent=<robot arm>(20) action=[putinto] <plate>(40) into <basket>(23)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(22) action=[takeoff_from] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(22) action=[movetowards] <kitchen floor>(3)
+[FOLBP][ORACLE]   plan[7]: agent=<quadrotor>(22) action=[land_on] <kitchen floor>(3)
+[FOLBP][ORACLE]   plan[8]: agent=<robot dog>(21) action=[movetowards] <fridge>(7)
+[FOLBP][ORACLE]   plan[9]: agent=<robot dog>(21) action=[open] <fridge>(7)
+[FOLBP][ORACLE]   plan[10]: agent=<robot dog>(21) action=[movetowards] <basket>(23)
+[FOLBP][ORACLE]   plan[11]: agent=<robot dog>(21) action=[grab] <plate>(40)
+[FOLBP][ORACLE]   plan[12]: agent=<robot dog>(21) action=[movetowards] <fridge>(7)
+[FOLBP][ORACLE]   plan[13]: agent=<robot dog>(21) action=[putinto] <plate>(40) into <fridge>(7)
+[FOLBP][FOL] predicates: unary=90 binary=35 nodes=31
+[FOLBP][Z3] UNSAT @ step 11 core=['s11_p1_close'] missing=[('close', 21, 40)]
+[FOLBP][R] attempt 1/5 (strategy=symbolic)
+[FOLBP][R] inserted {'agent': '<robot dog>(21)', 'action': '[movetowards] <plate>(40)'} (reason=insert movetowards to satisfy close(21,40))
+[FOLBP][R] new plan length: 15 step(s)
+[FOLBP][Z3] SAT — all 15 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 15 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 15 step(s)
+[FOLBP][EXEC] step[0] <robot arm>(20) -> [grab] <plate>(40)
+[FOLBP][A] task_graph node=0 verb=grab agent=20 targets=[40]
+[FOLBP][ENV] step=1 executed=[grab]<robot arm>(20) -> action=[grab] <plate>(40) done=False remaining_goals=['inside_<plate>(40)_<fridge>(7)']
+[FOLBP][EXEC] step[1] <quadrotor>(22) -> [takeoff_from] <kitchen floor>(3)
+[FOLBP][A] task_graph node=1 verb=takeoff_from agent=22 targets=[3]
+[FOLBP][ENV] step=2 executed=[takeoff_from]<quadrotor>(22) -> action=[takeoff_from] <kitchen floor>(3) done=False remaining_goals=['inside_<plate>(40)_<fridge>(7)']
+[FOLBP][EXEC] step[2] <quadrotor>(22) -> [movetowards] <kitchen table>(11)
+[FOLBP][A] task_graph node=2 verb=movetowards agent=22 targets=[11]
+[FOLBP][ENV] step=3 executed=[movetowards]<quadrotor>(22) -> action=[movetowards] <kitchen table>(11) done=False remaining_goals=['inside_<plate>(40)_<fridge>(7)']
+[FOLBP][EXEC] step[3] <quadrotor>(22) -> [land_on] <kitchen table>(11)
+[FOLBP][A] task_graph node=3 verb=land_on agent=22 targets=[11]
+[FOLBP][ENV] step=4 executed=[land_on]<quadrotor>(22) -> action=[land_on] <kitchen table>(11) done=False remaining_goals=['inside_<plate>(40)_<fridge>(7)']
+[FOLBP][EXEC] step[4] <robot arm>(20) -> [putinto] <plate>(40) into <basket>(23)
+[FOLBP][A] task_graph node=4 verb=putinto agent=20 targets=[40, 23]
+[FOLBP][ENV] step=5 executed=[putinto]<robot arm>(20) -> action=[putinto] <plate>(40) into <basket>(23) done=False remaining_goals=['inside_<plate>(40)_<fridge>(7)']
+[FOLBP][EXEC] step[5] <quadrotor>(22) -> [takeoff_from] <kitchen table>(11)
+[FOLBP][A] task_graph node=5 verb=takeoff_from agent=22 targets=[11]
+[FOLBP][ENV] step=6 executed=[takeoff_from]<quadrotor>(22) -> action=[takeoff_from] <kitchen table>(11) done=False remaining_goals=['inside_<plate>(40)_<fridge>(7)']
+[FOLBP][EXEC] step[6] <quadrotor>(22) -> [movetowards] <kitchen floor>(3)
+[FOLBP][A] task_graph node=6 verb=movetowards agent=22 targets=[3]
+[FOLBP][ENV] step=7 executed=[movetowards]<quadrotor>(22) -> action=[movetowards] <kitchen floor>(3) done=False remaining_goals=['inside_<plate>(40)_<fridge>(7)']
+[FOLBP][EXEC] step[7] <quadrotor>(22) -> [land_on] <kitchen floor>(3)
+[FOLBP][A] task_graph node=7 verb=land_on agent=22 targets=[3]
+[FOLBP][ENV] step=8 executed=[land_on]<quadrotor>(22) -> action=[land_on] <kitchen floor>(3) done=False remaining_goals=['inside_<plate>(40)_<fridge>(7)']
+[FOLBP][EXEC] step[8] <robot dog>(21) -> [movetowards] <fridge>(7)
+[FOLBP][A] task_graph node=8 verb=movetowards agent=21 targets=[7]
+[FOLBP][ENV] step=9 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <fridge>(7) done=False remaining_goals=['inside_<plate>(40)_<fridge>(7)']
+[FOLBP][EXEC] step[9] <robot dog>(21) -> [open] <fridge>(7)
+[FOLBP][A] task_graph node=9 verb=open agent=21 targets=[7]
+[FOLBP][ENV] step=10 executed=[open]<robot dog>(21) -> action=[open] <fridge>(7) done=False remaining_goals=['inside_<plate>(40)_<fridge>(7)']
+[FOLBP][EXEC] step[10] <robot dog>(21) -> [movetowards] <basket>(23)
+[FOLBP][A] task_graph node=10 verb=movetowards agent=21 targets=[23]
+[FOLBP][ENV] step=11 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <basket>(23) done=False remaining_goals=['inside_<plate>(40)_<fridge>(7)']
+[FOLBP][EXEC] step[11] <robot dog>(21) -> [movetowards] <plate>(40)
+[FOLBP][EXEC] step[11] noop (precondition already satisfied); message: precondition already satisfied: already close to (40)
+[FOLBP][EXEC] step[12] <robot dog>(21) -> [grab] <plate>(40)
+[FOLBP][A] task_graph node=11 verb=grab agent=21 targets=[40]
+[FOLBP][ENV] step=12 executed=[grab]<robot dog>(21) -> action=[grab] <plate>(40) done=False remaining_goals=['inside_<plate>(40)_<fridge>(7)']
+[FOLBP][EXEC] step[13] <robot dog>(21) -> [movetowards] <fridge>(7)
+[FOLBP][A] task_graph node=12 verb=movetowards agent=21 targets=[7]
+[FOLBP][ENV] step=13 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <fridge>(7) done=False remaining_goals=['inside_<plate>(40)_<fridge>(7)']
+[FOLBP][EXEC] step[14] <robot dog>(21) -> [putinto] <plate>(40) into <fridge>(7)
+[FOLBP][A] task_graph node=13 verb=putinto agent=21 targets=[40, 7]
+[FOLBP][ENV] step=14 executed=[putinto]<robot dog>(21) -> action=[putinto] <plate>(40) into <fridge>(7) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=14
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 14, 'edges': 13, 'failed': 0, 'executed': 14}
+[FOLBP][FINAL] learned_clauses: []
+True
+---------Env:1---Task:10-------------------------
+success
+steps: 14
+-------------------------------------
+average steps: 14.0
+success rate: 1.0
+successful tasks: [10]
+failed tasks: None

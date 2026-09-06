@@ -1,0 +1,371 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Init Env
+[mode=standalone] Running symbolic planner only (no execution bridge)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:0 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot arm 23
+['[grab] <bottle of milk>(35)', '[grab] <bottle of water>(19)', '[grab] <kebab>(20)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I can pick up the <bottle of milk>(35) from the <dining table>(30) because I am currently on the <dining table>(30) and the <bottle of milk>(35) is also on the same table, making it within my reach.
+
+My best action is:
+A. [grab] <bottle of milk>(35)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <bottle of milk>(35)
+==============================================
+
+[grab] <bottle of milk>(35)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+I am the <robot arm> agent. The action I performed `[grab] <bottle of milk>(35)` can only complete part of the instruction "Hello <robot arm>(23): #Please pick up the <bottle of milk>(35) from the <dining table>(30).#". I have successfully grabbed the <bottle of milk>(35), but the action of lifting it from the <dining table>(30) still needs to be executed later.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:1 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot arm 23
+['[puton] <bottle of milk>(35) on <dining table>(30)', '[putinto] <bottle of milk>(35) into <basket>(29)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+B. [putinto] <bottle of milk>(35) into <basket>(29)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+B. [putinto] <bottle of milk>(35) into <basket>(29)
+==============================================
+
+[putinto] <bottle of milk>(35) into <basket>(29)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [putinto] <bottle of milk>(35) into <basket>(29) satisfies Hello <robot arm>(23): #Please put the <bottle of milk>(35) into the <basket>(29).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:2 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 25
+['[takeoff_from] <dining table>(30)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <dining table>(30)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <dining table>(30)
+==============================================
+
+[takeoff_from] <dining table>(30)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed `[takeoff_from] <dining table>(30)` only completes the "take off" part of the instruction. The next steps, "movetowards the <lower livingroom floor>(1)" and "finally land on it", still need to be executed.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:3 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 25
+['[land_on] <dining table>(30)', '[movetowards] <lower livingroom floor>(1)', '[movetowards] <garden>(5)', '[movetowards] <corridor>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <lower livingroom floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <lower livingroom floor>(1)
+==============================================
+
+[movetowards] <lower livingroom floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <lower livingroom floor>(1) can only complete the part of the instruction "Please movetowards the <lower livingroom floor>(1)". The other part, "and then land on it", needs to be executed later by myself.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:4 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 25
+['[land_on] <lower livingroom floor>(1)', '[movetowards] <dining table>(30)', '[movetowards] <garden>(5)', '[movetowards] <corridor>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <lower livingroom floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <lower livingroom floor>(1)
+==============================================
+
+[land_on] <lower livingroom floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [land_on] <lower livingroom floor>(1) satisfies Hello <quadrotor>(25): Please land on the <lower livingroom floor>(1).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:5 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 24
+['[movetowards] <door>(7)', '[movetowards] <door>(9)', '[movetowards] <coffee table>(10)', '[movetowards] <bottom cabinet>(15)', '[movetowards] <soccer ball>(18)', '[movetowards] <rag>(22)', '[movetowards] <basket>(29)', '[movetowards] <sofa>(32)', '[movetowards] <book>(34)', '[movetowards] <bottle of milk>(35)', '[movetowards] <garden>(5)', '[movetowards] <corridor>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I. [movetowards] <book>(34)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I. [movetowards] <book>(34)
+==============================================
+
+[movetowards] <book>(34)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I am currently performing, [movetowards] <book>(34), can only complete the part of the instruction that asks me to 'movetowards the <book>(34)'. The other part, 'then grab it', needs to be executed later.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:6 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 24
+['[grab] <book>(34)', '[movetowards] <door>(7)', '[movetowards] <door>(9)', '[movetowards] <bottom cabinet>(15)', '[movetowards] <soccer ball>(18)', '[movetowards] <rag>(22)', '[movetowards] <basket>(29)', '[movetowards] <sofa>(32)', '[movetowards] <bottle of milk>(35)', '[movetowards] <garden>(5)', '[movetowards] <corridor>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <book>(34)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <book>(34)
+==============================================
+
+[grab] <book>(34)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [grab] <book>(34) satisfies Hello <robot dog>(24): #Please grab the <book>(34).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:7 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 24
+['[puton] <book>(34) on <coffee table>(10)', '[movetowards] <door>(7)', '[movetowards] <door>(9)', '[movetowards] <bottom cabinet>(15)', '[movetowards] <soccer ball>(18)', '[movetowards] <rag>(22)', '[movetowards] <basket>(29)', '[movetowards] <sofa>(32)', '[movetowards] <bottle of milk>(35)', '[movetowards] <garden>(5)', '[movetowards] <corridor>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I will choose action G: [movetowards] <basket>(29).
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+G. [movetowards] <basket>(29)
+==============================================
+
+[movetowards] <basket>(29)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+I am currently performing the action `[movetowards] <basket>(29)`. This action only completes the first part of the instruction: "Please movetowards the <basket>(29)". The second part, "and then put the <book>(34) into it", still needs to be executed later.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:8 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 24
+['[putinto] <book>(34) into <basket>(29)', '[movetowards] <door>(7)', '[movetowards] <door>(9)', '[movetowards] <coffee table>(10)', '[movetowards] <bottom cabinet>(15)', '[movetowards] <soccer ball>(18)', '[movetowards] <rag>(22)', '[movetowards] <sofa>(32)', '[movetowards] <garden>(5)', '[movetowards] <corridor>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [putinto] <book>(34) into <basket>(29)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [putinto] <book>(34) into <basket>(29)
+==============================================
+
+[putinto] <book>(34) into <basket>(29)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [putinto] <book>(34) into <basket>(29) satisfies Hello <robot dog>(24): #Please put the <book>(34) into the <basket>(29).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:9 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 25
+['[takeoff_from] <lower livingroom floor>(1)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <lower livingroom floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <lower livingroom floor>(1)
+==============================================
+
+[takeoff_from] <lower livingroom floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [takeoff_from] <lower livingroom floor>(1) satisfies Hello <quadrotor>(25): Please take off from the <lower livingroom floor>(1).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:10 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 25
+['[land_on] <lower livingroom floor>(1)', '[movetowards] <dining table>(30)', '[movetowards] <garden>(5)', '[movetowards] <corridor>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <garden>(5)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <garden>(5)
+==============================================
+
+[movetowards] <garden>(5)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <garden>(5) satisfies Hello <quadrotor>(25): #Please movetowards the <garden>(5).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:11 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 25
+['[land_on] <garden floor>(6)', '[movetowards] <swing table>(16)', '[movetowards] <lawn>(17)', '[movetowards] <garage floor>(27)', '[movetowards] <grill table>(37)', '[movetowards] <lower livingroom>(0)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <swing table>(16)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <swing table>(16)
+==============================================
+
+[movetowards] <swing table>(16)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <swing table>(16) satisfies Hello <quadrotor>(25): #Please movetowards the <swing table>(16).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:12 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 25
+['[land_on] <swing table>(16)', '[movetowards] <garden floor>(6)', '[movetowards] <lawn>(17)', '[movetowards] <garage floor>(27)', '[movetowards] <grill table>(37)', '[movetowards] <lower livingroom>(0)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <swing table>(16)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <swing table>(16)
+==============================================
+
+[land_on] <swing table>(16)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [land_on] <swing table>(16) satisfies Hello <quadrotor>(25): #Please land on the <swing table>(16).#
+==============================================
+
+
+=== Step-by-Step Action Log ===
+  Step  1: <robot arm>(23) -> [grab] <bottle of milk>(35)
+  Step  2: <robot arm>(23) -> [putinto] <bottle of milk>(35) into <basket>(29)
+  Step  3: <quadrotor>(25) -> [takeoff_from] <dining table>(30)
+  Step  4: <quadrotor>(25) -> [movetowards] <lower livingroom floor>(1)
+  Step  5: <quadrotor>(25) -> [land_on] <lower livingroom floor>(1)
+  Step  6: <robot dog>(24) -> [movetowards] <book>(34)
+  Step  7: <robot dog>(24) -> [grab] <book>(34)
+  Step  8: <robot dog>(24) -> [movetowards] <basket>(29)
+  Step  9: <robot dog>(24) -> [putinto] <book>(34) into <basket>(29)
+  Step 10: <quadrotor>(25) -> [takeoff_from] <lower livingroom floor>(1)
+  Step 11: <quadrotor>(25) -> [movetowards] <garden>(5)
+  Step 12: <quadrotor>(25) -> [movetowards] <swing table>(16)
+  Step 13: <quadrotor>(25) -> [land_on] <swing table>(16)
+  Total steps executed: 13
+True
+---------Env:4---Task:17-------------------------
+success
+steps: 13
+-------------------------------------
+average steps: 13.0
+successful tasks: [17]
+failed tasks: None

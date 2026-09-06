@@ -1,0 +1,346 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Init Env
+[mode=standalone] Running symbolic planner only (no execution bridge)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:0 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <high kitchen table>(35) with the <bag of chips>(37) and <bag of tea>(38) in the <basket>(25).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 23
+['[movetowards] <door>(8)', '[movetowards] <door>(9)', '[movetowards] <door>(10)', '[movetowards] <sofa>(11)', '[movetowards] <coffee table>(12)', '[movetowards] <hat>(20)', '[movetowards] <socks>(29)', '[movetowards] <childroom>(2)', '[movetowards] <kitchen>(6)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I. [movetowards] <kitchen>(6)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I. [movetowards] <kitchen>(6)
+==============================================
+
+[movetowards] <kitchen>(6)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <kitchen>(6) satisfies Hello <robot dog>(23): Please movetowards the <kitchen>(6).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:1 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <high kitchen table>(35) with the <bag of chips>(37) and <bag of tea>(38) in the <basket>(25).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 23
+['[movetowards] <kitchen table>(32)', '[movetowards] <bag of chips>(37)', '[movetowards] <bag of tea>(38)', '[movetowards] <door>(10)', '[movetowards] <fridge>(14)', '[movetowards] <basket>(25)', '[movetowards] <livingroom>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I will movetowards the <bag of chips>(37).
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+B. [movetowards] <bag of chips>(37)
+==============================================
+
+[movetowards] <bag of chips>(37)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <bag of chips>(37) can only complete the "movetowards the <bag of chips>(37)" part of the instruction. The "then grab it" part needs to be executed later by myself.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:2 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <high kitchen table>(35) with the <bag of chips>(37) and <bag of tea>(38) in the <basket>(25).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 23
+['[grab] <bag of chips>(37)', '[movetowards] <kitchen table>(32)', '[movetowards] <bag of tea>(38)', '[movetowards] <door>(10)', '[movetowards] <fridge>(14)', '[movetowards] <basket>(25)', '[movetowards] <livingroom>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I will grab the <bag of chips>(37).
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <bag of chips>(37)
+==============================================
+
+[grab] <bag of chips>(37)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+As the <robot dog> agent, the action I performed, [grab] <bag of chips>(37), only completes the first part of your instruction: "Please grab the <bag of chips>(37)".
+
+The remaining parts, "then movetowards the <basket>(25), and then place the <bag of chips>(37) into the <basket>(25)", still need to be executed later.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:3 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <high kitchen table>(35) with the <bag of chips>(37) and <bag of tea>(38) in the <basket>(25).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 23
+['[movetowards] <kitchen table>(32)', '[movetowards] <bag of tea>(38)', '[movetowards] <door>(10)', '[movetowards] <fridge>(14)', '[movetowards] <basket>(25)', '[movetowards] <livingroom>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I will choose action E: [movetowards] <basket>(25). This will allow me to get close to the basket, which is the first step in placing the <bag of chips>(37) into it.
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+E. [movetowards] <basket>(25)
+==============================================
+
+[movetowards] <basket>(25)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <basket>(25) can only complete the first part of the instruction: "Please movetowards the <basket>(25)". The other part, "then place the <bag of chips>(37) into the <basket>(25)", needs to be executed later.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:4 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <high kitchen table>(35) with the <bag of chips>(37) and <bag of tea>(38) in the <basket>(25).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 23
+['[putinto] <bag of chips>(37) into <basket>(25)', '[movetowards] <kitchen table>(32)', '[movetowards] <bag of tea>(38)', '[movetowards] <door>(10)', '[movetowards] <fridge>(14)', '[movetowards] <livingroom>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [putinto] <bag of chips>(37) into <basket>(25)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [putinto] <bag of chips>(37) into <basket>(25)
+==============================================
+
+[putinto] <bag of chips>(37) into <basket>(25)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [putinto] <bag of chips>(37) into <basket>(25) can only complete the first part of the instruction: "Please place the <bag of chips>(37) into the <basket>(25)". The remaining parts, "then movetowards the <bag of tea>(38), and then grab the <bag of tea>(38)", need to be executed later by myself.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:5 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <high kitchen table>(35) with the <bag of chips>(37) and <bag of tea>(38) in the <basket>(25).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 23
+['[grab] <bag of chips>(37)', '[movetowards] <kitchen table>(32)', '[movetowards] <bag of tea>(38)', '[movetowards] <door>(10)', '[movetowards] <fridge>(14)', '[movetowards] <livingroom>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+C. [movetowards] <bag of tea>(38)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+C. [movetowards] <bag of tea>(38)
+==============================================
+
+[movetowards] <bag of tea>(38)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I am currently performing [movetowards] <bag of tea>(38) can only complete the part of the instruction 'Please movetowards the <bag of tea>(38)'. The other part, 'and then grab it', needs to be executed later.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:6 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <high kitchen table>(35) with the <bag of chips>(37) and <bag of tea>(38) in the <basket>(25).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 23
+['[grab] <bag of tea>(38)', '[movetowards] <kitchen table>(32)', '[movetowards] <bag of chips>(37)', '[movetowards] <door>(10)', '[movetowards] <fridge>(14)', '[movetowards] <basket>(25)', '[movetowards] <livingroom>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I will grab the <bag of tea>(38).
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <bag of tea>(38)
+==============================================
+
+[grab] <bag of tea>(38)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [grab] <bag of tea>(38) can only complete the first part of the instruction: "Please grab the <bag of tea>(38)". The remaining parts, "then movetowards the <basket>(25), and then place the <bag of tea>(38) into the <basket>(25)", need to be executed later.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:7 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <high kitchen table>(35) with the <bag of chips>(37) and <bag of tea>(38) in the <basket>(25).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 23
+['[movetowards] <kitchen table>(32)', '[movetowards] <bag of chips>(37)', '[movetowards] <door>(10)', '[movetowards] <fridge>(14)', '[movetowards] <basket>(25)', '[movetowards] <livingroom>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+E. [movetowards] <basket>(25)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+E. [movetowards] <basket>(25)
+==============================================
+
+[movetowards] <basket>(25)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+As the <robot dog> agent, the action I am currently performing, [movetowards] <basket>(25), can only complete the first part of the instruction: "Please movetowards the <basket>(25)". The other part, "then place the <bag of tea>(38) into the <basket>(25)", needs to be executed later by myself.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:8 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <high kitchen table>(35) with the <bag of chips>(37) and <bag of tea>(38) in the <basket>(25).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 23
+['[putinto] <bag of tea>(38) into <basket>(25)', '[movetowards] <kitchen table>(32)', '[movetowards] <door>(10)', '[movetowards] <fridge>(14)', '[movetowards] <livingroom>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I am currently holding the <bag of tea>(38) and I am close to the <basket>(25). The instruction is to place the <bag of tea>(38) into the <basket>(25). Action A directly allows me to do this.
+
+A. [putinto] <bag of tea>(38) into <basket>(25)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [putinto] <bag of tea>(38) into <basket>(25)
+==============================================
+
+[putinto] <bag of tea>(38) into <basket>(25)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [putinto] <bag of tea>(38) into <basket>(25) satisfies Hello <robot dog>(23): Please place the <bag of tea>(38) into the <basket>(25).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:9 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <high kitchen table>(35) with the <bag of chips>(37) and <bag of tea>(38) in the <basket>(25).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 22
+['[takeoff_from] <kitchen floor>(7)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <kitchen floor>(7)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <kitchen floor>(7)
+==============================================
+
+[takeoff_from] <kitchen floor>(7)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [takeoff_from] <kitchen floor>(7) satisfies Hello <quadrotor>(22): #Please take off.#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:10 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <high kitchen table>(35) with the <bag of chips>(37) and <bag of tea>(38) in the <basket>(25).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 22
+['[land_on] <kitchen floor>(7)', '[movetowards] <high kitchen table>(35)', '[movetowards] <livingroom>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <high kitchen table>(35)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <high kitchen table>(35)
+==============================================
+
+[movetowards] <high kitchen table>(35)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <high kitchen table>(35) satisfies Hello <quadrotor>(22): Please movetowards the <high kitchen table>(35).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 12 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:11 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(22) lands on the <high kitchen table>(35) with the <bag of chips>(37) and <bag of tea>(38) in the <basket>(25).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 22
+['[land_on] <high kitchen table>(35)', '[movetowards] <kitchen floor>(7)', '[movetowards] <livingroom>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <high kitchen table>(35)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <high kitchen table>(35)
+==============================================
+
+[land_on] <high kitchen table>(35)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [land_on] <high kitchen table>(35) satisfies Hello <quadrotor>(22): Please land on the <high kitchen table>(35).
+==============================================
+
+
+=== Step-by-Step Action Log ===
+  Step  1: <robot dog>(23) -> [movetowards] <kitchen>(6)
+  Step  2: <robot dog>(23) -> [movetowards] <bag of chips>(37)
+  Step  3: <robot dog>(23) -> [grab] <bag of chips>(37)
+  Step  4: <robot dog>(23) -> [movetowards] <basket>(25)
+  Step  5: <robot dog>(23) -> [putinto] <bag of chips>(37) into <basket>(25)
+  Step  6: <robot dog>(23) -> [movetowards] <bag of tea>(38)
+  Step  7: <robot dog>(23) -> [grab] <bag of tea>(38)
+  Step  8: <robot dog>(23) -> [movetowards] <basket>(25)
+  Step  9: <robot dog>(23) -> [putinto] <bag of tea>(38) into <basket>(25)
+  Step 10: <quadrotor>(22) -> [takeoff_from] <kitchen floor>(7)
+  Step 11: <quadrotor>(22) -> [movetowards] <high kitchen table>(35)
+  Step 12: <quadrotor>(22) -> [land_on] <high kitchen table>(35)
+  Total steps executed: 12
+True
+---------Env:0---Task:12-------------------------
+success
+steps: 12
+-------------------------------------
+average steps: 12.0
+successful tasks: [12]
+failed tasks: None

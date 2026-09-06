@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "arm": "pefa",
+  "seed": 0,
+  "env": "env2",
+  "env_id": 3,
+  "task_id": 13,
+  "task_name": "MultiAgent_0",
+  "goal": [
+    "Put the <box of candy>(31) into the <shopping basket>(30) and put the <receipt>(37) into the <display bin>(2)."
+  ],
+  "success": true,
+  "gt_steps": 16,
+  "executed_steps": 16,
+  "wall_clock_s": 417.322,
+  "outer_iters": null,
+  "llm": {
+    "total_calls": 80,
+    "total_errors": 0,
+    "prompt_tokens": 226778,
+    "completion_tokens": 6465,
+    "total_tokens": 233243,
+    "llm_latency_s": 417.23,
+    "oracle_calls": 32,
+    "repair_calls": 0,
+    "executor_calls": 32,
+    "judge_calls": 16,
+    "by_role": {
+      "oracle": {
+        "calls": 32,
+        "errors": 0,
+        "prompt_tokens": 149713,
+        "completion_tokens": 4475,
+        "latency_s": 154.381
+      },
+      "repair": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "executor": {
+        "calls": 32,
+        "errors": 0,
+        "prompt_tokens": 71322,
+        "completion_tokens": 1108,
+        "latency_s": 215.65
+      },
+      "judge": {
+        "calls": 16,
+        "errors": 0,
+        "prompt_tokens": 5743,
+        "completion_tokens": 882,
+        "latency_s": 47.199
+      },
+      "other": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      }
+    }
+  },
+  "verify": {},
+  "repair": {},
+  "cdcl": {},
+  "failures": [],
+  "manifest": {
+    "git_sha": "17554a52792e302921bbb5e5fd3b4049e25b50d4",
+    "git_dirty": true,
+    "arm": "pefa",
+    "seed": 0,
+    "model": "gemini-2.5-flash",
+    "temperature": 0.5,
+    "flags": {
+      "mode": "standalone"
+    },
+    "timestamp": "2026-08-12T02:20:54+0530",
+    "host": "LAPTOP-3HB7L6DU",
+    "python": "3.10.12",
+    "argv": [
+      "--env",
+      "env2",
+      "--task",
+      "13",
+      "--arm",
+      "pefa",
+      "--seed",
+      "0",
+      "--record_path",
+      "/home/cpp/sc627/COHERENT/results/bench/runs/pefa/seed0/env2/task13.json",
+      "--lm_id",
+      "gemini-2.5-flash",
+      "--t",
+      "0.5",
+      "--api_key",
+      "<redacted>",
+      "--mode",
+      "standalone"
+    ]
+  }
+}

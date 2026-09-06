@@ -1,0 +1,90 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env2 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=True lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-llm-repair seed=0 verify=z3 repair=llm max_oracle_plans=unlimited t=0.5
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=9 env_id=3 name=MultiAgent_0 gt_steps=11
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <biscuits>(45) and <bottle of apple juice>(16) on the <grocery shelf>(29).
+[FOLBP][TASK] agents: [('robot arm', 18), ('robot arm', 19), ('robot dog', 20), ('quadrotor', 21)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/22
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 11 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(21) action=[takeoff_from] <display table>(5)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(21) action=[movetowards] <grocery store floor>(1)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(21) action=[land_on] <grocery store floor>(1)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(20) action=[movetowards] <basket>(22)
+[FOLBP][ORACLE]   plan[4]: agent=<robot dog>(20) action=[grab] <biscuits>(45)
+[FOLBP][ORACLE]   plan[5]: agent=<robot dog>(20) action=[movetowards] <grocery shelf>(29)
+[FOLBP][ORACLE]   plan[6]: agent=<robot dog>(20) action=[puton] <biscuits>(45) on <grocery shelf>(29)
+[FOLBP][ORACLE]   plan[7]: agent=<robot dog>(20) action=[movetowards] <basket>(22)
+[FOLBP][ORACLE]   plan[8]: agent=<robot dog>(20) action=[grab] <bottle of apple juice>(16)
+[FOLBP][ORACLE]   plan[9]: agent=<robot dog>(20) action=[movetowards] <grocery shelf>(29)
+[FOLBP][ORACLE]   plan[10]: agent=<robot dog>(20) action=[puton] <bottle of apple juice>(16) on <grocery shelf>(29)
+[FOLBP][FOL] predicates: unary=82 binary=31 nodes=27
+[FOLBP][Z3] UNSAT @ step 4 core=['s4_p1_close'] missing=[('close', 20, 45)]
+[FOLBP][R] attempt 1/5 (strategy=llm)
+[FOLBP][R] LLM returned a repaired plan of 12 step(s)
+[FOLBP][Z3] UNSAT @ step 9 core=['s9_p1_close'] missing=[('close', 20, 16)]
+[FOLBP][R] attempt 2/5 (strategy=llm)
+[FOLBP][R] LLM returned a repaired plan of 13 step(s)
+[FOLBP][Z3] SAT — all 13 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 13 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 13 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(21) -> [takeoff_from] <display table>(5)
+[FOLBP][A] task_graph node=0 verb=takeoff_from agent=21 targets=[5]
+[FOLBP][ENV] step=1 executed=[takeoff_from]<quadrotor>(21) -> action=[takeoff_from] <display table>(5) done=False remaining_goals=['on_<biscuits>(45)_<grocery shelf>(29)', 'on_<bottle of apple juice>(16)_<grocery shelf>(29)']
+[FOLBP][EXEC] step[1] <quadrotor>(21) -> [movetowards] <grocery store floor>(1)
+[FOLBP][A] task_graph node=1 verb=movetowards agent=21 targets=[1]
+[FOLBP][ENV] step=2 executed=[movetowards]<quadrotor>(21) -> action=[movetowards] <grocery store floor>(1) done=False remaining_goals=['on_<biscuits>(45)_<grocery shelf>(29)', 'on_<bottle of apple juice>(16)_<grocery shelf>(29)']
+[FOLBP][EXEC] step[2] <quadrotor>(21) -> [land_on] <grocery store floor>(1)
+[FOLBP][A] task_graph node=2 verb=land_on agent=21 targets=[1]
+[FOLBP][ENV] step=3 executed=[land_on]<quadrotor>(21) -> action=[land_on] <grocery store floor>(1) done=False remaining_goals=['on_<biscuits>(45)_<grocery shelf>(29)', 'on_<bottle of apple juice>(16)_<grocery shelf>(29)']
+[FOLBP][EXEC] step[3] <robot dog>(20) -> [movetowards] <basket>(22)
+[FOLBP][A] task_graph node=3 verb=movetowards agent=20 targets=[22]
+[FOLBP][ENV] step=4 executed=[movetowards]<robot dog>(20) -> action=[movetowards] <basket>(22) done=False remaining_goals=['on_<biscuits>(45)_<grocery shelf>(29)', 'on_<bottle of apple juice>(16)_<grocery shelf>(29)']
+[FOLBP][EXEC] step[4] <robot dog>(20) -> [movetowards] <biscuits>(45)
+[FOLBP][EXEC] step[4] noop (precondition already satisfied); message: precondition already satisfied: already close to (45)
+[FOLBP][EXEC] step[5] <robot dog>(20) -> [grab] <biscuits>(45)
+[FOLBP][A] task_graph node=4 verb=grab agent=20 targets=[45]
+[FOLBP][ENV] step=5 executed=[grab]<robot dog>(20) -> action=[grab] <biscuits>(45) done=False remaining_goals=['on_<biscuits>(45)_<grocery shelf>(29)', 'on_<bottle of apple juice>(16)_<grocery shelf>(29)']
+[FOLBP][EXEC] step[6] <robot dog>(20) -> [movetowards] <grocery shelf>(29)
+[FOLBP][A] task_graph node=5 verb=movetowards agent=20 targets=[29]
+[FOLBP][ENV] step=6 executed=[movetowards]<robot dog>(20) -> action=[movetowards] <grocery shelf>(29) done=False remaining_goals=['on_<biscuits>(45)_<grocery shelf>(29)', 'on_<bottle of apple juice>(16)_<grocery shelf>(29)']
+[FOLBP][EXEC] step[7] <robot dog>(20) -> [puton] <biscuits>(45) on <grocery shelf>(29)
+[FOLBP][A] task_graph node=6 verb=puton agent=20 targets=[45, 29]
+[FOLBP][ENV] step=7 executed=[puton]<robot dog>(20) -> action=[puton] <biscuits>(45) on <grocery shelf>(29) done=False remaining_goals=['on_<bottle of apple juice>(16)_<grocery shelf>(29)']
+[FOLBP][EXEC] step[8] <robot dog>(20) -> [movetowards] <basket>(22)
+[FOLBP][A] task_graph node=7 verb=movetowards agent=20 targets=[22]
+[FOLBP][ENV] step=8 executed=[movetowards]<robot dog>(20) -> action=[movetowards] <basket>(22) done=False remaining_goals=['on_<bottle of apple juice>(16)_<grocery shelf>(29)']
+[FOLBP][EXEC] step[9] <robot dog>(20) -> [movetowards] <bottle of apple juice>(16)
+[FOLBP][EXEC] step[9] noop (precondition already satisfied); message: precondition already satisfied: already close to (16)
+[FOLBP][EXEC] step[10] <robot dog>(20) -> [grab] <bottle of apple juice>(16)
+[FOLBP][A] task_graph node=8 verb=grab agent=20 targets=[16]
+[FOLBP][ENV] step=9 executed=[grab]<robot dog>(20) -> action=[grab] <bottle of apple juice>(16) done=False remaining_goals=['on_<bottle of apple juice>(16)_<grocery shelf>(29)']
+[FOLBP][EXEC] step[11] <robot dog>(20) -> [movetowards] <grocery shelf>(29)
+[FOLBP][A] task_graph node=9 verb=movetowards agent=20 targets=[29]
+[FOLBP][ENV] step=10 executed=[movetowards]<robot dog>(20) -> action=[movetowards] <grocery shelf>(29) done=False remaining_goals=['on_<bottle of apple juice>(16)_<grocery shelf>(29)']
+[FOLBP][EXEC] step[12] <robot dog>(20) -> [puton] <bottle of apple juice>(16) on <grocery shelf>(29)
+[FOLBP][A] task_graph node=10 verb=puton agent=20 targets=[16, 29]
+[FOLBP][ENV] step=11 executed=[puton]<robot dog>(20) -> action=[puton] <bottle of apple juice>(16) on <grocery shelf>(29) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=11
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 11, 'edges': 9, 'failed': 0, 'executed': 11}
+[FOLBP][FINAL] learned_clauses: []
+True
+---------Env:3---Task:9-------------------------
+success
+steps: 11
+-------------------------------------
+average steps: 11.0
+success rate: 1.0
+successful tasks: [9]
+failed tasks: None

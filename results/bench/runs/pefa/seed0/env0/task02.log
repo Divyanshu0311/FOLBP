@@ -1,0 +1,158 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Init Env
+[mode=standalone] Running symbolic planner only (no execution bridge)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 2 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:0 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <bread>(26) into the <plate>(51) which is on the <dining table>(13) and put the <milkbox>(30) into the <microwave>(15). The <bread>(26) is originally in the <microwave>(15).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot arm 24
+['[grab] <plate>(51)', '[grab] <milkbox>(30)', '[open] <microwave>(15)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I can open the <microwave>(15) as the first step to complete the instruction.
+
+My chosen action is:
+C. [open] <microwave>(15)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+C. [open] <microwave>(15)
+==============================================
+
+[open] <microwave>(15)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed `[open] <microwave>(15)` can only complete the first part of the instruction: "Please open the <microwave>(15)". The other part, "then pick up the <bread>(26) from it", needs to be executed later by myself.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 2 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:1 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <bread>(26) into the <plate>(51) which is on the <dining table>(13) and put the <milkbox>(30) into the <microwave>(15). The <bread>(26) is originally in the <microwave>(15).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot arm 24
+['[grab] <bread>(26)', '[grab] <plate>(51)', '[grab] <milkbox>(30)', '[close] <microwave>(15)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I can grab the bread from the microwave. My first step will be to perform action A.
+
+A. [grab] <bread>(26)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <bread>(26)
+==============================================
+
+[grab] <bread>(26)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I am currently performing [grab] <bread>(26) can only complete the part of the instruction that asks me to grab the <bread>(26). The remaining parts, which are to fully pick up the <bread>(26) from the <microwave>(15) and then put it into the <plate>(51), need to be executed later.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 2 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:2 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <bread>(26) into the <plate>(51) which is on the <dining table>(13) and put the <milkbox>(30) into the <microwave>(15). The <bread>(26) is originally in the <microwave>(15).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot arm 24
+['[puton] <bread>(26) on <dining table>(13)', '[putinto] <bread>(26) into <plate>(51)', '[putinto] <bread>(26) into <microwave>(15)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I will choose action B: [putinto] <bread>(26) into <plate>(51).
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+B. [putinto] <bread>(26) into <plate>(51)
+==============================================
+
+[putinto] <bread>(26) into <plate>(51)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [putinto] <bread>(26) into <plate>(51) satisfies Hello <robot arm>(24): Please put the <bread>(26) into the <plate>(51).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 2 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:3 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <bread>(26) into the <plate>(51) which is on the <dining table>(13) and put the <milkbox>(30) into the <microwave>(15). The <bread>(26) is originally in the <microwave>(15).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot arm 24
+['[grab] <bread>(26)', '[grab] <plate>(51)', '[grab] <milkbox>(30)', '[close] <microwave>(15)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I need to pick up the <milkbox>(30) first, as instructed. From the available actions, `C. [grab] <milkbox>(30)` directly allows me to do this. After I grab the milkbox, I can then proceed to put it into the <microwave>(15).
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+C. [grab] <milkbox>(30)
+==============================================
+
+[grab] <milkbox>(30)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [grab] <milkbox>(30) can only complete the 'pick up the <milkbox>(30)' part of the instruction. The 'put it into the <microwave>(15)' part needs to be executed later by myself.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 2 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:4 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <bread>(26) into the <plate>(51) which is on the <dining table>(13) and put the <milkbox>(30) into the <microwave>(15). The <bread>(26) is originally in the <microwave>(15).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot arm 24
+['[puton] <milkbox>(30) on <dining table>(13)', '[putinto] <milkbox>(30) into <plate>(51)', '[putinto] <milkbox>(30) into <microwave>(15)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I can put the <milkbox>(30) into the <microwave>(15) by choosing action C.
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+C. [putinto] <milkbox>(30) into <microwave>(15)
+==============================================
+
+[putinto] <milkbox>(30) into <microwave>(15)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [putinto] <milkbox>(30) into <microwave>(15) satisfies Hello <robot arm>(24): Please put the <milkbox>(30) into the <microwave>(15).
+==============================================
+
+
+=== Step-by-Step Action Log ===
+  Step  1: <robot arm>(24) -> [open] <microwave>(15)
+  Step  2: <robot arm>(24) -> [grab] <bread>(26)
+  Step  3: <robot arm>(24) -> [putinto] <bread>(26) into <plate>(51)
+  Step  4: <robot arm>(24) -> [grab] <milkbox>(30)
+  Step  5: <robot arm>(24) -> [putinto] <milkbox>(30) into <microwave>(15)
+  Total steps executed: 5
+True
+---------Env:0---Task:2-------------------------
+success
+steps: 5
+-------------------------------------
+average steps: 5.0
+successful tasks: [2]
+failed tasks: None

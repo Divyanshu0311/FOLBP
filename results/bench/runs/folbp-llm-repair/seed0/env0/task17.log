@@ -1,0 +1,37 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env0 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=True lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-llm-repair seed=0 verify=z3 repair=llm max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=17 env_id=0 name=MultiAgent_0 gt_steps=14
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <baby bottle>(36) into the <fridge>(14).
+[FOLBP][TASK] agents: [('quadrotor', 22), ('robot dog', 23), ('robot arm', 24), ('robot arm', 50)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 14 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[takeoff_from] <livingroom floor>(5)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(22) action=[movetowards] <dining table>(13)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(24) action=[grab] <baby bottle>(36)
+[FOLBP][ORACLE]   plan[4]: agent=<robot arm>(24) action=[putinto] <baby bottle>(36) into <basket>(25)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(22) action=[takeoff_from] <dining table>(13)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(22) action=[movetowards] <kitchen>(6)
+[FOLBP][ORACLE]   plan[7]: agent=<quadrotor>(22) action=[land_on] <kitchen floor>(7)
+[FOLBP][ORACLE]   plan[8]: agent=<robot dog>(23) action=[movetowards] <fridge>(14)
+[FOLBP][ORACLE]   plan[9]: agent=<robot dog>(23) action=[open] <fridge>(14)
+[FOLBP][ORACLE]   plan[10]: agent=<robot dog>(23) action=[movetowards] <basket>(25)
+[FOLBP][ORACLE]   plan[11]: agent=<robot dog>(23) action=[grab] <baby bottle>(36)
+[FOLBP][ORACLE]   plan[12]: agent=<robot dog>(23) action=[movetowards] <fridge>(14)
+[FOLBP][ORACLE]   plan[13]: agent=<robot dog>(23) action=[putinto] <baby bottle>(36) into <fridge>(14)
+[FOLBP][FOL] predicates: unary=88 binary=35 nodes=31
+[FOLBP][Z3] UNSAT @ step 7 core=['s7_p2_above'] missing=[('above', 22, 7)]
+[FOLBP][R] attempt 1/5 (strategy=llm)
+[FOLBP][R] LLM returned a repaired plan of 15 step(s)
+[FOLBP][Z3] UNSAT @ step 12 core=['s12_p1_close'] missing=[('close', 23, 36)]
+[FOLBP][R] attempt 2/5 (strategy=llm)

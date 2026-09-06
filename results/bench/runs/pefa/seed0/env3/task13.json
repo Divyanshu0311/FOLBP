@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "arm": "pefa",
+  "seed": 0,
+  "env": "env3",
+  "env_id": 3,
+  "task_id": 13,
+  "task_name": "MultiAgent_0",
+  "goal": [
+    "Put the <paper cup>(23) into the <trash can>(24) first, and than the <quadrotor>(21) lands on the <dining table>(3) with the <beer glass>(14) and <beer bottle>(15) in the <basket>(22)."
+  ],
+  "success": false,
+  "gt_steps": 14,
+  "executed_steps": 29,
+  "wall_clock_s": 596.325,
+  "outer_iters": null,
+  "llm": {
+    "total_calls": 149,
+    "total_errors": 0,
+    "prompt_tokens": 440639,
+    "completion_tokens": 18404,
+    "total_tokens": 459043,
+    "llm_latency_s": 596.182,
+    "oracle_calls": 62,
+    "repair_calls": 0,
+    "executor_calls": 58,
+    "judge_calls": 29,
+    "by_role": {
+      "oracle": {
+        "calls": 62,
+        "errors": 0,
+        "prompt_tokens": 309026,
+        "completion_tokens": 15436,
+        "latency_s": 392.638
+      },
+      "repair": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "executor": {
+        "calls": 58,
+        "errors": 0,
+        "prompt_tokens": 120875,
+        "completion_tokens": 1217,
+        "latency_s": 126.535
+      },
+      "judge": {
+        "calls": 29,
+        "errors": 0,
+        "prompt_tokens": 10738,
+        "completion_tokens": 1751,
+        "latency_s": 77.009
+      },
+      "other": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      }
+    }
+  },
+  "verify": {},
+  "repair": {},
+  "cdcl": {},
+  "failures": [],
+  "manifest": {
+    "git_sha": "17554a52792e302921bbb5e5fd3b4049e25b50d4",
+    "git_dirty": true,
+    "arm": "pefa",
+    "seed": 0,
+    "model": "gemini-2.5-flash",
+    "temperature": 0.0,
+    "flags": {
+      "mode": "standalone"
+    },
+    "timestamp": "2026-08-08T22:54:35+0530",
+    "host": "LAPTOP-3HB7L6DU",
+    "python": "3.10.12",
+    "argv": [
+      "--env",
+      "env3",
+      "--task",
+      "13",
+      "--arm",
+      "pefa",
+      "--seed",
+      "0",
+      "--record_path",
+      "/home/cpp/sc627/COHERENT/results/bench/runs/pefa/seed0/env3/task13.json",
+      "--lm_id",
+      "gemini-2.5-flash",
+      "--t",
+      "0.0",
+      "--api_key",
+      "<redacted>",
+      "--mode",
+      "standalone"
+    ]
+  }
+}

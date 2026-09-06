@@ -1,0 +1,132 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env2 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=False lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-no-cdcl seed=0 verify=z3 repair=symbolic max_oracle_plans=unlimited t=0.5
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=15 env_id=3 name=MultiAgent_0 gt_steps=15
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <apple>(9) on the <pedestal table>(6) and put the <bottle of apple juice>(16) on the <pedestal table>(7).
+[FOLBP][TASK] agents: [('robot arm', 18), ('robot arm', 19), ('robot dog', 20), ('quadrotor', 21)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/30
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 21 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot arm>(18) action=[grab] <apple>(9)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(18) action=[putinto] <apple>(9) into <basket>(22)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(21) action=[takeoff_from] <display table>(5)
+[FOLBP][ORACLE]   plan[3]: agent=<quadrotor>(21) action=[movetowards] <grocery store floor>(1)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(21) action=[land_on] <grocery store floor>(1)
+[FOLBP][ORACLE]   plan[5]: agent=<robot dog>(20) action=[movetowards] <basket>(22)
+[FOLBP][ORACLE]   plan[6]: agent=<robot dog>(20) action=[grab] <apple>(9)
+[FOLBP][ORACLE]   plan[7]: agent=<robot dog>(20) action=[movetowards] <pedestal table>(6)
+[FOLBP][ORACLE]   plan[8]: agent=<robot dog>(20) action=[puton] <apple>(9) on <pedestal table>(6)
+[FOLBP][ORACLE]   plan[9]: agent=<quadrotor>(21) action=[takeoff_from] <grocery store floor>(1)
+[FOLBP][ORACLE]   plan[10]: agent=<quadrotor>(21) action=[movetowards] <display table>(5)
+[FOLBP][ORACLE]   plan[11]: agent=<quadrotor>(21) action=[land_on] <display table>(5)
+[FOLBP][ORACLE]   plan[12]: agent=<robot arm>(18) action=[grab] <bottle of apple juice>(16)
+[FOLBP][ORACLE]   plan[13]: agent=<robot arm>(18) action=[putinto] <bottle of apple juice>(16) into <basket>(22)
+[FOLBP][ORACLE]   plan[14]: agent=<quadrotor>(21) action=[takeoff_from] <display table>(5)
+[FOLBP][ORACLE]   plan[15]: agent=<quadrotor>(21) action=[movetowards] <grocery store floor>(1)
+[FOLBP][ORACLE]   plan[16]: agent=<quadrotor>(21) action=[land_on] <grocery store floor>(1)
+[FOLBP][ORACLE]   plan[17]: agent=<robot dog>(20) action=[movetowards] <basket>(22)
+[FOLBP][ORACLE]   plan[18]: agent=<robot dog>(20) action=[grab] <bottle of apple juice>(16)
+[FOLBP][ORACLE]   plan[19]: agent=<robot dog>(20) action=[movetowards] <pedestal table>(7)
+[FOLBP][ORACLE]   plan[20]: agent=<robot dog>(20) action=[puton] <bottle of apple juice>(16) on <pedestal table>(7)
+[FOLBP][FOL] predicates: unary=82 binary=31 nodes=27
+[FOLBP][Z3] UNSAT @ step 6 core=['s6_p1_close'] missing=[('close', 20, 9)]
+[FOLBP][R] attempt 1/5 (strategy=symbolic)
+[FOLBP][R] inserted {'agent': '<robot dog>(20)', 'action': '[movetowards] <apple>(9)'} (reason=insert movetowards to satisfy close(20,9))
+[FOLBP][R] new plan length: 22 step(s)
+[FOLBP][Z3] UNSAT @ step 19 core=['s19_p1_close'] missing=[('close', 20, 16)]
+[FOLBP][R] attempt 2/5 (strategy=symbolic)
+[FOLBP][R] inserted {'agent': '<robot dog>(20)', 'action': '[movetowards] <bottle of apple juice>(16)'} (reason=insert movetowards to satisfy close(20,16))
+[FOLBP][R] new plan length: 23 step(s)
+[FOLBP][Z3] SAT — all 23 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 23 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 23 step(s)
+[FOLBP][EXEC] step[0] <robot arm>(18) -> [grab] <apple>(9)
+[FOLBP][A] task_graph node=0 verb=grab agent=18 targets=[9]
+[FOLBP][ENV] step=1 executed=[grab]<robot arm>(18) -> action=[grab] <apple>(9) done=False remaining_goals=['on_<apple>(9)_<pedestal table>(6)', 'on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[1] <robot arm>(18) -> [putinto] <apple>(9) into <basket>(22)
+[FOLBP][A] task_graph node=1 verb=putinto agent=18 targets=[9, 22]
+[FOLBP][ENV] step=2 executed=[putinto]<robot arm>(18) -> action=[putinto] <apple>(9) into <basket>(22) done=False remaining_goals=['on_<apple>(9)_<pedestal table>(6)', 'on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[2] <quadrotor>(21) -> [takeoff_from] <display table>(5)
+[FOLBP][A] task_graph node=2 verb=takeoff_from agent=21 targets=[5]
+[FOLBP][ENV] step=3 executed=[takeoff_from]<quadrotor>(21) -> action=[takeoff_from] <display table>(5) done=False remaining_goals=['on_<apple>(9)_<pedestal table>(6)', 'on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[3] <quadrotor>(21) -> [movetowards] <grocery store floor>(1)
+[FOLBP][A] task_graph node=3 verb=movetowards agent=21 targets=[1]
+[FOLBP][ENV] step=4 executed=[movetowards]<quadrotor>(21) -> action=[movetowards] <grocery store floor>(1) done=False remaining_goals=['on_<apple>(9)_<pedestal table>(6)', 'on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[4] <quadrotor>(21) -> [land_on] <grocery store floor>(1)
+[FOLBP][A] task_graph node=4 verb=land_on agent=21 targets=[1]
+[FOLBP][ENV] step=5 executed=[land_on]<quadrotor>(21) -> action=[land_on] <grocery store floor>(1) done=False remaining_goals=['on_<apple>(9)_<pedestal table>(6)', 'on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[5] <robot dog>(20) -> [movetowards] <basket>(22)
+[FOLBP][A] task_graph node=5 verb=movetowards agent=20 targets=[22]
+[FOLBP][ENV] step=6 executed=[movetowards]<robot dog>(20) -> action=[movetowards] <basket>(22) done=False remaining_goals=['on_<apple>(9)_<pedestal table>(6)', 'on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[6] <robot dog>(20) -> [movetowards] <apple>(9)
+[FOLBP][EXEC] step[6] noop (precondition already satisfied); message: precondition already satisfied: already close to (9)
+[FOLBP][EXEC] step[7] <robot dog>(20) -> [grab] <apple>(9)
+[FOLBP][A] task_graph node=6 verb=grab agent=20 targets=[9]
+[FOLBP][ENV] step=7 executed=[grab]<robot dog>(20) -> action=[grab] <apple>(9) done=False remaining_goals=['on_<apple>(9)_<pedestal table>(6)', 'on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[8] <robot dog>(20) -> [movetowards] <pedestal table>(6)
+[FOLBP][A] task_graph node=7 verb=movetowards agent=20 targets=[6]
+[FOLBP][ENV] step=8 executed=[movetowards]<robot dog>(20) -> action=[movetowards] <pedestal table>(6) done=False remaining_goals=['on_<apple>(9)_<pedestal table>(6)', 'on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[9] <robot dog>(20) -> [puton] <apple>(9) on <pedestal table>(6)
+[FOLBP][A] task_graph node=8 verb=puton agent=20 targets=[9, 6]
+[FOLBP][ENV] step=9 executed=[puton]<robot dog>(20) -> action=[puton] <apple>(9) on <pedestal table>(6) done=False remaining_goals=['on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[10] <quadrotor>(21) -> [takeoff_from] <grocery store floor>(1)
+[FOLBP][A] task_graph node=9 verb=takeoff_from agent=21 targets=[1]
+[FOLBP][ENV] step=10 executed=[takeoff_from]<quadrotor>(21) -> action=[takeoff_from] <grocery store floor>(1) done=False remaining_goals=['on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[11] <quadrotor>(21) -> [movetowards] <display table>(5)
+[FOLBP][A] task_graph node=10 verb=movetowards agent=21 targets=[5]
+[FOLBP][ENV] step=11 executed=[movetowards]<quadrotor>(21) -> action=[movetowards] <display table>(5) done=False remaining_goals=['on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[12] <quadrotor>(21) -> [land_on] <display table>(5)
+[FOLBP][A] task_graph node=11 verb=land_on agent=21 targets=[5]
+[FOLBP][ENV] step=12 executed=[land_on]<quadrotor>(21) -> action=[land_on] <display table>(5) done=False remaining_goals=['on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[13] <robot arm>(18) -> [grab] <bottle of apple juice>(16)
+[FOLBP][A] task_graph node=12 verb=grab agent=18 targets=[16]
+[FOLBP][ENV] step=13 executed=[grab]<robot arm>(18) -> action=[grab] <bottle of apple juice>(16) done=False remaining_goals=['on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[14] <robot arm>(18) -> [putinto] <bottle of apple juice>(16) into <basket>(22)
+[FOLBP][A] task_graph node=13 verb=putinto agent=18 targets=[16, 22]
+[FOLBP][ENV] step=14 executed=[putinto]<robot arm>(18) -> action=[putinto] <bottle of apple juice>(16) into <basket>(22) done=False remaining_goals=['on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[15] <quadrotor>(21) -> [takeoff_from] <display table>(5)
+[FOLBP][A] task_graph node=14 verb=takeoff_from agent=21 targets=[5]
+[FOLBP][ENV] step=15 executed=[takeoff_from]<quadrotor>(21) -> action=[takeoff_from] <display table>(5) done=False remaining_goals=['on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[16] <quadrotor>(21) -> [movetowards] <grocery store floor>(1)
+[FOLBP][A] task_graph node=15 verb=movetowards agent=21 targets=[1]
+[FOLBP][ENV] step=16 executed=[movetowards]<quadrotor>(21) -> action=[movetowards] <grocery store floor>(1) done=False remaining_goals=['on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[17] <quadrotor>(21) -> [land_on] <grocery store floor>(1)
+[FOLBP][A] task_graph node=16 verb=land_on agent=21 targets=[1]
+[FOLBP][ENV] step=17 executed=[land_on]<quadrotor>(21) -> action=[land_on] <grocery store floor>(1) done=False remaining_goals=['on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[18] <robot dog>(20) -> [movetowards] <basket>(22)
+[FOLBP][A] task_graph node=17 verb=movetowards agent=20 targets=[22]
+[FOLBP][ENV] step=18 executed=[movetowards]<robot dog>(20) -> action=[movetowards] <basket>(22) done=False remaining_goals=['on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[19] <robot dog>(20) -> [movetowards] <bottle of apple juice>(16)
+[FOLBP][EXEC] step[19] noop (precondition already satisfied); message: precondition already satisfied: already close to (16)
+[FOLBP][EXEC] step[20] <robot dog>(20) -> [grab] <bottle of apple juice>(16)
+[FOLBP][A] task_graph node=18 verb=grab agent=20 targets=[16]
+[FOLBP][ENV] step=19 executed=[grab]<robot dog>(20) -> action=[grab] <bottle of apple juice>(16) done=False remaining_goals=['on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[21] <robot dog>(20) -> [movetowards] <pedestal table>(7)
+[FOLBP][A] task_graph node=19 verb=movetowards agent=20 targets=[7]
+[FOLBP][ENV] step=20 executed=[movetowards]<robot dog>(20) -> action=[movetowards] <pedestal table>(7) done=False remaining_goals=['on_<bottle of apple juice>(16)_<pedestal table>(7)']
+[FOLBP][EXEC] step[22] <robot dog>(20) -> [puton] <bottle of apple juice>(16) on <pedestal table>(7)
+[FOLBP][A] task_graph node=20 verb=puton agent=20 targets=[16, 7]
+[FOLBP][ENV] step=21 executed=[puton]<robot dog>(20) -> action=[puton] <bottle of apple juice>(16) on <pedestal table>(7) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=21
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 21, 'edges': 23, 'failed': 0, 'executed': 21}
+[FOLBP][FINAL] learned_clauses: []
+True
+---------Env:3---Task:15-------------------------
+success
+steps: 21
+-------------------------------------
+average steps: 21.0
+success rate: 1.0
+successful tasks: [15]
+failed tasks: None

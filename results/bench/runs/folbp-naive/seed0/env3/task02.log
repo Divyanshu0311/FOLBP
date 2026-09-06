@@ -1,0 +1,52 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env3 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=False lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-naive seed=0 verify=shadow repair=none max_oracle_plans=1 t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=2 env_id=3 name=MultiAgent_0 gt_steps=4
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <bottle of milk>(23) and <bread>(24) into the <basket>(22).
+[FOLBP][TASK] agents: [('robot arm', 18), ('robot arm', 19), ('robot dog', 20), ('quadrotor', 21)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/8
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 4 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot arm>(19) action=[grab] <bottle of milk>(23)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(19) action=[putinto] <bottle of milk>(23) into <basket>(22)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(19) action=[grab] <bread>(24)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(19) action=[putinto] <bread>(24) into <basket>(22)
+[FOLBP][FOL] predicates: unary=75 binary=29 nodes=25
+[FOLBP][Z3] SAT — all 4 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 4 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 4 step(s)
+[FOLBP][EXEC] step[0] <robot arm>(19) -> [grab] <bottle of milk>(23)
+[FOLBP][A] task_graph node=0 verb=grab agent=19 targets=[23]
+[FOLBP][ENV] step=1 executed=[grab]<robot arm>(19) -> action=[grab] <bottle of milk>(23) done=False remaining_goals=['inside_<bottle of milk>(23)_<basket>(22)', 'inside_<bread>(24)_<basket>(22)', 'on_<quadrotor>(21)_<bar counter>(11)']
+[FOLBP][EXEC] step[1] <robot arm>(19) -> [putinto] <bottle of milk>(23) into <basket>(22)
+[FOLBP][A] task_graph node=1 verb=putinto agent=19 targets=[23, 22]
+[FOLBP][ENV] step=2 executed=[putinto]<robot arm>(19) -> action=[putinto] <bottle of milk>(23) into <basket>(22) done=False remaining_goals=['inside_<bread>(24)_<basket>(22)', 'on_<quadrotor>(21)_<bar counter>(11)']
+[FOLBP][EXEC] step[2] <robot arm>(19) -> [grab] <bread>(24)
+[FOLBP][A] task_graph node=2 verb=grab agent=19 targets=[24]
+[FOLBP][ENV] step=3 executed=[grab]<robot arm>(19) -> action=[grab] <bread>(24) done=False remaining_goals=['inside_<bread>(24)_<basket>(22)', 'on_<quadrotor>(21)_<bar counter>(11)']
+[FOLBP][EXEC] step[3] <robot arm>(19) -> [putinto] <bread>(24) into <basket>(22)
+[FOLBP][A] task_graph node=3 verb=putinto agent=19 targets=[24, 22]
+[FOLBP][ENV] step=4 executed=[putinto]<robot arm>(19) -> action=[putinto] <bread>(24) into <basket>(22) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=4
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 4, 'edges': 3, 'failed': 0, 'executed': 4}
+[FOLBP][FINAL] learned_clauses: []
+True
+---------Env:3---Task:2-------------------------
+success
+steps: 4
+-------------------------------------
+average steps: 4.0
+success rate: 1.0
+successful tasks: [2]
+failed tasks: None

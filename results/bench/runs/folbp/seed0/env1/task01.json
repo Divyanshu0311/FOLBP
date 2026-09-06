@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "arm": "folbp",
+  "seed": 0,
+  "env": "env1",
+  "env_id": 1,
+  "task_id": 1,
+  "task_name": "MultiAgent_0",
+  "goal": [
+    "Put the <old clothes>(42) on the <chair>(5)."
+  ],
+  "success": true,
+  "gt_steps": 6,
+  "executed_steps": 8,
+  "wall_clock_s": 19.504,
+  "outer_iters": 2,
+  "llm": {
+    "total_calls": 2,
+    "total_errors": 0,
+    "prompt_tokens": 8073,
+    "completion_tokens": 629,
+    "total_tokens": 8702,
+    "llm_latency_s": 19.413,
+    "oracle_calls": 2,
+    "repair_calls": 0,
+    "executor_calls": 0,
+    "judge_calls": 0,
+    "by_role": {
+      "oracle": {
+        "calls": 2,
+        "errors": 0,
+        "prompt_tokens": 8073,
+        "completion_tokens": 629,
+        "latency_s": 19.413
+      },
+      "repair": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "executor": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "judge": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "other": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      }
+    }
+  },
+  "verify": {
+    "mode": "z3",
+    "z3_checks": 5,
+    "z3_unsat_events": 3,
+    "shadow_unsat_events": 0,
+    "unsat_cores": [
+      {
+        "step_index": 2,
+        "core": [
+          "s2_p2_above"
+        ],
+        "missing": [
+          "('above', 22, 3)"
+        ]
+      },
+      {
+        "step_index": 11,
+        "core": [
+          "s11_p2_above"
+        ],
+        "missing": [
+          "('above', 22, 1)"
+        ]
+      },
+      {
+        "step_index": 15,
+        "core": [
+          "s15_p1_close"
+        ],
+        "missing": [
+          "('close', 21, 42)"
+        ]
+      }
+    ]
+  },
+  "repair": {
+    "mode": "symbolic",
+    "attempts": 3,
+    "successes": 1,
+    "escalations": 0
+  },
+  "cdcl": {
+    "enabled": true,
+    "clauses_learned": 1,
+    "clauses": [
+      [
+        "quadrotor",
+        "movetowards",
+        "kitchen floor",
+        "runtime_rejection"
+      ]
+    ]
+  },
+  "failures": [],
+  "manifest": {
+    "git_sha": "17554a52792e302921bbb5e5fd3b4049e25b50d4",
+    "git_dirty": true,
+    "arm": "folbp",
+    "seed": 0,
+    "model": "gemini-2.5-flash",
+    "temperature": 0.0,
+    "flags": {
+      "verify": "z3",
+      "repair": "symbolic",
+      "cdcl": true,
+      "max_oracle_plans": 0,
+      "max_replan_attempts": 5,
+      "executor_mode": "deterministic"
+    },
+    "timestamp": "2026-08-08T18:32:36+0530",
+    "host": "LAPTOP-3HB7L6DU",
+    "python": "3.10.12",
+    "argv": [
+      "--env",
+      "env1",
+      "--task",
+      "1",
+      "--arm",
+      "folbp",
+      "--seed",
+      "0",
+      "--record_path",
+      "/home/cpp/sc627/COHERENT/results/bench/runs/folbp/seed0/env1/task01.json",
+      "--lm_id",
+      "gemini-2.5-flash",
+      "--t",
+      "0.0",
+      "--api_key",
+      "<redacted>",
+      "--verify",
+      "z3",
+      "--repair",
+      "symbolic",
+      "--cdcl",
+      "--executor_mode",
+      "deterministic"
+    ]
+  },
+  "oracle_plans": 2
+}

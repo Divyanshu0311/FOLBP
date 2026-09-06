@@ -1,0 +1,125 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Init Env
+[mode=standalone] Running symbolic planner only (no execution bridge)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 5 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:0 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <lower livingroom floor>(1) with the <coffee cup>(34) in the <basket>(29).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 25
+['[takeoff_from] <upper livingroom floor>(3)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <upper livingroom floor>(3)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <upper livingroom floor>(3)
+==============================================
+
+[takeoff_from] <upper livingroom floor>(3)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [takeoff_from] <upper livingroom floor>(3) satisfies Hello <quadrotor>(25): I need you to take off from the <upper livingroom floor>(3).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 5 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:1 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <lower livingroom floor>(1) with the <coffee cup>(34) in the <basket>(29).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 25
+['[land_on] <upper livingroom floor>(3)', '[movetowards] <coffee table>(31)', '[movetowards] <corridor>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <corridor>(4)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <corridor>(4)
+==============================================
+
+[movetowards] <corridor>(4)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <corridor>(4) satisfies Hello <quadrotor>(25): #Please movetowards the <corridor>(4).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 5 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:2 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <lower livingroom floor>(1) with the <coffee cup>(34) in the <basket>(29).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 25
+['[land_on] <corridor floor>(35)', '[movetowards] <upper livingroom>(2)', '[movetowards] <lower livingroom>(0)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <lower livingroom>(0)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <lower livingroom>(0)
+==============================================
+
+[movetowards] <lower livingroom>(0)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <lower livingroom>(0) satisfies Hello <quadrotor>(25): Please movetowards the <lower livingroom>(0).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 5 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:3 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(25) lands on the <lower livingroom floor>(1) with the <coffee cup>(34) in the <basket>(29).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 25
+['[land_on] <lower livingroom floor>(1)', '[movetowards] <dining table>(30)', '[movetowards] <corridor>(4)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <lower livingroom floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <lower livingroom floor>(1)
+==============================================
+
+[land_on] <lower livingroom floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [land_on] <lower livingroom floor>(1) satisfies Hello <quadrotor>(25): Please land on the <lower livingroom floor>(1).
+==============================================
+
+
+=== Step-by-Step Action Log ===
+  Step  1: <quadrotor>(25) -> [takeoff_from] <upper livingroom floor>(3)
+  Step  2: <quadrotor>(25) -> [movetowards] <corridor>(4)
+  Step  3: <quadrotor>(25) -> [movetowards] <lower livingroom>(0)
+  Step  4: <quadrotor>(25) -> [land_on] <lower livingroom floor>(1)
+  Total steps executed: 4
+True
+---------Env:4---Task:5-------------------------
+success
+steps: 4
+-------------------------------------
+average steps: 4.0
+successful tasks: [5]
+failed tasks: None

@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "arm": "folbp",
+  "seed": 0,
+  "env": "env1",
+  "env_id": 1,
+  "task_id": 13,
+  "task_name": "MultiAgent_0",
+  "goal": [
+    "The <quadrotor>(22) lands on the <dining table>(9) with the <knife>(50) and <fork>(51) in the <basket>(23). The <knife>(50) and <fork>(51) are originally in the <fridge>(7)."
+  ],
+  "success": true,
+  "gt_steps": 13,
+  "executed_steps": 15,
+  "wall_clock_s": 19.501,
+  "outer_iters": 1,
+  "llm": {
+    "total_calls": 1,
+    "total_errors": 0,
+    "prompt_tokens": 4531,
+    "completion_tokens": 530,
+    "total_tokens": 5061,
+    "llm_latency_s": 19.391,
+    "oracle_calls": 1,
+    "repair_calls": 0,
+    "executor_calls": 0,
+    "judge_calls": 0,
+    "by_role": {
+      "oracle": {
+        "calls": 1,
+        "errors": 0,
+        "prompt_tokens": 4531,
+        "completion_tokens": 530,
+        "latency_s": 19.391
+      },
+      "repair": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "executor": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "judge": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "other": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      }
+    }
+  },
+  "verify": {
+    "mode": "z3",
+    "z3_checks": 3,
+    "z3_unsat_events": 2,
+    "shadow_unsat_events": 0,
+    "unsat_cores": [
+      {
+        "step_index": 3,
+        "core": [
+          "s3_p1_close"
+        ],
+        "missing": [
+          "('close', 21, 50)"
+        ]
+      },
+      {
+        "step_index": 8,
+        "core": [
+          "s8_p1_close"
+        ],
+        "missing": [
+          "('close', 21, 51)"
+        ]
+      }
+    ]
+  },
+  "repair": {
+    "mode": "symbolic",
+    "attempts": 2,
+    "successes": 1,
+    "escalations": 0
+  },
+  "cdcl": {
+    "enabled": true,
+    "clauses_learned": 0,
+    "clauses": []
+  },
+  "failures": [],
+  "manifest": {
+    "git_sha": "17554a52792e302921bbb5e5fd3b4049e25b50d4",
+    "git_dirty": true,
+    "arm": "folbp",
+    "seed": 0,
+    "model": "gemini-2.5-flash",
+    "temperature": 0.0,
+    "flags": {
+      "verify": "z3",
+      "repair": "symbolic",
+      "cdcl": true,
+      "max_oracle_plans": 0,
+      "max_replan_attempts": 5,
+      "executor_mode": "deterministic"
+    },
+    "timestamp": "2026-08-08T18:51:07+0530",
+    "host": "LAPTOP-3HB7L6DU",
+    "python": "3.10.12",
+    "argv": [
+      "--env",
+      "env1",
+      "--task",
+      "13",
+      "--arm",
+      "folbp",
+      "--seed",
+      "0",
+      "--record_path",
+      "/home/cpp/sc627/COHERENT/results/bench/runs/folbp/seed0/env1/task13.json",
+      "--lm_id",
+      "gemini-2.5-flash",
+      "--t",
+      "0.0",
+      "--api_key",
+      "<redacted>",
+      "--verify",
+      "z3",
+      "--repair",
+      "symbolic",
+      "--cdcl",
+      "--executor_mode",
+      "deterministic"
+    ]
+  },
+  "oracle_plans": 1
+}

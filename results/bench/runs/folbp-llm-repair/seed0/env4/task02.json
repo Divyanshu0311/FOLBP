@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "status": "timeout",
+  "arm": "folbp-llm-repair",
+  "seed": 0,
+  "env": "env4",
+  "task_id": 2,
+  "success": false,
+  "gt_steps": null,
+  "executed_steps": null,
+  "wall_clock_s": 900.022,
+  "llm": {},
+  "verify": {},
+  "repair": {},
+  "cdcl": {},
+  "failures": [
+    {
+      "kind": "timeout",
+      "detail": "exceeded 900s; see /home/cpp/sc627/COHERENT/results/bench/runs/folbp-llm-repair/seed0/env4/task02.log"
+    }
+  ],
+  "manifest": {
+    "git_sha": "17554a52792e302921bbb5e5fd3b4049e25b50d4",
+    "git_dirty": true,
+    "arm": "folbp-llm-repair",
+    "seed": 0,
+    "model": "gemini-2.5-flash",
+    "temperature": 0.0,
+    "flags": {
+      "--verify": "z3",
+      "--repair": "llm",
+      "--cdcl": null,
+      "--executor_mode": "deterministic"
+    },
+    "timestamp": "2026-08-08T21:40:36+0530",
+    "host": "LAPTOP-3HB7L6DU",
+    "python": "3.10.12",
+    "argv": [
+      "--env",
+      "env4",
+      "--tasks",
+      "all",
+      "--arms",
+      "all",
+      "--resume",
+      "--parallel",
+      "4",
+      "--stagger",
+      "1",
+      "--timeout",
+      "900"
+    ]
+  }
+}

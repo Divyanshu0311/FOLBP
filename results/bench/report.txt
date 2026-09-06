@@ -1,0 +1,38 @@
+
+env=all · 7 arms · 100 tasks · 600 records
+
+arm                            succ  exec/GT  LLM/task   latency   UNSAT   repairs  clauses
+───────────────────────────────────────────────────────────────────────────────────────────
+FOLBP (full, ours)           96/100     1.03       1.5     20.4s    1.12   0.7/1.1      0.3
+  - verification             85/100     1.03       2.9     30.7s    0.00         —      0.0
+  repair: LLM re-prompt       93/99     1.03       4.0     59.5s    1.52   0.7/1.5      0.4
+                           (1 run(s) did not complete)
+  - CDCL                     94/100     1.03       2.4     25.8s    1.04   0.7/1.0      0.0
+  constraints: hard        — not run —
+  naive one-shot             65/100     1.02       1.0     11.1s  [0.53]         —      0.0
+PEFA (baseline)              95/100     1.03      54.5    201.7s       —         —        —
+
+soundness: the naive one-shot planner would have dispatched a physically infeasible action on 53/100 tasks (53%)
+
+paired vs FOLBP (full, ours):
+  constraints: hard        no overlapping tasks
+  - verification           n=100
+      McNemar  discordant b=11 c=0  p=0.0010  p_holm=0.0039
+      Wilcoxon LLM calls  p=0.001649  rank-biserial=-0.597  n=33
+      Wilcoxon latency    p=0.4201  rank-biserial=-0.093  n=100
+  repair: LLM re-prompt    n=99
+      McNemar  discordant b=2 c=0  p=0.5000  p_holm=1.0000
+      Wilcoxon LLM calls  p=2.321e-10  rank-biserial=-0.995  n=55
+      Wilcoxon latency    p=3.331e-10  rank-biserial=-0.727  n=99
+  - CDCL                   n=100
+      McNemar  discordant b=2 c=0  p=0.5000  p_holm=1.0000
+      Wilcoxon LLM calls  p=0.3086  rank-biserial=+0.203  n=17
+      Wilcoxon latency    p=0.8151  rank-biserial=+0.027  n=100
+  naive one-shot           n=100
+      McNemar  discordant b=31 c=0  p=0.0000  p_holm=0.0000
+      Wilcoxon LLM calls  p=1.945e-06  rank-biserial=+1.000  n=28
+      Wilcoxon latency    p=9.657e-05  rank-biserial=+0.449  n=100
+  PEFA (baseline)          n=100
+      McNemar  discordant b=1 c=0  p=1.0000  p_holm=1.0000
+      Wilcoxon LLM calls  p=3.731e-18  rank-biserial=-1.000  n=100
+      Wilcoxon latency    p=3.897e-18  rank-biserial=-1.000  n=100

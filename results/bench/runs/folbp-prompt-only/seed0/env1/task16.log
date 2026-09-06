@@ -1,0 +1,149 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env1 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=False lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-prompt-only seed=0 verify=none repair=none max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=16 env_id=1 name=MultiAgent_0 gt_steps=13
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <hand towel>(12) on the <coffee table>(4).
+[FOLBP][TASK] agents: [('robot arm', 20), ('robot dog', 21), ('quadrotor', 22), ('robot arm', 44)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/26
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 12 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[takeoff_from] <livingroom floor>(1)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(22) action=[movetowards] <kitchen>(2)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(22) action=[land_on] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(20) action=[grab] <hand towel>(12)
+[FOLBP][ORACLE]   plan[4]: agent=<robot arm>(20) action=[putinto] <hand towel>(12) into <basket>(23)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(22) action=[takeoff_from] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(22) action=[movetowards] <livingroom>(0)
+[FOLBP][ORACLE]   plan[7]: agent=<quadrotor>(22) action=[land_on] <livingroom floor>(1)
+[FOLBP][ORACLE]   plan[8]: agent=<robot dog>(21) action=[movetowards] <basket>(23)
+[FOLBP][ORACLE]   plan[9]: agent=<robot dog>(21) action=[grab] <hand towel>(12)
+[FOLBP][ORACLE]   plan[10]: agent=<robot dog>(21) action=[movetowards] <coffee table>(4)
+[FOLBP][ORACLE]   plan[11]: agent=<robot dog>(21) action=[puton] <hand towel>(12) on <coffee table>(4)
+[FOLBP][FOL] predicates: unary=93 binary=35 nodes=31
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 12 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 12 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [takeoff_from] <livingroom floor>(1)
+[FOLBP][A] task_graph node=0 verb=takeoff_from agent=22 targets=[1]
+[FOLBP][ENV] step=1 executed=[takeoff_from]<quadrotor>(22) -> action=[takeoff_from] <livingroom floor>(1) done=False remaining_goals=['on_<hand towel>(12)_<coffee table>(4)']
+[FOLBP][EXEC] step[1] <quadrotor>(22) -> [movetowards] <kitchen>(2)
+[FOLBP][A] task_graph node=1 verb=movetowards agent=22 targets=[2]
+[FOLBP][ENV] step=2 executed=[movetowards]<quadrotor>(22) -> action=[movetowards] <kitchen>(2) done=False remaining_goals=['on_<hand towel>(12)_<coffee table>(4)']
+[FOLBP][EXEC] step[2] <quadrotor>(22) -> [land_on] <kitchen table>(11)
+[FOLBP][EXEC] runtime failure on step[2]: deterministic_action_not_available:[land_on] <kitchen table>(11)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=2 env_steps=2/26
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 10 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot arm>(20) action=[grab] <hand towel>(12)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(22) action=[land_on] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(20) action=[putinto] <hand towel>(12) into <basket>(23)
+[FOLBP][ORACLE]   plan[3]: agent=<quadrotor>(22) action=[takeoff_from] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(22) action=[movetowards] <livingroom>(0)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(22) action=[land_on] <livingroom floor>(1)
+[FOLBP][ORACLE]   plan[6]: agent=<robot dog>(21) action=[movetowards] <basket>(23)
+[FOLBP][ORACLE]   plan[7]: agent=<robot dog>(21) action=[grab] <hand towel>(12)
+[FOLBP][ORACLE]   plan[8]: agent=<robot dog>(21) action=[movetowards] <coffee table>(4)
+[FOLBP][ORACLE]   plan[9]: agent=<robot dog>(21) action=[puton] <hand towel>(12) on <coffee table>(4)
+[FOLBP][FOL] predicates: unary=94 binary=34 nodes=31
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 10 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 10 step(s)
+[FOLBP][EXEC] step[0] <robot arm>(20) -> [grab] <hand towel>(12)
+[FOLBP][A] task_graph node=2 verb=grab agent=20 targets=[12]
+[FOLBP][ENV] step=3 executed=[grab]<robot arm>(20) -> action=[grab] <hand towel>(12) done=False remaining_goals=['on_<hand towel>(12)_<coffee table>(4)']
+[FOLBP][EXEC] step[1] <quadrotor>(22) -> [land_on] <kitchen table>(11)
+[FOLBP][EXEC] runtime failure on step[1]: deterministic_action_not_available:[land_on] <kitchen table>(11)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=3 env_steps=3/26
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 9 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(20) action=[putinto] <hand towel>(12) into <basket>(23)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(22) action=[takeoff_from] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[3]: agent=<quadrotor>(22) action=[movetowards] <livingroom>(0)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(22) action=[land_on] <livingroom floor>(1)
+[FOLBP][ORACLE]   plan[5]: agent=<robot dog>(21) action=[movetowards] <basket>(23)
+[FOLBP][ORACLE]   plan[6]: agent=<robot dog>(21) action=[grab] <hand towel>(12)
+[FOLBP][ORACLE]   plan[7]: agent=<robot dog>(21) action=[movetowards] <coffee table>(4)
+[FOLBP][ORACLE]   plan[8]: agent=<robot dog>(21) action=[puton] <hand towel>(12) on <coffee table>(4)
+[FOLBP][FOL] predicates: unary=94 binary=34 nodes=31
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 9 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 9 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <kitchen table>(11)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <kitchen table>(11)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=4 env_steps=3/26
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 9 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(20) action=[putinto] <hand towel>(12) into <basket>(23)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(22) action=[takeoff_from] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[3]: agent=<quadrotor>(22) action=[movetowards] <livingroom>(0)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(22) action=[land_on] <livingroom floor>(1)
+[FOLBP][ORACLE]   plan[5]: agent=<robot dog>(21) action=[movetowards] <basket>(23)
+[FOLBP][ORACLE]   plan[6]: agent=<robot dog>(21) action=[grab] <hand towel>(12)
+[FOLBP][ORACLE]   plan[7]: agent=<robot dog>(21) action=[movetowards] <coffee table>(4)
+[FOLBP][ORACLE]   plan[8]: agent=<robot dog>(21) action=[puton] <hand towel>(12) on <coffee table>(4)
+[FOLBP][FOL] predicates: unary=94 binary=34 nodes=31
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 9 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 9 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <kitchen table>(11)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <kitchen table>(11)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=5 env_steps=3/26
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 9 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(20) action=[putinto] <hand towel>(12) into <basket>(23)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(22) action=[takeoff_from] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[3]: agent=<quadrotor>(22) action=[movetowards] <livingroom>(0)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(22) action=[land_on] <livingroom floor>(1)
+[FOLBP][ORACLE]   plan[5]: agent=<robot dog>(21) action=[movetowards] <basket>(23)
+[FOLBP][ORACLE]   plan[6]: agent=<robot dog>(21) action=[grab] <hand towel>(12)
+[FOLBP][ORACLE]   plan[7]: agent=<robot dog>(21) action=[movetowards] <coffee table>(4)
+[FOLBP][ORACLE]   plan[8]: agent=<robot dog>(21) action=[puton] <hand towel>(12) on <coffee table>(4)
+[FOLBP][FOL] predicates: unary=94 binary=34 nodes=31
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 9 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 9 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <kitchen table>(11)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <kitchen table>(11)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=6 env_steps=3/26
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] No progress in 3 consecutive Oracle re-plans; failing task.
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=False steps=3
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 3, 'edges': 1, 'failed': 0, 'executed': 3}
+[FOLBP][FINAL] learned_clauses: []
+False
+---------Env:1---Task:16-------------------------
+failure
+steps: 3
+-------------------------------------
+average steps: 3.0
+success rate: 0.0
+successful tasks: None
+failed tasks: [16]

@@ -1,0 +1,102 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env2 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=False lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-prompt-only seed=0 verify=none repair=none max_oracle_plans=unlimited t=0.5
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=11 env_id=3 name=MultiAgent_0 gt_steps=12
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <chocolate bar>(35) on the <pedestal table>(6).
+[FOLBP][TASK] agents: [('robot arm', 18), ('robot arm', 19), ('robot dog', 20), ('quadrotor', 21)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/24
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 12 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(21) action=[takeoff_from] <grocery store floor>(1)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(21) action=[movetowards] <checkout counter>(8)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(21) action=[land_on] <checkout counter>(8)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(19) action=[grab] <chocolate bar>(35)
+[FOLBP][ORACLE]   plan[4]: agent=<robot arm>(19) action=[putinto] <chocolate bar>(35) into <basket>(22)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(21) action=[takeoff_from] <checkout counter>(8)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(21) action=[movetowards] <pedestal table>(6)
+[FOLBP][ORACLE]   plan[7]: agent=<quadrotor>(21) action=[land_on] <grocery store floor>(1)
+[FOLBP][ORACLE]   plan[8]: agent=<robot dog>(20) action=[movetowards] <basket>(22)
+[FOLBP][ORACLE]   plan[9]: agent=<robot dog>(20) action=[grab] <chocolate bar>(35)
+[FOLBP][ORACLE]   plan[10]: agent=<robot dog>(20) action=[movetowards] <pedestal table>(6)
+[FOLBP][ORACLE]   plan[11]: agent=<robot dog>(20) action=[puton] <chocolate bar>(35) on <pedestal table>(6)
+[FOLBP][FOL] predicates: unary=77 binary=29 nodes=25
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 12 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 12 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(21) -> [takeoff_from] <grocery store floor>(1)
+[FOLBP][A] task_graph node=0 verb=takeoff_from agent=21 targets=[1]
+[FOLBP][ENV] step=1 executed=[takeoff_from]<quadrotor>(21) -> action=[takeoff_from] <grocery store floor>(1) done=False remaining_goals=['on_<chocolate bar>(35)_<pedestal table>(6)']
+[FOLBP][EXEC] step[1] <quadrotor>(21) -> [movetowards] <checkout counter>(8)
+[FOLBP][A] task_graph node=1 verb=movetowards agent=21 targets=[8]
+[FOLBP][ENV] step=2 executed=[movetowards]<quadrotor>(21) -> action=[movetowards] <checkout counter>(8) done=False remaining_goals=['on_<chocolate bar>(35)_<pedestal table>(6)']
+[FOLBP][EXEC] step[2] <quadrotor>(21) -> [land_on] <checkout counter>(8)
+[FOLBP][A] task_graph node=2 verb=land_on agent=21 targets=[8]
+[FOLBP][ENV] step=3 executed=[land_on]<quadrotor>(21) -> action=[land_on] <checkout counter>(8) done=False remaining_goals=['on_<chocolate bar>(35)_<pedestal table>(6)']
+[FOLBP][EXEC] step[3] <robot arm>(19) -> [grab] <chocolate bar>(35)
+[FOLBP][A] task_graph node=3 verb=grab agent=19 targets=[35]
+[FOLBP][ENV] step=4 executed=[grab]<robot arm>(19) -> action=[grab] <chocolate bar>(35) done=False remaining_goals=['on_<chocolate bar>(35)_<pedestal table>(6)']
+[FOLBP][EXEC] step[4] <robot arm>(19) -> [putinto] <chocolate bar>(35) into <basket>(22)
+[FOLBP][A] task_graph node=4 verb=putinto agent=19 targets=[35, 22]
+[FOLBP][ENV] step=5 executed=[putinto]<robot arm>(19) -> action=[putinto] <chocolate bar>(35) into <basket>(22) done=False remaining_goals=['on_<chocolate bar>(35)_<pedestal table>(6)']
+[FOLBP][EXEC] step[5] <quadrotor>(21) -> [takeoff_from] <checkout counter>(8)
+[FOLBP][A] task_graph node=5 verb=takeoff_from agent=21 targets=[8]
+[FOLBP][ENV] step=6 executed=[takeoff_from]<quadrotor>(21) -> action=[takeoff_from] <checkout counter>(8) done=False remaining_goals=['on_<chocolate bar>(35)_<pedestal table>(6)']
+[FOLBP][EXEC] step[6] <quadrotor>(21) -> [movetowards] <pedestal table>(6)
+[FOLBP][EXEC] runtime failure on step[6]: deterministic_action_not_available:[movetowards] <pedestal table>(6)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=2 env_steps=6/24
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 6 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(21) action=[movetowards] <grocery store floor>(1)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(21) action=[land_on] <grocery store floor>(1)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(20) action=[movetowards] <basket>(22)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(20) action=[grab] <chocolate bar>(35)
+[FOLBP][ORACLE]   plan[4]: agent=<robot dog>(20) action=[movetowards] <pedestal table>(6)
+[FOLBP][ORACLE]   plan[5]: agent=<robot dog>(20) action=[puton] <chocolate bar>(35) on <pedestal table>(6)
+[FOLBP][FOL] predicates: unary=78 binary=28 nodes=25
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 6 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 6 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(21) -> [movetowards] <grocery store floor>(1)
+[FOLBP][A] task_graph node=6 verb=movetowards agent=21 targets=[1]
+[FOLBP][ENV] step=7 executed=[movetowards]<quadrotor>(21) -> action=[movetowards] <grocery store floor>(1) done=False remaining_goals=['on_<chocolate bar>(35)_<pedestal table>(6)']
+[FOLBP][EXEC] step[1] <quadrotor>(21) -> [land_on] <grocery store floor>(1)
+[FOLBP][A] task_graph node=7 verb=land_on agent=21 targets=[1]
+[FOLBP][ENV] step=8 executed=[land_on]<quadrotor>(21) -> action=[land_on] <grocery store floor>(1) done=False remaining_goals=['on_<chocolate bar>(35)_<pedestal table>(6)']
+[FOLBP][EXEC] step[2] <robot dog>(20) -> [movetowards] <basket>(22)
+[FOLBP][A] task_graph node=8 verb=movetowards agent=20 targets=[22]
+[FOLBP][ENV] step=9 executed=[movetowards]<robot dog>(20) -> action=[movetowards] <basket>(22) done=False remaining_goals=['on_<chocolate bar>(35)_<pedestal table>(6)']
+[FOLBP][EXEC] step[3] <robot dog>(20) -> [grab] <chocolate bar>(35)
+[FOLBP][A] task_graph node=9 verb=grab agent=20 targets=[35]
+[FOLBP][ENV] step=10 executed=[grab]<robot dog>(20) -> action=[grab] <chocolate bar>(35) done=False remaining_goals=['on_<chocolate bar>(35)_<pedestal table>(6)']
+[FOLBP][EXEC] step[4] <robot dog>(20) -> [movetowards] <pedestal table>(6)
+[FOLBP][A] task_graph node=10 verb=movetowards agent=20 targets=[6]
+[FOLBP][ENV] step=11 executed=[movetowards]<robot dog>(20) -> action=[movetowards] <pedestal table>(6) done=False remaining_goals=['on_<chocolate bar>(35)_<pedestal table>(6)']
+[FOLBP][EXEC] step[5] <robot dog>(20) -> [puton] <chocolate bar>(35) on <pedestal table>(6)
+[FOLBP][A] task_graph node=11 verb=puton agent=20 targets=[35, 6]
+[FOLBP][ENV] step=12 executed=[puton]<robot dog>(20) -> action=[puton] <chocolate bar>(35) on <pedestal table>(6) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=12
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 12, 'edges': 11, 'failed': 0, 'executed': 12}
+[FOLBP][FINAL] learned_clauses: []
+True
+---------Env:3---Task:11-------------------------
+success
+steps: 12
+-------------------------------------
+average steps: 12.0
+success rate: 1.0
+successful tasks: [11]
+failed tasks: None

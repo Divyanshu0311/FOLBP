@@ -1,0 +1,76 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env3 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=False lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-prompt-only seed=0 verify=none repair=none max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=6 env_id=3 name=MultiAgent_0 gt_steps=10
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: The <quadrotor>(21) lands on the <dining table>(2) with the <beer glass>(14) and <beer bottle>(15) in the <basket>(22).
+[FOLBP][TASK] agents: [('robot arm', 18), ('robot arm', 19), ('robot dog', 20), ('quadrotor', 21)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/20
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 10 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(21) action=[takeoff_from] <restaurant floor>(1)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(21) action=[movetowards] <bar counter>(11)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(21) action=[land_on] <bar counter>(11)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(19) action=[grab] <beer glass>(14)
+[FOLBP][ORACLE]   plan[4]: agent=<robot arm>(19) action=[putinto] <beer glass>(14) into <basket>(22)
+[FOLBP][ORACLE]   plan[5]: agent=<robot arm>(19) action=[grab] <beer bottle>(15)
+[FOLBP][ORACLE]   plan[6]: agent=<robot arm>(19) action=[putinto] <beer bottle>(15) into <basket>(22)
+[FOLBP][ORACLE]   plan[7]: agent=<quadrotor>(21) action=[takeoff_from] <bar counter>(11)
+[FOLBP][ORACLE]   plan[8]: agent=<quadrotor>(21) action=[movetowards] <dining table>(2)
+[FOLBP][ORACLE]   plan[9]: agent=<quadrotor>(21) action=[land_on] <dining table>(2)
+[FOLBP][FOL] predicates: unary=68 binary=27 nodes=23
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 10 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 10 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(21) -> [takeoff_from] <restaurant floor>(1)
+[FOLBP][A] task_graph node=0 verb=takeoff_from agent=21 targets=[1]
+[FOLBP][ENV] step=1 executed=[takeoff_from]<quadrotor>(21) -> action=[takeoff_from] <restaurant floor>(1) done=False remaining_goals=['inside_<beer glass>(14)_<basket>(22)', 'inside_<beer bottle>(15)_<basket>(22)', 'on_<quadrotor>(21)_<dining table>(2)']
+[FOLBP][EXEC] step[1] <quadrotor>(21) -> [movetowards] <bar counter>(11)
+[FOLBP][A] task_graph node=1 verb=movetowards agent=21 targets=[11]
+[FOLBP][ENV] step=2 executed=[movetowards]<quadrotor>(21) -> action=[movetowards] <bar counter>(11) done=False remaining_goals=['inside_<beer glass>(14)_<basket>(22)', 'inside_<beer bottle>(15)_<basket>(22)', 'on_<quadrotor>(21)_<dining table>(2)']
+[FOLBP][EXEC] step[2] <quadrotor>(21) -> [land_on] <bar counter>(11)
+[FOLBP][A] task_graph node=2 verb=land_on agent=21 targets=[11]
+[FOLBP][ENV] step=3 executed=[land_on]<quadrotor>(21) -> action=[land_on] <bar counter>(11) done=False remaining_goals=['inside_<beer glass>(14)_<basket>(22)', 'inside_<beer bottle>(15)_<basket>(22)', 'on_<quadrotor>(21)_<dining table>(2)']
+[FOLBP][EXEC] step[3] <robot arm>(19) -> [grab] <beer glass>(14)
+[FOLBP][A] task_graph node=3 verb=grab agent=19 targets=[14]
+[FOLBP][ENV] step=4 executed=[grab]<robot arm>(19) -> action=[grab] <beer glass>(14) done=False remaining_goals=['inside_<beer glass>(14)_<basket>(22)', 'inside_<beer bottle>(15)_<basket>(22)', 'on_<quadrotor>(21)_<dining table>(2)']
+[FOLBP][EXEC] step[4] <robot arm>(19) -> [putinto] <beer glass>(14) into <basket>(22)
+[FOLBP][A] task_graph node=4 verb=putinto agent=19 targets=[14, 22]
+[FOLBP][ENV] step=5 executed=[putinto]<robot arm>(19) -> action=[putinto] <beer glass>(14) into <basket>(22) done=False remaining_goals=['inside_<beer bottle>(15)_<basket>(22)', 'on_<quadrotor>(21)_<dining table>(2)']
+[FOLBP][EXEC] step[5] <robot arm>(19) -> [grab] <beer bottle>(15)
+[FOLBP][A] task_graph node=5 verb=grab agent=19 targets=[15]
+[FOLBP][ENV] step=6 executed=[grab]<robot arm>(19) -> action=[grab] <beer bottle>(15) done=False remaining_goals=['inside_<beer bottle>(15)_<basket>(22)', 'on_<quadrotor>(21)_<dining table>(2)']
+[FOLBP][EXEC] step[6] <robot arm>(19) -> [putinto] <beer bottle>(15) into <basket>(22)
+[FOLBP][A] task_graph node=6 verb=putinto agent=19 targets=[15, 22]
+[FOLBP][ENV] step=7 executed=[putinto]<robot arm>(19) -> action=[putinto] <beer bottle>(15) into <basket>(22) done=False remaining_goals=['on_<quadrotor>(21)_<dining table>(2)']
+[FOLBP][EXEC] step[7] <quadrotor>(21) -> [takeoff_from] <bar counter>(11)
+[FOLBP][A] task_graph node=7 verb=takeoff_from agent=21 targets=[11]
+[FOLBP][ENV] step=8 executed=[takeoff_from]<quadrotor>(21) -> action=[takeoff_from] <bar counter>(11) done=False remaining_goals=['on_<quadrotor>(21)_<dining table>(2)']
+[FOLBP][EXEC] step[8] <quadrotor>(21) -> [movetowards] <dining table>(2)
+[FOLBP][A] task_graph node=8 verb=movetowards agent=21 targets=[2]
+[FOLBP][ENV] step=9 executed=[movetowards]<quadrotor>(21) -> action=[movetowards] <dining table>(2) done=False remaining_goals=['on_<quadrotor>(21)_<dining table>(2)']
+[FOLBP][EXEC] step[9] <quadrotor>(21) -> [land_on] <dining table>(2)
+[FOLBP][A] task_graph node=9 verb=land_on agent=21 targets=[2]
+[FOLBP][ENV] step=10 executed=[land_on]<quadrotor>(21) -> action=[land_on] <dining table>(2) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=10
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 10, 'edges': 8, 'failed': 0, 'executed': 10}
+[FOLBP][FINAL] learned_clauses: []
+True
+---------Env:3---Task:6-------------------------
+success
+steps: 10
+-------------------------------------
+average steps: 10.0
+success rate: 1.0
+successful tasks: [6]
+failed tasks: None

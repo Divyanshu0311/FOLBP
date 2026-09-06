@@ -1,0 +1,78 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=3 env=env4 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=True lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp seed=0 verify=z3 repair=symbolic max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=12 env_id=4 name=MultiAgent_0 gt_steps=10
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: The <quadrotor>(25) lands on the <coffee table>(31) with the <hot dog>(34) in the <basket>(29). The <coffee table>(31) is in the <upper livingroom>(2) which is next to the <corridor>(4).
+[FOLBP][TASK] agents: [('robot arm', 23), ('robot dog', 24), ('quadrotor', 25)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/20
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 9 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[takeoff_from] <lower livingroom floor>(1)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(25) action=[movetowards] <dining table>(30)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(25) action=[land_on] <dining table>(30)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(23) action=[grab] <hot dog>(34)
+[FOLBP][ORACLE]   plan[4]: agent=<robot arm>(23) action=[putinto] <hot dog>(34) into <basket>(29)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(25) action=[takeoff_from] <dining table>(30)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(25) action=[movetowards] <corridor>(4)
+[FOLBP][ORACLE]   plan[7]: agent=<quadrotor>(25) action=[movetowards] <upper livingroom>(2)
+[FOLBP][ORACLE]   plan[8]: agent=<quadrotor>(25) action=[land_on] <coffee table>(31)
+[FOLBP][FOL] predicates: unary=105 binary=40 nodes=37
+[FOLBP][Z3] UNSAT @ step 8 core=['s8_p2_above'] missing=[('above', 25, 31)]
+[FOLBP][R] attempt 1/5 (strategy=symbolic)
+[FOLBP][R] inserted {'agent': '<quadrotor>(25)', 'action': '[movetowards] <coffee table>(31)'} (reason=insert movetowards to satisfy above(25,31))
+[FOLBP][R] new plan length: 10 step(s)
+[FOLBP][Z3] SAT — all 10 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 10 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 10 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(25) -> [takeoff_from] <lower livingroom floor>(1)
+[FOLBP][A] task_graph node=0 verb=takeoff_from agent=25 targets=[1]
+[FOLBP][ENV] step=1 executed=[takeoff_from]<quadrotor>(25) -> action=[takeoff_from] <lower livingroom floor>(1) done=False remaining_goals=['inside_<hot dog>(34)_<basket>(29)', 'on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[1] <quadrotor>(25) -> [movetowards] <dining table>(30)
+[FOLBP][A] task_graph node=1 verb=movetowards agent=25 targets=[30]
+[FOLBP][ENV] step=2 executed=[movetowards]<quadrotor>(25) -> action=[movetowards] <dining table>(30) done=False remaining_goals=['inside_<hot dog>(34)_<basket>(29)', 'on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[2] <quadrotor>(25) -> [land_on] <dining table>(30)
+[FOLBP][A] task_graph node=2 verb=land_on agent=25 targets=[30]
+[FOLBP][ENV] step=3 executed=[land_on]<quadrotor>(25) -> action=[land_on] <dining table>(30) done=False remaining_goals=['inside_<hot dog>(34)_<basket>(29)', 'on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[3] <robot arm>(23) -> [grab] <hot dog>(34)
+[FOLBP][A] task_graph node=3 verb=grab agent=23 targets=[34]
+[FOLBP][ENV] step=4 executed=[grab]<robot arm>(23) -> action=[grab] <hot dog>(34) done=False remaining_goals=['inside_<hot dog>(34)_<basket>(29)', 'on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[4] <robot arm>(23) -> [putinto] <hot dog>(34) into <basket>(29)
+[FOLBP][A] task_graph node=4 verb=putinto agent=23 targets=[34, 29]
+[FOLBP][ENV] step=5 executed=[putinto]<robot arm>(23) -> action=[putinto] <hot dog>(34) into <basket>(29) done=False remaining_goals=['on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[5] <quadrotor>(25) -> [takeoff_from] <dining table>(30)
+[FOLBP][A] task_graph node=5 verb=takeoff_from agent=25 targets=[30]
+[FOLBP][ENV] step=6 executed=[takeoff_from]<quadrotor>(25) -> action=[takeoff_from] <dining table>(30) done=False remaining_goals=['on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[6] <quadrotor>(25) -> [movetowards] <corridor>(4)
+[FOLBP][A] task_graph node=6 verb=movetowards agent=25 targets=[4]
+[FOLBP][ENV] step=7 executed=[movetowards]<quadrotor>(25) -> action=[movetowards] <corridor>(4) done=False remaining_goals=['on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[7] <quadrotor>(25) -> [movetowards] <upper livingroom>(2)
+[FOLBP][A] task_graph node=7 verb=movetowards agent=25 targets=[2]
+[FOLBP][ENV] step=8 executed=[movetowards]<quadrotor>(25) -> action=[movetowards] <upper livingroom>(2) done=False remaining_goals=['on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[8] <quadrotor>(25) -> [movetowards] <coffee table>(31)
+[FOLBP][A] task_graph node=8 verb=movetowards agent=25 targets=[31]
+[FOLBP][ENV] step=9 executed=[movetowards]<quadrotor>(25) -> action=[movetowards] <coffee table>(31) done=False remaining_goals=['on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[9] <quadrotor>(25) -> [land_on] <coffee table>(31)
+[FOLBP][A] task_graph node=9 verb=land_on agent=25 targets=[31]
+[FOLBP][ENV] step=10 executed=[land_on]<quadrotor>(25) -> action=[land_on] <coffee table>(31) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=10
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 10, 'edges': 8, 'failed': 0, 'executed': 10}
+[FOLBP][FINAL] learned_clauses: []
+True
+---------Env:4---Task:12-------------------------
+success
+steps: 10
+-------------------------------------
+average steps: 10.0
+success rate: 1.0
+successful tasks: [12]
+failed tasks: None

@@ -1,0 +1,211 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=3 env=env4 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=False lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-prompt-only seed=0 verify=none repair=none max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=19 env_id=4 name=MultiAgent_0 gt_steps=12
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <meat>(34) on the <grill>(11). The <meat>(34) is originally in the <fridge>(35).
+[FOLBP][TASK] agents: [('robot arm', 23), ('robot dog', 24), ('quadrotor', 25)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/24
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 10 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot dog>(24) action=[movetowards] <fridge>(35)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(24) action=[open] <fridge>(35)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(24) action=[grab] <meat>(34)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(24) action=[movetowards] <basket>(29)
+[FOLBP][ORACLE]   plan[4]: agent=<robot dog>(24) action=[putinto] <meat>(34) into <basket>(29)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(25) action=[takeoff_from] <lower livingroom floor>(1)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(25) action=[movetowards] <garden>(5)
+[FOLBP][ORACLE]   plan[7]: agent=<quadrotor>(25) action=[land_on] <grill table>(36)
+[FOLBP][ORACLE]   plan[8]: agent=<robot arm>(23) action=[grab] <meat>(34)
+[FOLBP][ORACLE]   plan[9]: agent=<robot arm>(23) action=[puton] <meat>(34) on <grill>(11)
+[FOLBP][FOL] predicates: unary=107 binary=41 nodes=38
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 10 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 10 step(s)
+[FOLBP][EXEC] step[0] <robot dog>(24) -> [movetowards] <fridge>(35)
+[FOLBP][A] task_graph node=0 verb=movetowards agent=24 targets=[35]
+[FOLBP][ENV] step=1 executed=[movetowards]<robot dog>(24) -> action=[movetowards] <fridge>(35) done=False remaining_goals=['on_<meat>(34)_<grill>(11)']
+[FOLBP][EXEC] step[1] <robot dog>(24) -> [open] <fridge>(35)
+[FOLBP][A] task_graph node=1 verb=open agent=24 targets=[35]
+[FOLBP][ENV] step=2 executed=[open]<robot dog>(24) -> action=[open] <fridge>(35) done=False remaining_goals=['on_<meat>(34)_<grill>(11)']
+[FOLBP][EXEC] step[2] <robot dog>(24) -> [grab] <meat>(34)
+[FOLBP][EXEC] runtime failure on step[2]: deterministic_action_not_available:[grab] <meat>(34)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=2 env_steps=2/24
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 9 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot dog>(24) action=[movetowards] <fridge>(35)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(24) action=[grab] <meat>(34)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(24) action=[movetowards] <basket>(29)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(24) action=[putinto] <meat>(34) into <basket>(29)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(25) action=[takeoff_from] <lower livingroom floor>(1)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(25) action=[movetowards] <grill table>(36)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(25) action=[land_on] <grill table>(36)
+[FOLBP][ORACLE]   plan[7]: agent=<robot arm>(23) action=[grab] <meat>(34)
+[FOLBP][ORACLE]   plan[8]: agent=<robot arm>(23) action=[puton] <meat>(34) on <grill>(11)
+[FOLBP][FOL] predicates: unary=107 binary=42 nodes=38
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 9 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 9 step(s)
+[FOLBP][EXEC] step[0] <robot dog>(24) -> [movetowards] <fridge>(35)
+[FOLBP][EXEC] step[0] noop (precondition already satisfied); message: precondition already satisfied: already close to (35)
+[FOLBP][EXEC] step[1] <robot dog>(24) -> [grab] <meat>(34)
+[FOLBP][EXEC] runtime failure on step[1]: deterministic_action_not_available:[grab] <meat>(34)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=3 env_steps=2/24
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 9 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot dog>(24) action=[movetowards] <fridge>(35)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(24) action=[grab] <meat>(34)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(24) action=[movetowards] <basket>(29)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(24) action=[putinto] <meat>(34) into <basket>(29)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(25) action=[takeoff_from] <lower livingroom floor>(1)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(25) action=[movetowards] <grill table>(36)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(25) action=[land_on] <grill table>(36)
+[FOLBP][ORACLE]   plan[7]: agent=<robot arm>(23) action=[grab] <meat>(34)
+[FOLBP][ORACLE]   plan[8]: agent=<robot arm>(23) action=[puton] <meat>(34) on <grill>(11)
+[FOLBP][FOL] predicates: unary=107 binary=42 nodes=38
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 9 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 9 step(s)
+[FOLBP][EXEC] step[0] <robot dog>(24) -> [movetowards] <fridge>(35)
+[FOLBP][EXEC] step[0] noop (precondition already satisfied); message: precondition already satisfied: already close to (35)
+[FOLBP][EXEC] step[1] <robot dog>(24) -> [grab] <meat>(34)
+[FOLBP][EXEC] runtime failure on step[1]: deterministic_action_not_available:[grab] <meat>(34)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=4 env_steps=2/24
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 9 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot dog>(24) action=[movetowards] <fridge>(35)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(24) action=[grab] <meat>(34)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(24) action=[movetowards] <basket>(29)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(24) action=[putinto] <meat>(34) into <basket>(29)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(25) action=[takeoff_from] <lower livingroom floor>(1)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(25) action=[movetowards] <grill table>(36)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(25) action=[land_on] <grill table>(36)
+[FOLBP][ORACLE]   plan[7]: agent=<robot arm>(23) action=[grab] <meat>(34)
+[FOLBP][ORACLE]   plan[8]: agent=<robot arm>(23) action=[puton] <meat>(34) on <grill>(11)
+[FOLBP][FOL] predicates: unary=107 binary=42 nodes=38
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 9 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 9 step(s)
+[FOLBP][EXEC] step[0] <robot dog>(24) -> [movetowards] <fridge>(35)
+[FOLBP][EXEC] step[0] noop (precondition already satisfied); message: precondition already satisfied: already close to (35)
+[FOLBP][EXEC] step[1] <robot dog>(24) -> [grab] <meat>(34)
+[FOLBP][EXEC] runtime failure on step[1]: deterministic_action_not_available:[grab] <meat>(34)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=5 env_steps=2/24
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 9 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot dog>(24) action=[movetowards] <meat>(34)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(24) action=[grab] <meat>(34)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(24) action=[movetowards] <basket>(29)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(24) action=[putinto] <meat>(34) into <basket>(29)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(25) action=[takeoff_from] <lower livingroom floor>(1)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(25) action=[movetowards] <grill table>(36)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(25) action=[land_on] <grill table>(36)
+[FOLBP][ORACLE]   plan[7]: agent=<robot arm>(23) action=[grab] <meat>(34)
+[FOLBP][ORACLE]   plan[8]: agent=<robot arm>(23) action=[puton] <meat>(34) on <grill>(11)
+[FOLBP][FOL] predicates: unary=107 binary=42 nodes=38
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 9 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 9 step(s)
+[FOLBP][EXEC] step[0] <robot dog>(24) -> [movetowards] <meat>(34)
+[FOLBP][A] task_graph node=2 verb=movetowards agent=24 targets=[34]
+[FOLBP][ENV] step=3 executed=[movetowards]<robot dog>(24) -> action=[movetowards] <meat>(34) done=False remaining_goals=['on_<meat>(34)_<grill>(11)']
+[FOLBP][EXEC] step[1] <robot dog>(24) -> [grab] <meat>(34)
+[FOLBP][A] task_graph node=3 verb=grab agent=24 targets=[34]
+[FOLBP][ENV] step=4 executed=[grab]<robot dog>(24) -> action=[grab] <meat>(34) done=False remaining_goals=['on_<meat>(34)_<grill>(11)']
+[FOLBP][EXEC] step[2] <robot dog>(24) -> [movetowards] <basket>(29)
+[FOLBP][A] task_graph node=4 verb=movetowards agent=24 targets=[29]
+[FOLBP][ENV] step=5 executed=[movetowards]<robot dog>(24) -> action=[movetowards] <basket>(29) done=False remaining_goals=['on_<meat>(34)_<grill>(11)']
+[FOLBP][EXEC] step[3] <robot dog>(24) -> [putinto] <meat>(34) into <basket>(29)
+[FOLBP][A] task_graph node=5 verb=putinto agent=24 targets=[34, 29]
+[FOLBP][ENV] step=6 executed=[putinto]<robot dog>(24) -> action=[putinto] <meat>(34) into <basket>(29) done=False remaining_goals=['on_<meat>(34)_<grill>(11)']
+[FOLBP][EXEC] step[4] <quadrotor>(25) -> [takeoff_from] <lower livingroom floor>(1)
+[FOLBP][A] task_graph node=6 verb=takeoff_from agent=25 targets=[1]
+[FOLBP][ENV] step=7 executed=[takeoff_from]<quadrotor>(25) -> action=[takeoff_from] <lower livingroom floor>(1) done=False remaining_goals=['on_<meat>(34)_<grill>(11)']
+[FOLBP][EXEC] step[5] <quadrotor>(25) -> [movetowards] <grill table>(36)
+[FOLBP][EXEC] runtime failure on step[5]: deterministic_action_not_available:[movetowards] <grill table>(36)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=6 env_steps=7/24
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 4 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[movetowards] <grill table>(36)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(25) action=[land_on] <grill table>(36)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(23) action=[grab] <meat>(34)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(23) action=[puton] <meat>(34) on <grill>(11)
+[FOLBP][FOL] predicates: unary=109 binary=40 nodes=38
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 4 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 4 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(25) -> [movetowards] <grill table>(36)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[movetowards] <grill table>(36)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=7 env_steps=7/24
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 4 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[movetowards] <grill table>(36)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(25) action=[land_on] <grill table>(36)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(23) action=[grab] <meat>(34)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(23) action=[puton] <meat>(34) on <grill>(11)
+[FOLBP][FOL] predicates: unary=109 binary=40 nodes=38
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 4 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 4 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(25) -> [movetowards] <grill table>(36)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[movetowards] <grill table>(36)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=8 env_steps=7/24
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 4 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[movetowards] <grill table>(36)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(25) action=[land_on] <grill table>(36)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(23) action=[grab] <meat>(34)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(23) action=[puton] <meat>(34) on <grill>(11)
+[FOLBP][FOL] predicates: unary=109 binary=40 nodes=38
+[FOLBP][Z3] verification disabled (--verify none); dispatching plan unchecked
+[FOLBP][VAL] accepted — all 4 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 4 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(25) -> [movetowards] <grill table>(36)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[movetowards] <grill table>(36)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=9 env_steps=7/24
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] No progress in 3 consecutive Oracle re-plans; failing task.
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=False steps=7
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 7, 'edges': 5, 'failed': 0, 'executed': 7}
+[FOLBP][FINAL] learned_clauses: []
+False
+---------Env:4---Task:19-------------------------
+failure
+steps: 7
+-------------------------------------
+average steps: 7.0
+success rate: 0.0
+successful tasks: None
+failed tasks: [19]

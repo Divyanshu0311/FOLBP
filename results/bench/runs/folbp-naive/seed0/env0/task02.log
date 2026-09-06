@@ -1,0 +1,57 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env0 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=False lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-naive seed=0 verify=shadow repair=none max_oracle_plans=1 t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=2 env_id=0 name=MultiAgent_0 gt_steps=5
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <bread>(26) into the <plate>(51) which is on the <dining table>(13) and put the <milkbox>(30) into the <microwave>(15). The <bread>(26) is originally in the <microwave>(15).
+[FOLBP][TASK] agents: [('quadrotor', 22), ('robot dog', 23), ('robot arm', 24), ('robot arm', 50)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/10
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 6 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot arm>(24) action=[open] <microwave>(15)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <bread>(26)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[putinto] <bread>(26) into <plate>(51)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(24) action=[grab] <milkbox>(30)
+[FOLBP][ORACLE]   plan[4]: agent=<robot arm>(24) action=[putinto] <milkbox>(30) into <microwave>(15)
+[FOLBP][ORACLE]   plan[5]: agent=<robot arm>(24) action=[close] <microwave>(15)
+[FOLBP][FOL] predicates: unary=91 binary=35 nodes=31
+[FOLBP][Z3] SAT — all 6 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 6 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 6 step(s)
+[FOLBP][EXEC] step[0] <robot arm>(24) -> [open] <microwave>(15)
+[FOLBP][A] task_graph node=0 verb=open agent=24 targets=[15]
+[FOLBP][ENV] step=1 executed=[open]<robot arm>(24) -> action=[open] <microwave>(15) done=False remaining_goals=['inside_<bread>(26)_<plate>(51)', 'inside_<milkbox>(30)_<microwave>(15)', 'on_<plate>(51)_<dining table>(13)']
+[FOLBP][EXEC] step[1] <robot arm>(24) -> [grab] <bread>(26)
+[FOLBP][A] task_graph node=1 verb=grab agent=24 targets=[26]
+[FOLBP][ENV] step=2 executed=[grab]<robot arm>(24) -> action=[grab] <bread>(26) done=False remaining_goals=['inside_<bread>(26)_<plate>(51)', 'inside_<milkbox>(30)_<microwave>(15)', 'on_<plate>(51)_<dining table>(13)']
+[FOLBP][EXEC] step[2] <robot arm>(24) -> [putinto] <bread>(26) into <plate>(51)
+[FOLBP][A] task_graph node=2 verb=putinto agent=24 targets=[26, 51]
+[FOLBP][ENV] step=3 executed=[putinto]<robot arm>(24) -> action=[putinto] <bread>(26) into <plate>(51) done=False remaining_goals=['inside_<milkbox>(30)_<microwave>(15)', 'on_<plate>(51)_<dining table>(13)']
+[FOLBP][EXEC] step[3] <robot arm>(24) -> [grab] <milkbox>(30)
+[FOLBP][A] task_graph node=3 verb=grab agent=24 targets=[30]
+[FOLBP][ENV] step=4 executed=[grab]<robot arm>(24) -> action=[grab] <milkbox>(30) done=False remaining_goals=['inside_<milkbox>(30)_<microwave>(15)', 'on_<plate>(51)_<dining table>(13)']
+[FOLBP][EXEC] step[4] <robot arm>(24) -> [putinto] <milkbox>(30) into <microwave>(15)
+[FOLBP][A] task_graph node=4 verb=putinto agent=24 targets=[30, 15]
+[FOLBP][ENV] step=5 executed=[putinto]<robot arm>(24) -> action=[putinto] <milkbox>(30) into <microwave>(15) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=5
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 5, 'edges': 4, 'failed': 0, 'executed': 5}
+[FOLBP][FINAL] learned_clauses: []
+True
+---------Env:0---Task:2-------------------------
+success
+steps: 5
+-------------------------------------
+average steps: 5.0
+success rate: 1.0
+successful tasks: [2]
+failed tasks: None

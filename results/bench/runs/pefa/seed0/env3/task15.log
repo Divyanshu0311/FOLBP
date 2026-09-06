@@ -1,0 +1,454 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Init Env
+[mode=standalone] Running symbolic planner only (no execution bridge)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:0 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot arm 19
+['[open] <microwave>(24)', '[open] <cash register>(17)', '[grab] <beer glass>(14)', '[grab] <beer bottle>(15)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I will open the <microwave>(24).
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [open] <microwave>(24)
+==============================================
+
+[open] <microwave>(24)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [open] <microwave>(24) satisfies Hello <robot arm>(19): Please open the <microwave>(24).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:1 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot arm 19
+['[grab] <coffee cup>(12)', '[grab] <beer glass>(14)', '[grab] <beer bottle>(15)', '[open] <cash register>(17)', '[close] <microwave>(24)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I can pick up the coffee cup from the microwave because the microwave is on the same bar counter as me, and it is currently open. My action A, `[grab] <coffee cup>(12)`, directly fulfills the instruction.
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <coffee cup>(12)
+==============================================
+
+[grab] <coffee cup>(12)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+As the <robot arm> agent, the action I performed `[grab] <coffee cup>(12)` can only complete the part of the instruction related to grasping the <coffee cup>(12). To fully "pick up" the <coffee cup>(12) from the <microwave>(24), I still need to execute a subsequent action to lift the cup clear of the microwave.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:2 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[takeoff_from] <restaurant floor>(1)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <restaurant floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <restaurant floor>(1)
+==============================================
+
+[takeoff_from] <restaurant floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [takeoff_from] <restaurant floor>(1) satisfies Hello <quadrotor>(21): #Please take off.#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:3 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <restaurant floor>(1)', '[movetowards] <dining table>(2)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(10)', '[movetowards] <bar counter>(11)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <bar counter>(11)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <bar counter>(11)
+==============================================
+
+[movetowards] <bar counter>(11)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <bar counter>(11) can only complete the first part of the instruction, which is "move towards the <bar counter>(11)". The other part, "and then land on it", needs to be executed later by myself.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:4 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <bar counter>(11)', '[movetowards] <restaurant floor>(1)', '[movetowards] <dining table>(2)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(10)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <bar counter>(11)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <bar counter>(11)
+==============================================
+
+[land_on] <bar counter>(11)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [land_on] <bar counter>(11) satisfies Hello <quadrotor>(21): Please land on the <bar counter>(11).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:5 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot arm 19
+['[puton] <coffee cup>(12) on <bar counter>(11)', '[putinto] <coffee cup>(12) into <basket>(22)', '[putinto] <coffee cup>(12) into <microwave>(24)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I am currently holding the <coffee cup>(12), and the instruction is to place it into the <basket>(22). Action B directly allows me to do this.
+
+B. [putinto] <coffee cup>(12) into <basket>(22)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+B. [putinto] <coffee cup>(12) into <basket>(22)
+==============================================
+
+[putinto] <coffee cup>(12) into <basket>(22)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [putinto] <coffee cup>(12) into <basket>(22) satisfies Hello <robot arm>(19): Please place the <coffee cup>(12) into the <basket>(22).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:6 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 20
+['[movetowards] <coffee table>(4)', '[movetowards] <coffee table>(5)', '[movetowards] <sofa>(6)', '[movetowards] <sofa>(7)', '[movetowards] <ottoman>(8)', '[movetowards] <ottoman>(9)', '[movetowards] <paper money>(16)', '[movetowards] <napkin>(23)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I will choose action H: [movetowards] <napkin>(23).
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+H. [movetowards] <napkin>(23)
+==============================================
+
+[movetowards] <napkin>(23)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <napkin>(23) satisfies Hello <robot dog>(20): #Please move towards the <napkin>(23).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:7 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 20
+['[grab] <napkin>(23)', '[movetowards] <coffee table>(4)', '[movetowards] <coffee table>(5)', '[movetowards] <sofa>(6)', '[movetowards] <sofa>(7)', '[movetowards] <ottoman>(9)', '[movetowards] <paper money>(16)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <napkin>(23)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <napkin>(23)
+==============================================
+
+[grab] <napkin>(23)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [grab] <napkin>(23) satisfies Hello <robot dog>(20): Please grab the <napkin>(23).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:8 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[takeoff_from] <bar counter>(11)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <bar counter>(11)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <bar counter>(11)
+==============================================
+
+[takeoff_from] <bar counter>(11)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [takeoff_from] <bar counter>(11) satisfies Hello <quadrotor>(21): Please take off.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:9 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <bar counter>(11)', '[movetowards] <restaurant floor>(1)', '[movetowards] <dining table>(2)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(10)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <restaurant floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <restaurant floor>(1)
+==============================================
+
+[movetowards] <restaurant floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <restaurant floor>(1) satisfies Hello <quadrotor>(21): Please move towards the <restaurant floor>(1).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:10 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <restaurant floor>(1)', '[movetowards] <dining table>(2)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(10)', '[movetowards] <bar counter>(11)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <restaurant floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <restaurant floor>(1)
+==============================================
+
+[land_on] <restaurant floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [land_on] <restaurant floor>(1) satisfies Hello <quadrotor>(21): #Please land on the <restaurant floor>(1).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:11 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 20
+['[puton] <napkin>(23) on <ottoman>(8)', '[movetowards] <coffee table>(4)', '[movetowards] <coffee table>(5)', '[movetowards] <sofa>(6)', '[movetowards] <sofa>(7)', '[movetowards] <ottoman>(9)', '[movetowards] <coffee cup>(12)', '[movetowards] <paper money>(16)', '[movetowards] <basket>(22)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I. [movetowards] <basket>(22)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I. [movetowards] <basket>(22)
+==============================================
+
+[movetowards] <basket>(22)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <basket>(22) satisfies Hello <robot dog>(20): Please move towards the <basket>(22).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:12 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 20
+['[putinto] <napkin>(23) into <basket>(22)', '[movetowards] <coffee table>(4)', '[movetowards] <coffee table>(5)', '[movetowards] <sofa>(6)', '[movetowards] <sofa>(7)', '[movetowards] <ottoman>(8)', '[movetowards] <ottoman>(9)', '[movetowards] <paper money>(16)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I am currently holding the <napkin>(23) and I am close to the <basket>(22). The instruction is to put the <napkin>(23) into the <basket>(22). Action A directly allows me to do this.
+
+A. [putinto] <napkin>(23) into <basket>(22)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [putinto] <napkin>(23) into <basket>(22)
+==============================================
+
+[putinto] <napkin>(23) into <basket>(22)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [putinto] <napkin>(23) into <basket>(22) satisfies Hello <robot dog>(20): Please put the <napkin>(23) into the <basket>(22).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:13 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[takeoff_from] <restaurant floor>(1)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <restaurant floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <restaurant floor>(1)
+==============================================
+
+[takeoff_from] <restaurant floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [takeoff_from] <restaurant floor>(1) satisfies Hello <quadrotor>(21): Please take off from the <restaurant floor>(1).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:14 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <restaurant floor>(1)', '[movetowards] <dining table>(2)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(10)', '[movetowards] <bar counter>(11)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <dining table>(2)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <dining table>(2)
+==============================================
+
+[movetowards] <dining table>(2)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <dining table>(2) satisfies Hello <quadrotor>(21): Please move towards the <dining table>(2).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 15 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:15 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <dining table>(2) with the <napkin>(23) and <coffee cup>(12) in the <basket>(22). The <coffee cup>(12) is originally in the <microwave>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <dining table>(2)', '[movetowards] <restaurant floor>(1)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(10)', '[movetowards] <bar counter>(11)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <dining table>(2)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <dining table>(2)
+==============================================
+
+[land_on] <dining table>(2)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [land_on] <dining table>(2) satisfies Hello <quadrotor>(21): Please land on the <dining table>(2).
+==============================================
+
+
+=== Step-by-Step Action Log ===
+  Step  1: <robot arm>(19) -> [open] <microwave>(24)
+  Step  2: <robot arm>(19) -> [grab] <coffee cup>(12)
+  Step  3: <quadrotor>(21) -> [takeoff_from] <restaurant floor>(1)
+  Step  4: <quadrotor>(21) -> [movetowards] <bar counter>(11)
+  Step  5: <quadrotor>(21) -> [land_on] <bar counter>(11)
+  Step  6: <robot arm>(19) -> [putinto] <coffee cup>(12) into <basket>(22)
+  Step  7: <robot dog>(20) -> [movetowards] <napkin>(23)
+  Step  8: <robot dog>(20) -> [grab] <napkin>(23)
+  Step  9: <quadrotor>(21) -> [takeoff_from] <bar counter>(11)
+  Step 10: <quadrotor>(21) -> [movetowards] <restaurant floor>(1)
+  Step 11: <quadrotor>(21) -> [land_on] <restaurant floor>(1)
+  Step 12: <robot dog>(20) -> [movetowards] <basket>(22)
+  Step 13: <robot dog>(20) -> [putinto] <napkin>(23) into <basket>(22)
+  Step 14: <quadrotor>(21) -> [takeoff_from] <restaurant floor>(1)
+  Step 15: <quadrotor>(21) -> [movetowards] <dining table>(2)
+  Step 16: <quadrotor>(21) -> [land_on] <dining table>(2)
+  Total steps executed: 16
+True
+---------Env:3---Task:15-------------------------
+success
+steps: 16
+-------------------------------------
+average steps: 16.0
+successful tasks: [15]
+failed tasks: None

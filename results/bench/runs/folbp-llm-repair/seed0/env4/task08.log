@@ -1,0 +1,148 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=3 env=env4 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=True lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-llm-repair seed=0 verify=z3 repair=llm max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=8 env_id=4 name=MultiAgent_0 gt_steps=10
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: The <quadrotor>(25) lands on the <coffee table>(31) with the <book>(34) in the <basket>(29).
+[FOLBP][TASK] agents: [('robot arm', 23), ('robot dog', 24), ('quadrotor', 25)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/20
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 8 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[takeoff_from] <lower livingroom floor>(1)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(25) action=[movetowards] <dining table>(30)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(25) action=[land_on] <dining table>(30)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(23) action=[grab] <book>(34)
+[FOLBP][ORACLE]   plan[4]: agent=<robot arm>(23) action=[putinto] <book>(34) into <basket>(29)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(25) action=[takeoff_from] <dining table>(30)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(25) action=[movetowards] <coffee table>(10)
+[FOLBP][ORACLE]   plan[7]: agent=<quadrotor>(25) action=[land_on] <coffee table>(10)
+[FOLBP][FOL] predicates: unary=105 binary=40 nodes=37
+[FOLBP][Z3] UNSAT @ step 7 core=['s7_p1_landable'] missing=[('landable', 10)]
+[FOLBP][R] attempt 1/5 (strategy=llm)
+[FOLBP][R] LLM returned a repaired plan of 8 step(s)
+[FOLBP][Z3] UNSAT @ step 7 core=['s7_p2_above'] missing=[('above', 25, 1)]
+[FOLBP][R] attempt 2/5 (strategy=llm)
+[FOLBP][R] LLM returned a repaired plan of 9 step(s)
+[FOLBP][Z3] SAT — all 9 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 9 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 9 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(25) -> [takeoff_from] <lower livingroom floor>(1)
+[FOLBP][A] task_graph node=0 verb=takeoff_from agent=25 targets=[1]
+[FOLBP][ENV] step=1 executed=[takeoff_from]<quadrotor>(25) -> action=[takeoff_from] <lower livingroom floor>(1) done=False remaining_goals=['inside_<book>(34)_<basket>(29)', 'on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[1] <quadrotor>(25) -> [movetowards] <dining table>(30)
+[FOLBP][A] task_graph node=1 verb=movetowards agent=25 targets=[30]
+[FOLBP][ENV] step=2 executed=[movetowards]<quadrotor>(25) -> action=[movetowards] <dining table>(30) done=False remaining_goals=['inside_<book>(34)_<basket>(29)', 'on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[2] <quadrotor>(25) -> [land_on] <dining table>(30)
+[FOLBP][A] task_graph node=2 verb=land_on agent=25 targets=[30]
+[FOLBP][ENV] step=3 executed=[land_on]<quadrotor>(25) -> action=[land_on] <dining table>(30) done=False remaining_goals=['inside_<book>(34)_<basket>(29)', 'on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[3] <robot arm>(23) -> [grab] <book>(34)
+[FOLBP][A] task_graph node=3 verb=grab agent=23 targets=[34]
+[FOLBP][ENV] step=4 executed=[grab]<robot arm>(23) -> action=[grab] <book>(34) done=False remaining_goals=['inside_<book>(34)_<basket>(29)', 'on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[4] <robot arm>(23) -> [putinto] <book>(34) into <basket>(29)
+[FOLBP][A] task_graph node=4 verb=putinto agent=23 targets=[34, 29]
+[FOLBP][ENV] step=5 executed=[putinto]<robot arm>(23) -> action=[putinto] <book>(34) into <basket>(29) done=False remaining_goals=['on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[5] <quadrotor>(25) -> [takeoff_from] <dining table>(30)
+[FOLBP][A] task_graph node=5 verb=takeoff_from agent=25 targets=[30]
+[FOLBP][ENV] step=6 executed=[takeoff_from]<quadrotor>(25) -> action=[takeoff_from] <dining table>(30) done=False remaining_goals=['on_<quadrotor>(25)_<coffee table>(31)']
+[FOLBP][EXEC] step[6] <quadrotor>(25) -> [movetowards] <coffee table>(10)
+[FOLBP][EXEC] runtime failure on step[6]: deterministic_action_not_available:[movetowards] <coffee table>(10)
+[FOLBP][A] task_graph FAILED node=6 verb=movetowards agent=25 targets=[10] reason=runtime:deterministic_action_not_available:[movetowards] <coffee table>(10)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=6 implicated=[] failed_precond=- context=-
+[FOLBP][C] cdcl learned 1 new clause(s) (total=1); non_chrono_backtrack_level=5
+[FOLBP][C]   + clause: agent=quadrotor verb=movetowards target=coffee table reason=runtime_rejection precond=-
+[FOLBP][D] injected 1 clause(s) into Oracle prompt + Plan Validator
+[FOLBP][D] forbidden_triples=[]
+[FOLBP][D] oracle_prefix:
+State-dependent hints from prior failures (combination is allowed if the precondition is satisfied):
+- when planning [movetowards] by <quadrotor> on a <coffee table>: the per-step executor refused this last time — most likely the agent was not in the right room, the target was hidden, or the agent was already at the target. Re-order so this step runs only after the agent is verifiably in the same room as the target, or skip if the precondition is already satisfied.
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=2 env_steps=6/20
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=469)
+[FOLBP][ORACLE] received plan with 2 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[movetowards] <coffee table>(10)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(25) action=[land_on] <coffee table>(10)
+[FOLBP][FOL] predicates: unary=106 binary=39 nodes=37
+[FOLBP][Z3] UNSAT @ step 1 core=['s1_p1_landable'] missing=[('landable', 10)]
+[FOLBP][R] attempt 1/5 (strategy=llm)
+[FOLBP][R] LLM returned a repaired plan of 2 step(s)
+[FOLBP][Z3] UNSAT @ step 1 core=['s1_p2_above'] missing=[('above', 25, 1)]
+[FOLBP][R] attempt 2/5 (strategy=llm)
+[FOLBP][R] LLM returned a repaired plan of 3 step(s)
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(25) -> [movetowards] <coffee table>(10)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[movetowards] <coffee table>(10)
+[FOLBP][A] task_graph FAILED node=7 verb=movetowards agent=25 targets=[10] reason=runtime:deterministic_action_not_available:[movetowards] <coffee table>(10)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=7 implicated=[6] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=6
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=3 env_steps=6/20
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=469)
+[FOLBP][ORACLE] received plan with 2 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[movetowards] <coffee table>(10)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(25) action=[land_on] <coffee table>(10)
+[FOLBP][FOL] predicates: unary=106 binary=39 nodes=37
+[FOLBP][Z3] UNSAT @ step 1 core=['s1_p1_landable'] missing=[('landable', 10)]
+[FOLBP][R] attempt 1/5 (strategy=llm)
+[FOLBP][R] LLM returned a repaired plan of 2 step(s)
+[FOLBP][Z3] UNSAT @ step 1 core=['s1_p2_above'] missing=[('above', 25, 1)]
+[FOLBP][R] attempt 2/5 (strategy=llm)
+[FOLBP][R] LLM returned a repaired plan of 3 step(s)
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(25) -> [movetowards] <coffee table>(10)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[movetowards] <coffee table>(10)
+[FOLBP][A] task_graph FAILED node=8 verb=movetowards agent=25 targets=[10] reason=runtime:deterministic_action_not_available:[movetowards] <coffee table>(10)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=8 implicated=[6, 7] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=6
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=4 env_steps=6/20
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=469)
+[FOLBP][ORACLE] received plan with 2 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[movetowards] <coffee table>(10)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(25) action=[land_on] <coffee table>(10)
+[FOLBP][FOL] predicates: unary=106 binary=39 nodes=37
+[FOLBP][Z3] UNSAT @ step 1 core=['s1_p1_landable'] missing=[('landable', 10)]
+[FOLBP][R] attempt 1/5 (strategy=llm)
+[FOLBP][R] LLM returned a repaired plan of 2 step(s)
+[FOLBP][Z3] UNSAT @ step 1 core=['s1_p2_above'] missing=[('above', 25, 1)]
+[FOLBP][R] attempt 2/5 (strategy=llm)
+[FOLBP][R] LLM returned a repaired plan of 3 step(s)
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(25) -> [movetowards] <coffee table>(10)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[movetowards] <coffee table>(10)
+[FOLBP][A] task_graph FAILED node=9 verb=movetowards agent=25 targets=[10] reason=runtime:deterministic_action_not_available:[movetowards] <coffee table>(10)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=9 implicated=[6, 7, 8] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=6
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=5 env_steps=6/20
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] No progress in 3 consecutive Oracle re-plans; failing task.
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=False steps=6
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 1, 'distinct_patterns_failed': 1}
+[FOLBP][FINAL] task_graph: {'nodes': 10, 'edges': 8, 'failed': 4, 'executed': 6}
+[FOLBP][FINAL] learned_clauses: [('quadrotor', 'movetowards', 'coffee table', 'runtime_rejection')]
+False
+---------Env:4---Task:8-------------------------
+failure
+steps: 6
+-------------------------------------
+average steps: 6.0
+success rate: 0.0
+successful tasks: None
+failed tasks: [8]

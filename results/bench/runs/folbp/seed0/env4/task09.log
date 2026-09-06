@@ -1,0 +1,127 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=3 env=env4 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=True lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp seed=0 verify=z3 repair=symbolic max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=9 env_id=4 name=MultiAgent_0 gt_steps=8
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: The <quadrotor>(25) lands on the <lower livingroom floor>(1) with the <tennis ball>(36) in the <basket>(29).
+[FOLBP][TASK] agents: [('robot arm', 23), ('robot dog', 24), ('quadrotor', 25)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/16
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 7 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[takeoff_from] <coffee table>(31)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(25) action=[movetowards] <lower livingroom>(0)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(25) action=[land_on] <lower livingroom floor>(1)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(24) action=[movetowards] <tennis ball>(36)
+[FOLBP][ORACLE]   plan[4]: agent=<robot dog>(24) action=[grab] <tennis ball>(36)
+[FOLBP][ORACLE]   plan[5]: agent=<robot dog>(24) action=[movetowards] <basket>(29)
+[FOLBP][ORACLE]   plan[6]: agent=<robot dog>(24) action=[putinto] <tennis ball>(36) into <basket>(29)
+[FOLBP][FOL] predicates: unary=106 binary=40 nodes=37
+[FOLBP][Z3] UNSAT @ step 2 core=['s2_p2_above'] missing=[('above', 25, 1)]
+[FOLBP][R] attempt 1/5 (strategy=symbolic)
+[FOLBP][R] inserted {'agent': '<quadrotor>(25)', 'action': '[movetowards] <lower livingroom floor>(1)'} (reason=insert movetowards to satisfy above(25,1))
+[FOLBP][R] new plan length: 8 step(s)
+[FOLBP][Z3] SAT — all 8 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 8 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 8 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(25) -> [takeoff_from] <coffee table>(31)
+[FOLBP][A] task_graph node=0 verb=takeoff_from agent=25 targets=[31]
+[FOLBP][ENV] step=1 executed=[takeoff_from]<quadrotor>(25) -> action=[takeoff_from] <coffee table>(31) done=False remaining_goals=['inside_<tennis ball>(36)_<basket>(29)', 'on_<quadrotor>(25)_<lower livingroom floor>(1)']
+[FOLBP][EXEC] step[1] <quadrotor>(25) -> [movetowards] <lower livingroom>(0)
+[FOLBP][EXEC] runtime failure on step[1]: deterministic_action_not_available:[movetowards] <lower livingroom>(0)
+[FOLBP][A] task_graph FAILED node=1 verb=movetowards agent=25 targets=[0] reason=runtime:deterministic_action_not_available:[movetowards] <lower livingroom>(0)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=1 implicated=[] failed_precond=- context=-
+[FOLBP][C] cdcl learned 1 new clause(s) (total=1); non_chrono_backtrack_level=0
+[FOLBP][C]   + clause: agent=quadrotor verb=movetowards target=lower livingroom reason=runtime_rejection precond=-
+[FOLBP][D] injected 1 clause(s) into Oracle prompt + Plan Validator
+[FOLBP][D] forbidden_triples=[]
+[FOLBP][D] oracle_prefix:
+State-dependent hints from prior failures (combination is allowed if the precondition is satisfied):
+- when planning [movetowards] by <quadrotor> on a <lower livingroom>: the per-step executor refused this last time — most likely the agent was not in the right room, the target was hidden, or the agent was already at the target. Re-order so this step runs only after the agent is verifiably in the same room as the target, or skip if the precondition is already satisfied.
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=2 env_steps=1/16
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=473)
+[FOLBP][ORACLE] received plan with 7 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[movetowards] <corridor>(4)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(25) action=[movetowards] <lower livingroom>(0)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(25) action=[land_on] <lower livingroom floor>(1)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(24) action=[movetowards] <tennis ball>(36)
+[FOLBP][ORACLE]   plan[4]: agent=<robot dog>(24) action=[grab] <tennis ball>(36)
+[FOLBP][ORACLE]   plan[5]: agent=<robot dog>(24) action=[movetowards] <basket>(29)
+[FOLBP][ORACLE]   plan[6]: agent=<robot dog>(24) action=[putinto] <tennis ball>(36) into <basket>(29)
+[FOLBP][FOL] predicates: unary=106 binary=39 nodes=37
+[FOLBP][Z3] UNSAT @ step 2 core=['s2_p2_above'] missing=[('above', 25, 1)]
+[FOLBP][R] attempt 1/5 (strategy=symbolic)
+[FOLBP][R] inserted {'agent': '<quadrotor>(25)', 'action': '[movetowards] <lower livingroom floor>(1)'} (reason=insert movetowards to satisfy above(25,1))
+[FOLBP][R] new plan length: 8 step(s)
+[FOLBP][Z3] SAT — all 8 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 8 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 8 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(25) -> [movetowards] <corridor>(4)
+[FOLBP][A] task_graph node=2 verb=movetowards agent=25 targets=[4]
+[FOLBP][ENV] step=2 executed=[movetowards]<quadrotor>(25) -> action=[movetowards] <corridor>(4) done=False remaining_goals=['inside_<tennis ball>(36)_<basket>(29)', 'on_<quadrotor>(25)_<lower livingroom floor>(1)']
+[FOLBP][EXEC] step[1] <quadrotor>(25) -> [movetowards] <lower livingroom>(0)
+[FOLBP][A] task_graph node=3 verb=movetowards agent=25 targets=[0]
+[FOLBP][ENV] step=3 executed=[movetowards]<quadrotor>(25) -> action=[movetowards] <lower livingroom>(0) done=False remaining_goals=['inside_<tennis ball>(36)_<basket>(29)', 'on_<quadrotor>(25)_<lower livingroom floor>(1)']
+[FOLBP][EXEC] step[2] <quadrotor>(25) -> [movetowards] <lower livingroom floor>(1)
+[FOLBP][EXEC] runtime failure on step[2]: deterministic_action_not_available:[movetowards] <lower livingroom floor>(1)
+[FOLBP][A] task_graph FAILED node=4 verb=movetowards agent=25 targets=[1] reason=runtime:deterministic_action_not_available:[movetowards] <lower livingroom floor>(1)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=4 implicated=[] failed_precond=- context=-
+[FOLBP][C] cdcl learned 1 new clause(s) (total=2); non_chrono_backtrack_level=3
+[FOLBP][C]   + clause: agent=quadrotor verb=movetowards target=lower livingroom floor reason=runtime_rejection precond=-
+[FOLBP][D] injected 2 clause(s) into Oracle prompt + Plan Validator
+[FOLBP][D] forbidden_triples=[]
+[FOLBP][D] oracle_prefix:
+State-dependent hints from prior failures (combination is allowed if the precondition is satisfied):
+- when planning [movetowards] by <quadrotor> on a <lower livingroom>: the per-step executor refused this last time — most likely the agent was not in the right room, the target was hidden, or the agent was already at the target. Re-order so this step runs only after the agent is verifiably in the same room as the target, or skip if the precondition is already satisfied.
+- when planning [movetowards] by <quadrotor> on a <lower livingroom floor>: the per-step executor refused this last time — most likely the agent was not in the right room, the target was hidden, or the agent was already at the target. Re-order so this step runs only after the agent is verifiably in the same room as the target, or skip if the precondition is already satisfied.
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=3 env_steps=3/16
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=852)
+[FOLBP][ORACLE] received plan with 5 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[land_on] <lower livingroom floor>(1)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(24) action=[movetowards] <tennis ball>(36)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(24) action=[grab] <tennis ball>(36)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(24) action=[movetowards] <basket>(29)
+[FOLBP][ORACLE]   plan[4]: agent=<robot dog>(24) action=[putinto] <tennis ball>(36) into <basket>(29)
+[FOLBP][FOL] predicates: unary=106 binary=39 nodes=37
+[FOLBP][Z3] SAT — all 5 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 5 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 5 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(25) -> [land_on] <lower livingroom floor>(1)
+[FOLBP][A] task_graph node=5 verb=land_on agent=25 targets=[1]
+[FOLBP][ENV] step=4 executed=[land_on]<quadrotor>(25) -> action=[land_on] <lower livingroom floor>(1) done=False remaining_goals=['inside_<tennis ball>(36)_<basket>(29)', 'on_<quadrotor>(25)_<lower livingroom floor>(1)']
+[FOLBP][EXEC] step[1] <robot dog>(24) -> [movetowards] <tennis ball>(36)
+[FOLBP][A] task_graph node=6 verb=movetowards agent=24 targets=[36]
+[FOLBP][ENV] step=5 executed=[movetowards]<robot dog>(24) -> action=[movetowards] <tennis ball>(36) done=False remaining_goals=['inside_<tennis ball>(36)_<basket>(29)', 'on_<quadrotor>(25)_<lower livingroom floor>(1)']
+[FOLBP][EXEC] step[2] <robot dog>(24) -> [grab] <tennis ball>(36)
+[FOLBP][A] task_graph node=7 verb=grab agent=24 targets=[36]
+[FOLBP][ENV] step=6 executed=[grab]<robot dog>(24) -> action=[grab] <tennis ball>(36) done=False remaining_goals=['inside_<tennis ball>(36)_<basket>(29)', 'on_<quadrotor>(25)_<lower livingroom floor>(1)']
+[FOLBP][EXEC] step[3] <robot dog>(24) -> [movetowards] <basket>(29)
+[FOLBP][A] task_graph node=8 verb=movetowards agent=24 targets=[29]
+[FOLBP][ENV] step=7 executed=[movetowards]<robot dog>(24) -> action=[movetowards] <basket>(29) done=False remaining_goals=['inside_<tennis ball>(36)_<basket>(29)', 'on_<quadrotor>(25)_<lower livingroom floor>(1)']
+[FOLBP][EXEC] step[4] <robot dog>(24) -> [putinto] <tennis ball>(36) into <basket>(29)
+[FOLBP][A] task_graph node=9 verb=putinto agent=24 targets=[36, 29]
+[FOLBP][ENV] step=8 executed=[putinto]<robot dog>(24) -> action=[putinto] <tennis ball>(36) into <basket>(29) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=8
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 2, 'distinct_patterns_failed': 2}
+[FOLBP][FINAL] task_graph: {'nodes': 10, 'edges': 8, 'failed': 2, 'executed': 8}
+[FOLBP][FINAL] learned_clauses: [('quadrotor', 'movetowards', 'lower livingroom', 'runtime_rejection'), ('quadrotor', 'movetowards', 'lower livingroom floor', 'runtime_rejection')]
+True
+---------Env:4---Task:9-------------------------
+success
+steps: 8
+-------------------------------------
+average steps: 8.0
+success rate: 1.0
+successful tasks: [9]
+failed tasks: None

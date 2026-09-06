@@ -1,0 +1,132 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env0 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=True lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp seed=0 verify=z3 repair=symbolic max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=19 env_id=0 name=MultiAgent_0 gt_steps=14
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <textbook>(44) on the <high table>(33). 
+[FOLBP][TASK] agents: [('quadrotor', 22), ('robot dog', 23), ('robot arm', 24), ('robot arm', 50)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 13 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot dog>(23) action=[movetowards] <textbook>(44)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(23) action=[grab] <textbook>(44)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(23) action=[movetowards] <basket>(25)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(23) action=[putinto] <textbook>(44) into <basket>(25)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(22) action=[takeoff_from] <childroom floor>(3)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(22) action=[movetowards] <livingroom>(4)
+[FOLBP][ORACLE]   plan[6]: agent=<robot dog>(23) action=[movetowards] <livingroom>(4)
+[FOLBP][ORACLE]   plan[7]: agent=<robot dog>(23) action=[movetowards] <door>(8)
+[FOLBP][ORACLE]   plan[8]: agent=<robot dog>(23) action=[open] <door>(8)
+[FOLBP][ORACLE]   plan[9]: agent=<quadrotor>(22) action=[movetowards] <bedroom>(0)
+[FOLBP][ORACLE]   plan[10]: agent=<quadrotor>(22) action=[land_on] <high table>(33)
+[FOLBP][ORACLE]   plan[11]: agent=<robot arm>(50) action=[grab] <textbook>(44)
+[FOLBP][ORACLE]   plan[12]: agent=<robot arm>(50) action=[puton] <textbook>(44) on <high table>(33)
+[FOLBP][FOL] predicates: unary=88 binary=35 nodes=31
+[FOLBP][Z3] SAT — all 13 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 13 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 13 step(s)
+[FOLBP][EXEC] step[0] <robot dog>(23) -> [movetowards] <textbook>(44)
+[FOLBP][A] task_graph node=0 verb=movetowards agent=23 targets=[44]
+[FOLBP][ENV] step=1 executed=[movetowards]<robot dog>(23) -> action=[movetowards] <textbook>(44) done=False remaining_goals=['on_<textbook>(44)_<high table>(33)']
+[FOLBP][EXEC] step[1] <robot dog>(23) -> [grab] <textbook>(44)
+[FOLBP][A] task_graph node=1 verb=grab agent=23 targets=[44]
+[FOLBP][ENV] step=2 executed=[grab]<robot dog>(23) -> action=[grab] <textbook>(44) done=False remaining_goals=['on_<textbook>(44)_<high table>(33)']
+[FOLBP][EXEC] step[2] <robot dog>(23) -> [movetowards] <basket>(25)
+[FOLBP][A] task_graph node=2 verb=movetowards agent=23 targets=[25]
+[FOLBP][ENV] step=3 executed=[movetowards]<robot dog>(23) -> action=[movetowards] <basket>(25) done=False remaining_goals=['on_<textbook>(44)_<high table>(33)']
+[FOLBP][EXEC] step[3] <robot dog>(23) -> [putinto] <textbook>(44) into <basket>(25)
+[FOLBP][A] task_graph node=3 verb=putinto agent=23 targets=[44, 25]
+[FOLBP][ENV] step=4 executed=[putinto]<robot dog>(23) -> action=[putinto] <textbook>(44) into <basket>(25) done=False remaining_goals=['on_<textbook>(44)_<high table>(33)']
+[FOLBP][EXEC] step[4] <quadrotor>(22) -> [takeoff_from] <childroom floor>(3)
+[FOLBP][A] task_graph node=4 verb=takeoff_from agent=22 targets=[3]
+[FOLBP][ENV] step=5 executed=[takeoff_from]<quadrotor>(22) -> action=[takeoff_from] <childroom floor>(3) done=False remaining_goals=['on_<textbook>(44)_<high table>(33)']
+[FOLBP][EXEC] step[5] <quadrotor>(22) -> [movetowards] <livingroom>(4)
+[FOLBP][A] task_graph node=5 verb=movetowards agent=22 targets=[4]
+[FOLBP][ENV] step=6 executed=[movetowards]<quadrotor>(22) -> action=[movetowards] <livingroom>(4) done=False remaining_goals=['on_<textbook>(44)_<high table>(33)']
+[FOLBP][EXEC] step[6] <robot dog>(23) -> [movetowards] <livingroom>(4)
+[FOLBP][A] task_graph node=6 verb=movetowards agent=23 targets=[4]
+[FOLBP][ENV] step=7 executed=[movetowards]<robot dog>(23) -> action=[movetowards] <livingroom>(4) done=False remaining_goals=['on_<textbook>(44)_<high table>(33)']
+[FOLBP][EXEC] step[7] <robot dog>(23) -> [movetowards] <door>(8)
+[FOLBP][A] task_graph node=7 verb=movetowards agent=23 targets=[8]
+[FOLBP][ENV] step=8 executed=[movetowards]<robot dog>(23) -> action=[movetowards] <door>(8) done=False remaining_goals=['on_<textbook>(44)_<high table>(33)']
+[FOLBP][EXEC] step[8] <robot dog>(23) -> [open] <door>(8)
+[FOLBP][A] task_graph node=8 verb=open agent=23 targets=[8]
+[FOLBP][ENV] step=9 executed=[open]<robot dog>(23) -> action=[open] <door>(8) done=False remaining_goals=['on_<textbook>(44)_<high table>(33)']
+[FOLBP][EXEC] step[9] <quadrotor>(22) -> [movetowards] <bedroom>(0)
+[FOLBP][A] task_graph node=9 verb=movetowards agent=22 targets=[0]
+[FOLBP][ENV] step=10 executed=[movetowards]<quadrotor>(22) -> action=[movetowards] <bedroom>(0) done=False remaining_goals=['on_<textbook>(44)_<high table>(33)']
+[FOLBP][EXEC] step[10] <quadrotor>(22) -> [land_on] <high table>(33)
+[FOLBP][EXEC] runtime failure on step[10]: deterministic_action_not_available:[land_on] <high table>(33)
+[FOLBP][A] task_graph FAILED node=10 verb=land_on agent=22 targets=[33] reason=runtime:deterministic_action_not_available:[land_on] <high table>(33)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=10 implicated=[] failed_precond=- context=-
+[FOLBP][C] cdcl learned 1 new clause(s) (total=1); non_chrono_backtrack_level=9
+[FOLBP][C]   + clause: agent=quadrotor verb=land_on target=high table reason=runtime_rejection precond=-
+[FOLBP][D] injected 1 clause(s) into Oracle prompt + Plan Validator
+[FOLBP][D] forbidden_triples=[]
+[FOLBP][D] oracle_prefix:
+State-dependent hints from prior failures (combination is allowed if the precondition is satisfied):
+- when planning [land_on] by <quadrotor> on a <high table>: the per-step executor refused this last time — most likely the agent was not in the right room, the target was hidden, or the agent was already at the target. Re-order so this step runs only after the agent is verifiably in the same room as the target, or skip if the precondition is already satisfied.
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=2 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=463)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <high table>(33)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(50) action=[grab] <textbook>(44)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(50) action=[puton] <textbook>(44) on <high table>(33)
+[FOLBP][FOL] predicates: unary=90 binary=35 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <high table>(33)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <high table>(33)
+[FOLBP][A] task_graph FAILED node=11 verb=land_on agent=22 targets=[33] reason=runtime:deterministic_action_not_available:[land_on] <high table>(33)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=11 implicated=[10] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=3 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=463)
+[FOLBP][ORACLE] received plan with 4 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[movetowards] <high table>(33)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(22) action=[land_on] <high table>(33)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(50) action=[grab] <textbook>(44)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(50) action=[puton] <textbook>(44) on <high table>(33)
+[FOLBP][FOL] predicates: unary=90 binary=35 nodes=31
+[FOLBP][Z3] SAT — all 4 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 4 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 4 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [movetowards] <high table>(33)
+[FOLBP][A] task_graph node=12 verb=movetowards agent=22 targets=[33]
+[FOLBP][ENV] step=11 executed=[movetowards]<quadrotor>(22) -> action=[movetowards] <high table>(33) done=False remaining_goals=['on_<textbook>(44)_<high table>(33)']
+[FOLBP][EXEC] step[1] <quadrotor>(22) -> [land_on] <high table>(33)
+[FOLBP][A] task_graph node=13 verb=land_on agent=22 targets=[33]
+[FOLBP][ENV] step=12 executed=[land_on]<quadrotor>(22) -> action=[land_on] <high table>(33) done=False remaining_goals=['on_<textbook>(44)_<high table>(33)']
+[FOLBP][EXEC] step[2] <robot arm>(50) -> [grab] <textbook>(44)
+[FOLBP][A] task_graph node=14 verb=grab agent=50 targets=[44]
+[FOLBP][ENV] step=13 executed=[grab]<robot arm>(50) -> action=[grab] <textbook>(44) done=False remaining_goals=['on_<textbook>(44)_<high table>(33)']
+[FOLBP][EXEC] step[3] <robot arm>(50) -> [puton] <textbook>(44) on <high table>(33)
+[FOLBP][A] task_graph node=15 verb=puton agent=50 targets=[44, 33]
+[FOLBP][ENV] step=14 executed=[puton]<robot arm>(50) -> action=[puton] <textbook>(44) on <high table>(33) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=14
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 1, 'distinct_patterns_failed': 1}
+[FOLBP][FINAL] task_graph: {'nodes': 16, 'edges': 16, 'failed': 2, 'executed': 14}
+[FOLBP][FINAL] learned_clauses: [('quadrotor', 'land_on', 'high table', 'runtime_rejection')]
+True
+---------Env:0---Task:19-------------------------
+success
+steps: 14
+-------------------------------------
+average steps: 14.0
+success rate: 1.0
+successful tasks: [19]
+failed tasks: None

@@ -1,0 +1,60 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env1 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=True lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-llm-repair seed=0 verify=z3 repair=llm max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=2 env_id=1 name=MultiAgent_0 gt_steps=6
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <apple>(14) and <tomato>(15) into the <plate>(40) and put the <plate>(13) into the <sink>(8).
+[FOLBP][TASK] agents: [('robot arm', 20), ('robot dog', 21), ('quadrotor', 22), ('robot arm', 44)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/12
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 6 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot arm>(20) action=[grab] <apple>(14)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(20) action=[putinto] <apple>(14) into <plate>(40)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(20) action=[grab] <tomato>(15)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(20) action=[putinto] <tomato>(15) into <plate>(40)
+[FOLBP][ORACLE]   plan[4]: agent=<robot arm>(20) action=[grab] <plate>(13)
+[FOLBP][ORACLE]   plan[5]: agent=<robot arm>(20) action=[putinto] <plate>(13) into <sink>(8)
+[FOLBP][FOL] predicates: unary=91 binary=35 nodes=31
+[FOLBP][Z3] SAT — all 6 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 6 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 6 step(s)
+[FOLBP][EXEC] step[0] <robot arm>(20) -> [grab] <apple>(14)
+[FOLBP][A] task_graph node=0 verb=grab agent=20 targets=[14]
+[FOLBP][ENV] step=1 executed=[grab]<robot arm>(20) -> action=[grab] <apple>(14) done=False remaining_goals=['inside_<apple>(14)_<plate>(40)', 'inside_<tomato>(15)_<plate>(40)', 'inside_<plate>(13)_<sink>(8)']
+[FOLBP][EXEC] step[1] <robot arm>(20) -> [putinto] <apple>(14) into <plate>(40)
+[FOLBP][A] task_graph node=1 verb=putinto agent=20 targets=[14, 40]
+[FOLBP][ENV] step=2 executed=[putinto]<robot arm>(20) -> action=[putinto] <apple>(14) into <plate>(40) done=False remaining_goals=['inside_<tomato>(15)_<plate>(40)', 'inside_<plate>(13)_<sink>(8)']
+[FOLBP][EXEC] step[2] <robot arm>(20) -> [grab] <tomato>(15)
+[FOLBP][A] task_graph node=2 verb=grab agent=20 targets=[15]
+[FOLBP][ENV] step=3 executed=[grab]<robot arm>(20) -> action=[grab] <tomato>(15) done=False remaining_goals=['inside_<tomato>(15)_<plate>(40)', 'inside_<plate>(13)_<sink>(8)']
+[FOLBP][EXEC] step[3] <robot arm>(20) -> [putinto] <tomato>(15) into <plate>(40)
+[FOLBP][A] task_graph node=3 verb=putinto agent=20 targets=[15, 40]
+[FOLBP][ENV] step=4 executed=[putinto]<robot arm>(20) -> action=[putinto] <tomato>(15) into <plate>(40) done=False remaining_goals=['inside_<plate>(13)_<sink>(8)']
+[FOLBP][EXEC] step[4] <robot arm>(20) -> [grab] <plate>(13)
+[FOLBP][A] task_graph node=4 verb=grab agent=20 targets=[13]
+[FOLBP][ENV] step=5 executed=[grab]<robot arm>(20) -> action=[grab] <plate>(13) done=False remaining_goals=['inside_<plate>(13)_<sink>(8)']
+[FOLBP][EXEC] step[5] <robot arm>(20) -> [putinto] <plate>(13) into <sink>(8)
+[FOLBP][A] task_graph node=5 verb=putinto agent=20 targets=[13, 8]
+[FOLBP][ENV] step=6 executed=[putinto]<robot arm>(20) -> action=[putinto] <plate>(13) into <sink>(8) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=6
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 6, 'edges': 5, 'failed': 0, 'executed': 6}
+[FOLBP][FINAL] learned_clauses: []
+True
+---------Env:1---Task:2-------------------------
+success
+steps: 6
+-------------------------------------
+average steps: 6.0
+success rate: 1.0
+successful tasks: [2]
+failed tasks: None

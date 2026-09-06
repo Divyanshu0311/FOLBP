@@ -1,0 +1,123 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env1 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=False lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-no-cdcl seed=0 verify=z3 repair=symbolic max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=14 env_id=1 name=MultiAgent_0 gt_steps=14
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <meat ball>(52) into the <frying pan>(19) which is on the <burner>(10). The <meat ball>(52) is originally in the <fridge>(7).
+[FOLBP][TASK] agents: [('robot arm', 20), ('robot dog', 21), ('quadrotor', 22), ('robot arm', 44)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 14 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot dog>(21) action=[movetowards] <kitchen>(2)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(21) action=[movetowards] <fridge>(7)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(21) action=[open] <fridge>(7)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(21) action=[grab] <meat ball>(52)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(22) action=[takeoff_from] <livingroom floor>(1)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(22) action=[movetowards] <kitchen>(2)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(22) action=[land_on] <kitchen floor>(3)
+[FOLBP][ORACLE]   plan[7]: agent=<robot dog>(21) action=[movetowards] <basket>(23)
+[FOLBP][ORACLE]   plan[8]: agent=<robot dog>(21) action=[putinto] <meat ball>(52) into <basket>(23)
+[FOLBP][ORACLE]   plan[9]: agent=<quadrotor>(22) action=[takeoff_from] <kitchen floor>(3)
+[FOLBP][ORACLE]   plan[10]: agent=<quadrotor>(22) action=[movetowards] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[11]: agent=<quadrotor>(22) action=[land_on] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[12]: agent=<robot arm>(20) action=[grab] <meat ball>(52)
+[FOLBP][ORACLE]   plan[13]: agent=<robot arm>(20) action=[putinto] <meat ball>(52) into <frying pan>(19)
+[FOLBP][FOL] predicates: unary=86 binary=35 nodes=31
+[FOLBP][Z3] UNSAT @ step 3 core=['s3_p1_close'] missing=[('close', 21, 52)]
+[FOLBP][R] attempt 1/5 (strategy=symbolic)
+[FOLBP][R] inserted {'agent': '<robot dog>(21)', 'action': '[movetowards] <meat ball>(52)'} (reason=insert movetowards to satisfy close(21,52))
+[FOLBP][R] new plan length: 15 step(s)
+[FOLBP][Z3] UNSAT @ step 7 core=['s7_p2_above'] missing=[('above', 22, 3)]
+[FOLBP][R] attempt 2/5 (strategy=symbolic)
+[FOLBP][R] inserted {'agent': '<quadrotor>(22)', 'action': '[movetowards] <kitchen floor>(3)'} (reason=insert movetowards to satisfy above(22,3))
+[FOLBP][R] new plan length: 16 step(s)
+[FOLBP][Z3] SAT — all 16 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 16 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 16 step(s)
+[FOLBP][EXEC] step[0] <robot dog>(21) -> [movetowards] <kitchen>(2)
+[FOLBP][A] task_graph node=0 verb=movetowards agent=21 targets=[2]
+[FOLBP][ENV] step=1 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <kitchen>(2) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[1] <robot dog>(21) -> [movetowards] <fridge>(7)
+[FOLBP][A] task_graph node=1 verb=movetowards agent=21 targets=[7]
+[FOLBP][ENV] step=2 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <fridge>(7) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[2] <robot dog>(21) -> [open] <fridge>(7)
+[FOLBP][A] task_graph node=2 verb=open agent=21 targets=[7]
+[FOLBP][ENV] step=3 executed=[open]<robot dog>(21) -> action=[open] <fridge>(7) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[3] <robot dog>(21) -> [movetowards] <meat ball>(52)
+[FOLBP][A] task_graph node=3 verb=movetowards agent=21 targets=[52]
+[FOLBP][ENV] step=4 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <meat ball>(52) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[4] <robot dog>(21) -> [grab] <meat ball>(52)
+[FOLBP][A] task_graph node=4 verb=grab agent=21 targets=[52]
+[FOLBP][ENV] step=5 executed=[grab]<robot dog>(21) -> action=[grab] <meat ball>(52) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[5] <quadrotor>(22) -> [takeoff_from] <livingroom floor>(1)
+[FOLBP][A] task_graph node=5 verb=takeoff_from agent=22 targets=[1]
+[FOLBP][ENV] step=6 executed=[takeoff_from]<quadrotor>(22) -> action=[takeoff_from] <livingroom floor>(1) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[6] <quadrotor>(22) -> [movetowards] <kitchen>(2)
+[FOLBP][A] task_graph node=6 verb=movetowards agent=22 targets=[2]
+[FOLBP][ENV] step=7 executed=[movetowards]<quadrotor>(22) -> action=[movetowards] <kitchen>(2) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[7] <quadrotor>(22) -> [movetowards] <kitchen floor>(3)
+[FOLBP][EXEC] runtime failure on step[7]: deterministic_action_not_available:[movetowards] <kitchen floor>(3)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=2 env_steps=7/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 8 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <kitchen floor>(3)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(21) action=[movetowards] <basket>(23)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(21) action=[putinto] <meat ball>(52) into <basket>(23)
+[FOLBP][ORACLE]   plan[3]: agent=<quadrotor>(22) action=[takeoff_from] <kitchen floor>(3)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(22) action=[movetowards] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(22) action=[land_on] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[6]: agent=<robot arm>(20) action=[grab] <meat ball>(52)
+[FOLBP][ORACLE]   plan[7]: agent=<robot arm>(20) action=[putinto] <meat ball>(52) into <frying pan>(19)
+[FOLBP][FOL] predicates: unary=87 binary=35 nodes=31
+[FOLBP][Z3] SAT — all 8 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 8 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 8 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <kitchen floor>(3)
+[FOLBP][A] task_graph node=7 verb=land_on agent=22 targets=[3]
+[FOLBP][ENV] step=8 executed=[land_on]<quadrotor>(22) -> action=[land_on] <kitchen floor>(3) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[1] <robot dog>(21) -> [movetowards] <basket>(23)
+[FOLBP][A] task_graph node=8 verb=movetowards agent=21 targets=[23]
+[FOLBP][ENV] step=9 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <basket>(23) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[2] <robot dog>(21) -> [putinto] <meat ball>(52) into <basket>(23)
+[FOLBP][A] task_graph node=9 verb=putinto agent=21 targets=[52, 23]
+[FOLBP][ENV] step=10 executed=[putinto]<robot dog>(21) -> action=[putinto] <meat ball>(52) into <basket>(23) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[3] <quadrotor>(22) -> [takeoff_from] <kitchen floor>(3)
+[FOLBP][A] task_graph node=10 verb=takeoff_from agent=22 targets=[3]
+[FOLBP][ENV] step=11 executed=[takeoff_from]<quadrotor>(22) -> action=[takeoff_from] <kitchen floor>(3) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[4] <quadrotor>(22) -> [movetowards] <kitchen table>(11)
+[FOLBP][A] task_graph node=11 verb=movetowards agent=22 targets=[11]
+[FOLBP][ENV] step=12 executed=[movetowards]<quadrotor>(22) -> action=[movetowards] <kitchen table>(11) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[5] <quadrotor>(22) -> [land_on] <kitchen table>(11)
+[FOLBP][A] task_graph node=12 verb=land_on agent=22 targets=[11]
+[FOLBP][ENV] step=13 executed=[land_on]<quadrotor>(22) -> action=[land_on] <kitchen table>(11) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[6] <robot arm>(20) -> [grab] <meat ball>(52)
+[FOLBP][A] task_graph node=13 verb=grab agent=20 targets=[52]
+[FOLBP][ENV] step=14 executed=[grab]<robot arm>(20) -> action=[grab] <meat ball>(52) done=False remaining_goals=['inside_<meat ball>(52)_<frying pan>(19)', 'on_<frying pan>(19)_<burner>(10)']
+[FOLBP][EXEC] step[7] <robot arm>(20) -> [putinto] <meat ball>(52) into <frying pan>(19)
+[FOLBP][A] task_graph node=14 verb=putinto agent=20 targets=[52, 19]
+[FOLBP][ENV] step=15 executed=[putinto]<robot arm>(20) -> action=[putinto] <meat ball>(52) into <frying pan>(19) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=15
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 15, 'edges': 14, 'failed': 0, 'executed': 15}
+[FOLBP][FINAL] learned_clauses: []
+True
+---------Env:1---Task:14-------------------------
+success
+steps: 15
+-------------------------------------
+average steps: 15.0
+success rate: 1.0
+successful tasks: [14]
+failed tasks: None

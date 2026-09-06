@@ -1,0 +1,65 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env1 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=False lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-naive seed=0 verify=shadow repair=none max_oracle_plans=1 t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=7 env_id=1 name=MultiAgent_0 gt_steps=8
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: The <quadrotor>(22) lands on the <kitchen table>(11) with the <cookbook>(28) in the <basket>(23). 
+[FOLBP][TASK] agents: [('robot arm', 20), ('robot dog', 21), ('quadrotor', 22), ('robot arm', 44)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/16
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 7 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot dog>(21) action=[movetowards] <cookbook>(28)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(21) action=[grab] <cookbook>(28)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(21) action=[movetowards] <basket>(23)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(21) action=[putinto] <cookbook>(28) into <basket>(23)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(22) action=[takeoff_from] <livingroom floor>(1)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(22) action=[movetowards] <kitchen table>(11)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(22) action=[land_on] <kitchen table>(11)
+[FOLBP][FOL] predicates: unary=87 binary=35 nodes=31
+[FOLBP][Z3] SAT — all 7 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 7 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 7 step(s)
+[FOLBP][EXEC] step[0] <robot dog>(21) -> [movetowards] <cookbook>(28)
+[FOLBP][A] task_graph node=0 verb=movetowards agent=21 targets=[28]
+[FOLBP][ENV] step=1 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <cookbook>(28) done=False remaining_goals=['inside_<cookbook>(28)_<basket>(23)', 'on_<quadrotor>(22)_<kitchen table>(11)']
+[FOLBP][EXEC] step[1] <robot dog>(21) -> [grab] <cookbook>(28)
+[FOLBP][A] task_graph node=1 verb=grab agent=21 targets=[28]
+[FOLBP][ENV] step=2 executed=[grab]<robot dog>(21) -> action=[grab] <cookbook>(28) done=False remaining_goals=['inside_<cookbook>(28)_<basket>(23)', 'on_<quadrotor>(22)_<kitchen table>(11)']
+[FOLBP][EXEC] step[2] <robot dog>(21) -> [movetowards] <basket>(23)
+[FOLBP][A] task_graph node=2 verb=movetowards agent=21 targets=[23]
+[FOLBP][ENV] step=3 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <basket>(23) done=False remaining_goals=['inside_<cookbook>(28)_<basket>(23)', 'on_<quadrotor>(22)_<kitchen table>(11)']
+[FOLBP][EXEC] step[3] <robot dog>(21) -> [putinto] <cookbook>(28) into <basket>(23)
+[FOLBP][A] task_graph node=3 verb=putinto agent=21 targets=[28, 23]
+[FOLBP][ENV] step=4 executed=[putinto]<robot dog>(21) -> action=[putinto] <cookbook>(28) into <basket>(23) done=False remaining_goals=['on_<quadrotor>(22)_<kitchen table>(11)']
+[FOLBP][EXEC] step[4] <quadrotor>(22) -> [takeoff_from] <livingroom floor>(1)
+[FOLBP][A] task_graph node=4 verb=takeoff_from agent=22 targets=[1]
+[FOLBP][ENV] step=5 executed=[takeoff_from]<quadrotor>(22) -> action=[takeoff_from] <livingroom floor>(1) done=False remaining_goals=['on_<quadrotor>(22)_<kitchen table>(11)']
+[FOLBP][EXEC] step[5] <quadrotor>(22) -> [movetowards] <kitchen table>(11)
+[FOLBP][EXEC] runtime failure on step[5]: deterministic_action_not_available:[movetowards] <kitchen table>(11)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=2 env_steps=5/16
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] oracle plan cap reached (1); re-planning not permitted — failing task.
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=False steps=5
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 5, 'edges': 3, 'failed': 0, 'executed': 5}
+[FOLBP][FINAL] learned_clauses: []
+False
+---------Env:1---Task:7-------------------------
+failure
+steps: 5
+-------------------------------------
+average steps: 5.0
+success rate: 0.0
+successful tasks: None
+failed tasks: [7]

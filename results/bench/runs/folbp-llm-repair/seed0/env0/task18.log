@@ -1,0 +1,1029 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env0 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=True lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-llm-repair seed=0 verify=z3 repair=llm max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=18 env_id=0 name=MultiAgent_0 gt_steps=14
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <toy car>(46) into the <toy box>(45) and put the <dinner napkin>(41) on the <dining table>(13).
+[FOLBP][TASK] agents: [('quadrotor', 22), ('robot dog', 23), ('robot arm', 24), ('robot arm', 50)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 13 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot dog>(23) action=[movetowards] <toy car>(46)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(23) action=[grab] <toy car>(46)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(23) action=[movetowards] <toy box>(45)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(23) action=[putinto] <toy car>(46) into <toy box>(45)
+[FOLBP][ORACLE]   plan[4]: agent=<robot dog>(23) action=[movetowards] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[5]: agent=<robot dog>(23) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[6]: agent=<robot dog>(23) action=[movetowards] <basket>(25)
+[FOLBP][ORACLE]   plan[7]: agent=<robot dog>(23) action=[putinto] <dinner napkin>(41) into <basket>(25)
+[FOLBP][ORACLE]   plan[8]: agent=<quadrotor>(22) action=[takeoff_from] <childroom floor>(3)
+[FOLBP][ORACLE]   plan[9]: agent=<quadrotor>(22) action=[movetowards] <livingroom>(4)
+[FOLBP][ORACLE]   plan[10]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[11]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[12]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=87 binary=35 nodes=31
+[FOLBP][Z3] SAT — all 13 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 13 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 13 step(s)
+[FOLBP][EXEC] step[0] <robot dog>(23) -> [movetowards] <toy car>(46)
+[FOLBP][A] task_graph node=0 verb=movetowards agent=23 targets=[46]
+[FOLBP][ENV] step=1 executed=[movetowards]<robot dog>(23) -> action=[movetowards] <toy car>(46) done=False remaining_goals=['inside_<toy car>(46)_<toy box>(45)', 'on_<dinner napkin>(41)_<dining table>(13)']
+[FOLBP][EXEC] step[1] <robot dog>(23) -> [grab] <toy car>(46)
+[FOLBP][A] task_graph node=1 verb=grab agent=23 targets=[46]
+[FOLBP][ENV] step=2 executed=[grab]<robot dog>(23) -> action=[grab] <toy car>(46) done=False remaining_goals=['inside_<toy car>(46)_<toy box>(45)', 'on_<dinner napkin>(41)_<dining table>(13)']
+[FOLBP][EXEC] step[2] <robot dog>(23) -> [movetowards] <toy box>(45)
+[FOLBP][A] task_graph node=2 verb=movetowards agent=23 targets=[45]
+[FOLBP][ENV] step=3 executed=[movetowards]<robot dog>(23) -> action=[movetowards] <toy box>(45) done=False remaining_goals=['inside_<toy car>(46)_<toy box>(45)', 'on_<dinner napkin>(41)_<dining table>(13)']
+[FOLBP][EXEC] step[3] <robot dog>(23) -> [putinto] <toy car>(46) into <toy box>(45)
+[FOLBP][A] task_graph node=3 verb=putinto agent=23 targets=[46, 45]
+[FOLBP][ENV] step=4 executed=[putinto]<robot dog>(23) -> action=[putinto] <toy car>(46) into <toy box>(45) done=False remaining_goals=['on_<dinner napkin>(41)_<dining table>(13)']
+[FOLBP][EXEC] step[4] <robot dog>(23) -> [movetowards] <dinner napkin>(41)
+[FOLBP][A] task_graph node=4 verb=movetowards agent=23 targets=[41]
+[FOLBP][ENV] step=5 executed=[movetowards]<robot dog>(23) -> action=[movetowards] <dinner napkin>(41) done=False remaining_goals=['on_<dinner napkin>(41)_<dining table>(13)']
+[FOLBP][EXEC] step[5] <robot dog>(23) -> [grab] <dinner napkin>(41)
+[FOLBP][A] task_graph node=5 verb=grab agent=23 targets=[41]
+[FOLBP][ENV] step=6 executed=[grab]<robot dog>(23) -> action=[grab] <dinner napkin>(41) done=False remaining_goals=['on_<dinner napkin>(41)_<dining table>(13)']
+[FOLBP][EXEC] step[6] <robot dog>(23) -> [movetowards] <basket>(25)
+[FOLBP][A] task_graph node=6 verb=movetowards agent=23 targets=[25]
+[FOLBP][ENV] step=7 executed=[movetowards]<robot dog>(23) -> action=[movetowards] <basket>(25) done=False remaining_goals=['on_<dinner napkin>(41)_<dining table>(13)']
+[FOLBP][EXEC] step[7] <robot dog>(23) -> [putinto] <dinner napkin>(41) into <basket>(25)
+[FOLBP][A] task_graph node=7 verb=putinto agent=23 targets=[41, 25]
+[FOLBP][ENV] step=8 executed=[putinto]<robot dog>(23) -> action=[putinto] <dinner napkin>(41) into <basket>(25) done=False remaining_goals=['on_<dinner napkin>(41)_<dining table>(13)']
+[FOLBP][EXEC] step[8] <quadrotor>(22) -> [takeoff_from] <childroom floor>(3)
+[FOLBP][A] task_graph node=8 verb=takeoff_from agent=22 targets=[3]
+[FOLBP][ENV] step=9 executed=[takeoff_from]<quadrotor>(22) -> action=[takeoff_from] <childroom floor>(3) done=False remaining_goals=['on_<dinner napkin>(41)_<dining table>(13)']
+[FOLBP][EXEC] step[9] <quadrotor>(22) -> [movetowards] <livingroom>(4)
+[FOLBP][A] task_graph node=9 verb=movetowards agent=22 targets=[4]
+[FOLBP][ENV] step=10 executed=[movetowards]<quadrotor>(22) -> action=[movetowards] <livingroom>(4) done=False remaining_goals=['on_<dinner napkin>(41)_<dining table>(13)']
+[FOLBP][EXEC] step[10] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[10]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=10 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=10 implicated=[] failed_precond=- context=-
+[FOLBP][C] cdcl learned 1 new clause(s) (total=1); non_chrono_backtrack_level=9
+[FOLBP][C]   + clause: agent=quadrotor verb=land_on target=dining table reason=runtime_rejection precond=-
+[FOLBP][D] injected 1 clause(s) into Oracle prompt + Plan Validator
+[FOLBP][D] forbidden_triples=[]
+[FOLBP][D] oracle_prefix:
+State-dependent hints from prior failures (combination is allowed if the precondition is satisfied):
+- when planning [land_on] by <quadrotor> on a <dining table>: the per-step executor refused this last time — most likely the agent was not in the right room, the target was hidden, or the agent was already at the target. Re-order so this step runs only after the agent is verifiably in the same room as the target, or skip if the precondition is already satisfied.
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=2 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=11 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=11 implicated=[10] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=3 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=12 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=12 implicated=[10, 11] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=4 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=13 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=13 implicated=[10, 11, 12] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=5 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=14 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=14 implicated=[10, 11, 12, 13] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=6 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=15 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=15 implicated=[10, 11, 12, 13, 14] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=7 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=16 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=16 implicated=[10, 11, 12, 13, 14, 15] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=8 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=17 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=17 implicated=[10, 11, 12, 13, 14, 15, 16] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=9 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=18 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=18 implicated=[10, 11, 12, 13, 14, 15, 16, 17] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=10 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=19 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=19 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=11 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=20 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=20 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=12 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=21 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=21 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=13 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=22 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=22 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=14 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=23 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=23 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=15 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=24 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=24 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=16 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=25 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=25 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=17 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=26 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=26 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=18 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=27 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=27 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=19 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=28 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=28 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=20 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=29 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=29 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=21 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=30 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=30 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=22 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=31 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=31 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=23 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=32 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=32 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=24 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=33 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=33 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=25 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=34 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=34 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=26 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=35 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=35 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=27 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=36 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=36 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=28 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=37 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=37 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=29 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=38 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=38 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=30 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=39 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=39 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=31 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=40 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=40 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=32 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=41 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=41 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=33 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=42 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=42 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=34 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=43 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=43 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=35 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=44 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=44 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=36 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=45 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=45 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=37 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=46 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=46 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=38 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=47 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=47 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=39 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=48 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=48 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=40 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=49 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=49 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=41 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=50 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=50 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=42 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=51 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=51 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=43 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=52 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=52 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=44 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=53 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=53 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=45 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=54 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=54 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=46 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=55 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=55 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=47 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=56 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=56 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=48 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=57 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=57 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=49 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=58 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=58 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=50 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=59 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=59 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=51 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=60 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=60 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=52 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=61 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=61 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=53 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=62 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=62 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=54 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=63 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=63 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=55 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=64 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=64 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=56 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=465)
+[FOLBP][ORACLE] received plan with 3 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(22) action=[land_on] <dining table>(13)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(24) action=[grab] <dinner napkin>(41)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(24) action=[puton] <dinner napkin>(41) on <dining table>(13)
+[FOLBP][FOL] predicates: unary=89 binary=34 nodes=31
+[FOLBP][Z3] SAT — all 3 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 3 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 3 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(22) -> [land_on] <dining table>(13)
+[FOLBP][EXEC] runtime failure on step[0]: deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][A] task_graph FAILED node=65 verb=land_on agent=22 targets=[13] reason=runtime:deterministic_action_not_available:[land_on] <dining table>(13)
+[FOLBP][B] conflict report: class=runtime_rejection failed_node=65 implicated=[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64] failed_precond=- context=-
+[FOLBP][C] cdcl learned 0 new clause(s) (total=1); non_chrono_backtrack_level=10
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=57 env_steps=10/28
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] Step budget exceeded (10 > 28); failing task.
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=False steps=10
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 1, 'distinct_patterns_failed': 1}
+[FOLBP][FINAL] task_graph: {'nodes': 66, 'edges': 64, 'failed': 56, 'executed': 10}
+[FOLBP][FINAL] learned_clauses: [('quadrotor', 'land_on', 'dining table', 'runtime_rejection')]
+False
+---------Env:0---Task:18-------------------------
+failure
+steps: 10
+-------------------------------------
+average steps: 10.0
+success rate: 0.0
+successful tasks: None
+failed tasks: [18]

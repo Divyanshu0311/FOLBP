@@ -1,0 +1,70 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env1 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=True lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-llm-repair seed=0 verify=z3 repair=llm max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=5 env_id=1 name=MultiAgent_0 gt_steps=8
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <beer bottle>(48) on the <coffee table>(4). The <beer bottle>(48) is originally in the <fridge>(7).
+[FOLBP][TASK] agents: [('robot arm', 20), ('robot dog', 21), ('quadrotor', 22), ('robot arm', 44)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/16
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 7 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot dog>(21) action=[movetowards] <kitchen>(2)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(21) action=[movetowards] <fridge>(7)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(21) action=[open] <fridge>(7)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(21) action=[grab] <beer bottle>(48)
+[FOLBP][ORACLE]   plan[4]: agent=<robot dog>(21) action=[movetowards] <livingroom>(0)
+[FOLBP][ORACLE]   plan[5]: agent=<robot dog>(21) action=[movetowards] <coffee table>(4)
+[FOLBP][ORACLE]   plan[6]: agent=<robot dog>(21) action=[puton] <beer bottle>(48) on <coffee table>(4)
+[FOLBP][FOL] predicates: unary=87 binary=35 nodes=31
+[FOLBP][Z3] UNSAT @ step 3 core=['s3_p1_close'] missing=[('close', 21, 48)]
+[FOLBP][R] attempt 1/5 (strategy=llm)
+[FOLBP][R] LLM returned a repaired plan of 8 step(s)
+[FOLBP][Z3] SAT — all 8 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 8 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 8 step(s)
+[FOLBP][EXEC] step[0] <robot dog>(21) -> [movetowards] <kitchen>(2)
+[FOLBP][A] task_graph node=0 verb=movetowards agent=21 targets=[2]
+[FOLBP][ENV] step=1 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <kitchen>(2) done=False remaining_goals=['on_<beer bottle>(48)_<coffee table>(4)']
+[FOLBP][EXEC] step[1] <robot dog>(21) -> [movetowards] <fridge>(7)
+[FOLBP][A] task_graph node=1 verb=movetowards agent=21 targets=[7]
+[FOLBP][ENV] step=2 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <fridge>(7) done=False remaining_goals=['on_<beer bottle>(48)_<coffee table>(4)']
+[FOLBP][EXEC] step[2] <robot dog>(21) -> [open] <fridge>(7)
+[FOLBP][A] task_graph node=2 verb=open agent=21 targets=[7]
+[FOLBP][ENV] step=3 executed=[open]<robot dog>(21) -> action=[open] <fridge>(7) done=False remaining_goals=['on_<beer bottle>(48)_<coffee table>(4)']
+[FOLBP][EXEC] step[3] <robot dog>(21) -> [movetowards] <beer bottle>(48)
+[FOLBP][A] task_graph node=3 verb=movetowards agent=21 targets=[48]
+[FOLBP][ENV] step=4 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <beer bottle>(48) done=False remaining_goals=['on_<beer bottle>(48)_<coffee table>(4)']
+[FOLBP][EXEC] step[4] <robot dog>(21) -> [grab] <beer bottle>(48)
+[FOLBP][A] task_graph node=4 verb=grab agent=21 targets=[48]
+[FOLBP][ENV] step=5 executed=[grab]<robot dog>(21) -> action=[grab] <beer bottle>(48) done=False remaining_goals=['on_<beer bottle>(48)_<coffee table>(4)']
+[FOLBP][EXEC] step[5] <robot dog>(21) -> [movetowards] <livingroom>(0)
+[FOLBP][A] task_graph node=5 verb=movetowards agent=21 targets=[0]
+[FOLBP][ENV] step=6 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <livingroom>(0) done=False remaining_goals=['on_<beer bottle>(48)_<coffee table>(4)']
+[FOLBP][EXEC] step[6] <robot dog>(21) -> [movetowards] <coffee table>(4)
+[FOLBP][A] task_graph node=6 verb=movetowards agent=21 targets=[4]
+[FOLBP][ENV] step=7 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <coffee table>(4) done=False remaining_goals=['on_<beer bottle>(48)_<coffee table>(4)']
+[FOLBP][EXEC] step[7] <robot dog>(21) -> [puton] <beer bottle>(48) on <coffee table>(4)
+[FOLBP][A] task_graph node=7 verb=puton agent=21 targets=[48, 4]
+[FOLBP][ENV] step=8 executed=[puton]<robot dog>(21) -> action=[puton] <beer bottle>(48) on <coffee table>(4) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=8
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 8, 'edges': 7, 'failed': 0, 'executed': 8}
+[FOLBP][FINAL] learned_clauses: []
+True
+---------Env:1---Task:5-------------------------
+success
+steps: 8
+-------------------------------------
+average steps: 8.0
+success rate: 1.0
+successful tasks: [5]
+failed tasks: None

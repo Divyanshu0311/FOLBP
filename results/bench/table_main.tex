@@ -1,0 +1,12 @@
+\begin{tabular}{lrrrrr}
+\toprule
+Method & Success & Exec/GT & LLM calls & Latency (s) & Repairs \\
+\midrule
+FOLBP (full, ours) & 96/100 & 1.03 & 1.5 & 20.4 & 0.7/1.1 \\
+$-$ verification & 85/100 & 1.03 & 2.9 & 30.7 & -- \\
+repair: LLM re$-$prompt & 93/99 & 1.03 & 4.0 & 59.5 & 0.7/1.5 \\
+$-$ CDCL & 94/100 & 1.03 & 2.4 & 25.8 & 0.7/1.0 \\
+naive one$-$shot & 65/100 & 1.02 & 1.0 & 11.1 & -- \\
+PEFA (baseline) & 95/100 & 1.03 & 54.5 & 201.7 & -- \\
+\bottomrule
+\end{tabular}

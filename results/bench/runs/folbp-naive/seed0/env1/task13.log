@@ -1,0 +1,68 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env1 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=False lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-naive seed=0 verify=shadow repair=none max_oracle_plans=1 t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=13 env_id=1 name=MultiAgent_0 gt_steps=13
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: The <quadrotor>(22) lands on the <dining table>(9) with the <knife>(50) and <fork>(51) in the <basket>(23). The <knife>(50) and <fork>(51) are originally in the <fridge>(7).
+[FOLBP][TASK] agents: [('robot arm', 20), ('robot dog', 21), ('quadrotor', 22), ('robot arm', 44)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/26
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 15 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot dog>(21) action=[movetowards] <fridge>(7)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(21) action=[open] <fridge>(7)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(21) action=[movetowards] <fridge>(7)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(21) action=[grab] <knife>(50)
+[FOLBP][ORACLE]   plan[4]: agent=<robot dog>(21) action=[movetowards] <basket>(23)
+[FOLBP][ORACLE]   plan[5]: agent=<robot dog>(21) action=[putinto] <knife>(50) into <basket>(23)
+[FOLBP][ORACLE]   plan[6]: agent=<robot dog>(21) action=[movetowards] <fridge>(7)
+[FOLBP][ORACLE]   plan[7]: agent=<robot dog>(21) action=[grab] <fork>(51)
+[FOLBP][ORACLE]   plan[8]: agent=<robot dog>(21) action=[movetowards] <basket>(23)
+[FOLBP][ORACLE]   plan[9]: agent=<robot dog>(21) action=[putinto] <fork>(51) into <basket>(23)
+[FOLBP][ORACLE]   plan[10]: agent=<robot dog>(21) action=[movetowards] <fridge>(7)
+[FOLBP][ORACLE]   plan[11]: agent=<robot dog>(21) action=[close] <fridge>(7)
+[FOLBP][ORACLE]   plan[12]: agent=<quadrotor>(22) action=[takeoff_from] <kitchen floor>(3)
+[FOLBP][ORACLE]   plan[13]: agent=<quadrotor>(22) action=[movetowards] <dining table>(9)
+[FOLBP][ORACLE]   plan[14]: agent=<quadrotor>(22) action=[land_on] <dining table>(9)
+[FOLBP][FOL] predicates: unary=87 binary=35 nodes=31
+[FOLBP][Z3] UNSAT @ step 3 core=['s3_p1_close'] missing=[('close', 21, 50)]
+[FOLBP][R] repair disabled (shadow mode); returning UNSAT verdict.
+[FOLBP][SHADOW] UNSAT @ step 3 core=['s3_p1_close'] — executing anyway (--verify shadow)
+[FOLBP][VAL] accepted — all 15 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 15 step(s)
+[FOLBP][EXEC] step[0] <robot dog>(21) -> [movetowards] <fridge>(7)
+[FOLBP][A] task_graph node=0 verb=movetowards agent=21 targets=[7]
+[FOLBP][ENV] step=1 executed=[movetowards]<robot dog>(21) -> action=[movetowards] <fridge>(7) done=False remaining_goals=['inside_<knife>(50)_<basket>(23)', 'inside_<fork>(51)_<basket>(23)', 'on_<quadrotor>(22)_<dining table>(9)']
+[FOLBP][EXEC] step[1] <robot dog>(21) -> [open] <fridge>(7)
+[FOLBP][A] task_graph node=1 verb=open agent=21 targets=[7]
+[FOLBP][ENV] step=2 executed=[open]<robot dog>(21) -> action=[open] <fridge>(7) done=False remaining_goals=['inside_<knife>(50)_<basket>(23)', 'inside_<fork>(51)_<basket>(23)', 'on_<quadrotor>(22)_<dining table>(9)']
+[FOLBP][EXEC] step[2] <robot dog>(21) -> [movetowards] <fridge>(7)
+[FOLBP][EXEC] step[2] noop (precondition already satisfied); message: precondition already satisfied: already close to (7)
+[FOLBP][EXEC] step[3] <robot dog>(21) -> [grab] <knife>(50)
+[FOLBP][EXEC] runtime failure on step[3]: deterministic_action_not_available:[grab] <knife>(50)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=2 env_steps=2/26
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] oracle plan cap reached (1); re-planning not permitted — failing task.
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=False steps=2
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 2, 'edges': 1, 'failed': 0, 'executed': 2}
+[FOLBP][FINAL] learned_clauses: []
+False
+---------Env:1---Task:13-------------------------
+failure
+steps: 2
+-------------------------------------
+average steps: 2.0
+success rate: 0.0
+successful tasks: None
+failed tasks: [13]

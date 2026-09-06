@@ -1,0 +1,84 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=3 env=env4 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=False lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-no-cdcl seed=0 verify=z3 repair=symbolic max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=8 env_id=4 name=MultiAgent_0 gt_steps=10
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: The <quadrotor>(25) lands on the <coffee table>(31) with the <book>(34) in the <basket>(29).
+[FOLBP][TASK] agents: [('robot arm', 23), ('robot dog', 24), ('quadrotor', 25)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/20
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 8 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[takeoff_from] <lower livingroom floor>(1)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(25) action=[movetowards] <dining table>(30)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(25) action=[land_on] <dining table>(30)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(23) action=[grab] <book>(34)
+[FOLBP][ORACLE]   plan[4]: agent=<robot arm>(23) action=[putinto] <book>(34) into <basket>(29)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(25) action=[takeoff_from] <dining table>(30)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(25) action=[movetowards] <coffee table>(10)
+[FOLBP][ORACLE]   plan[7]: agent=<quadrotor>(25) action=[land_on] <coffee table>(10)
+[FOLBP][FOL] predicates: unary=105 binary=40 nodes=37
+[FOLBP][Z3] UNSAT @ step 7 core=['s7_p1_landable'] missing=[('landable', 10)]
+[FOLBP][R] attempt 1/5 (strategy=symbolic)
+[FOLBP][R] no remediation derivable (no_remediation_for:['s7_p1_landable']); escalating.
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=2 env_steps=0/20
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 8 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[takeoff_from] <lower livingroom floor>(1)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(25) action=[movetowards] <dining table>(30)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(25) action=[land_on] <dining table>(30)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(23) action=[grab] <book>(34)
+[FOLBP][ORACLE]   plan[4]: agent=<robot arm>(23) action=[putinto] <book>(34) into <basket>(29)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(25) action=[takeoff_from] <dining table>(30)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(25) action=[movetowards] <coffee table>(10)
+[FOLBP][ORACLE]   plan[7]: agent=<quadrotor>(25) action=[land_on] <coffee table>(10)
+[FOLBP][FOL] predicates: unary=105 binary=40 nodes=37
+[FOLBP][Z3] UNSAT @ step 7 core=['s7_p1_landable'] missing=[('landable', 10)]
+[FOLBP][R] attempt 1/5 (strategy=symbolic)
+[FOLBP][R] no remediation derivable (no_remediation_for:['s7_p1_landable']); escalating.
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=3 env_steps=0/20
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 8 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(25) action=[takeoff_from] <lower livingroom floor>(1)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(25) action=[movetowards] <dining table>(30)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(25) action=[land_on] <dining table>(30)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(23) action=[grab] <book>(34)
+[FOLBP][ORACLE]   plan[4]: agent=<robot arm>(23) action=[putinto] <book>(34) into <basket>(29)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(25) action=[takeoff_from] <dining table>(30)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(25) action=[movetowards] <coffee table>(10)
+[FOLBP][ORACLE]   plan[7]: agent=<quadrotor>(25) action=[land_on] <coffee table>(10)
+[FOLBP][FOL] predicates: unary=105 binary=40 nodes=37
+[FOLBP][Z3] UNSAT @ step 7 core=['s7_p1_landable'] missing=[('landable', 10)]
+[FOLBP][R] attempt 1/5 (strategy=symbolic)
+[FOLBP][R] no remediation derivable (no_remediation_for:['s7_p1_landable']); escalating.
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=4 env_steps=0/20
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] No progress in 3 consecutive Oracle re-plans; failing task.
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=False steps=0
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 0, 'edges': 0, 'failed': 0, 'executed': 0}
+[FOLBP][FINAL] learned_clauses: []
+False
+---------Env:4---Task:8-------------------------
+failure
+steps: 0
+-------------------------------------
+average steps: 0.0
+success rate: 0.0
+successful tasks: None
+failed tasks: [8]

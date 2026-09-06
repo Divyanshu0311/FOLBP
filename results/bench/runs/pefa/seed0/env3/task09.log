@@ -1,0 +1,288 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Init Env
+[mode=standalone] Running symbolic planner only (no execution bridge)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 9 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:0 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <tableware recycling table>(23) with the <coffee cup>(12) in the <basket>(22).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 20
+['[movetowards] <coffee table>(4)', '[movetowards] <coffee table>(5)', '[movetowards] <sofa>(6)', '[movetowards] <sofa>(7)', '[movetowards] <ottoman>(8)', '[movetowards] <ottoman>(9)', '[movetowards] <coffee cup>(12)', '[movetowards] <paper money>(16)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I will choose action G: [movetowards] <coffee cup>(12).
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+G. [movetowards] <coffee cup>(12)
+==============================================
+
+[movetowards] <coffee cup>(12)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <coffee cup>(12) satisfies Hello <robot dog>(20): #Please movetowards the <coffee cup>(12).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 9 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:1 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <tableware recycling table>(23) with the <coffee cup>(12) in the <basket>(22).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 20
+['[grab] <coffee cup>(12)', '[movetowards] <coffee table>(5)', '[movetowards] <sofa>(6)', '[movetowards] <sofa>(7)', '[movetowards] <ottoman>(8)', '[movetowards] <ottoman>(9)', '[movetowards] <paper money>(16)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <coffee cup>(12)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <coffee cup>(12)
+==============================================
+
+[grab] <coffee cup>(12)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [grab] <coffee cup>(12) satisfies Hello <robot dog>(20): #Please grab the <coffee cup>(12).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 9 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:2 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <tableware recycling table>(23) with the <coffee cup>(12) in the <basket>(22).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[takeoff_from] <tableware recycling table>(23)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <tableware recycling table>(23)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <tableware recycling table>(23)
+==============================================
+
+[takeoff_from] <tableware recycling table>(23)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [takeoff_from] <tableware recycling table>(23) satisfies Hello <quadrotor>(21): #Please take off.#.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 9 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:3 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <tableware recycling table>(23) with the <coffee cup>(12) in the <basket>(22).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <tableware recycling table>(23)', '[movetowards] <restaurant floor>(1)', '[movetowards] <dining table>(2)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(10)', '[movetowards] <bar counter>(11)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <restaurant floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <restaurant floor>(1)
+==============================================
+
+[movetowards] <restaurant floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <restaurant floor>(1) satisfies Hello <quadrotor>(21): #Please movetowards the <restaurant floor>(1).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 9 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:4 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <tableware recycling table>(23) with the <coffee cup>(12) in the <basket>(22).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <restaurant floor>(1)', '[movetowards] <dining table>(2)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(10)', '[movetowards] <bar counter>(11)', '[movetowards] <tableware recycling table>(23)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <restaurant floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <restaurant floor>(1)
+==============================================
+
+[land_on] <restaurant floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [land_on] <restaurant floor>(1) satisfies Hello <quadrotor>(21): #Please land on the <restaurant floor>(1).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 9 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:5 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <tableware recycling table>(23) with the <coffee cup>(12) in the <basket>(22).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 20
+['[puton] <coffee cup>(12) on <coffee table>(4)', '[movetowards] <coffee table>(5)', '[movetowards] <sofa>(6)', '[movetowards] <sofa>(7)', '[movetowards] <ottoman>(8)', '[movetowards] <ottoman>(9)', '[movetowards] <paper money>(16)', '[movetowards] <basket>(22)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+H. [movetowards] <basket>(22)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+H. [movetowards] <basket>(22)
+==============================================
+
+[movetowards] <basket>(22)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <basket>(22) satisfies Hello <robot dog>(20): Please movetowards the <basket>(22).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 9 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:6 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <tableware recycling table>(23) with the <coffee cup>(12) in the <basket>(22).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 20
+['[putinto] <coffee cup>(12) into <basket>(22)', '[movetowards] <coffee table>(4)', '[movetowards] <coffee table>(5)', '[movetowards] <sofa>(6)', '[movetowards] <sofa>(7)', '[movetowards] <ottoman>(8)', '[movetowards] <ottoman>(9)', '[movetowards] <paper money>(16)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [putinto] <coffee cup>(12) into <basket>(22)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [putinto] <coffee cup>(12) into <basket>(22)
+==============================================
+
+[putinto] <coffee cup>(12) into <basket>(22)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [putinto] <coffee cup>(12) into <basket>(22) satisfies Hello <robot dog>(20): Please put the <coffee cup>(12) into the <basket>(22).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 9 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:7 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <tableware recycling table>(23) with the <coffee cup>(12) in the <basket>(22).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[takeoff_from] <restaurant floor>(1)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <restaurant floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <restaurant floor>(1)
+==============================================
+
+[takeoff_from] <restaurant floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [takeoff_from] <restaurant floor>(1) satisfies Hello <quadrotor>(21): #Please take off from the <restaurant floor>(1).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 9 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:8 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <tableware recycling table>(23) with the <coffee cup>(12) in the <basket>(22).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <restaurant floor>(1)', '[movetowards] <dining table>(2)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(10)', '[movetowards] <bar counter>(11)', '[movetowards] <tableware recycling table>(23)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <tableware recycling table>(23)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <tableware recycling table>(23)
+==============================================
+
+[movetowards] <tableware recycling table>(23)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <tableware recycling table>(23) satisfies Hello <quadrotor>(21): #Please movetowards the <tableware recycling table>(23).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 9 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:9 $$$$$$$$$$$$$$$$$$$$$$$
+The <quadrotor>(21) lands on the <tableware recycling table>(23) with the <coffee cup>(12) in the <basket>(22).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <tableware recycling table>(23)', '[movetowards] <restaurant floor>(1)', '[movetowards] <dining table>(2)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(10)', '[movetowards] <bar counter>(11)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <tableware recycling table>(23)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <tableware recycling table>(23)
+==============================================
+
+[land_on] <tableware recycling table>(23)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [land_on] <tableware recycling table>(23) satisfies Hello <quadrotor>(21): #Please land on the <tableware recycling table>(23).#
+==============================================
+
+
+=== Step-by-Step Action Log ===
+  Step  1: <robot dog>(20) -> [movetowards] <coffee cup>(12)
+  Step  2: <robot dog>(20) -> [grab] <coffee cup>(12)
+  Step  3: <quadrotor>(21) -> [takeoff_from] <tableware recycling table>(23)
+  Step  4: <quadrotor>(21) -> [movetowards] <restaurant floor>(1)
+  Step  5: <quadrotor>(21) -> [land_on] <restaurant floor>(1)
+  Step  6: <robot dog>(20) -> [movetowards] <basket>(22)
+  Step  7: <robot dog>(20) -> [putinto] <coffee cup>(12) into <basket>(22)
+  Step  8: <quadrotor>(21) -> [takeoff_from] <restaurant floor>(1)
+  Step  9: <quadrotor>(21) -> [movetowards] <tableware recycling table>(23)
+  Step 10: <quadrotor>(21) -> [land_on] <tableware recycling table>(23)
+  Total steps executed: 10
+True
+---------Env:3---Task:9-------------------------
+success
+steps: 10
+-------------------------------------
+average steps: 10.0
+successful tasks: [9]
+failed tasks: None

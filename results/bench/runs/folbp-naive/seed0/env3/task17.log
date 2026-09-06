@@ -1,0 +1,59 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env3 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=False lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp-naive seed=0 verify=shadow repair=none max_oracle_plans=1 t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=17 env_id=3 name=MultiAgent_0 gt_steps=12
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <cookie>(23) inside the <plastic bag>(24).
+[FOLBP][TASK] agents: [('robot arm', 18), ('robot arm', 19), ('robot dog', 20), ('quadrotor', 21)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/24
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 11 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<quadrotor>(21) action=[takeoff_from] <bar counter>(10)
+[FOLBP][ORACLE]   plan[1]: agent=<quadrotor>(21) action=[movetowards] <coffee table>(5)
+[FOLBP][ORACLE]   plan[2]: agent=<quadrotor>(21) action=[land_on] <coffee table>(5)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(20) action=[movetowards] <cookie>(23)
+[FOLBP][ORACLE]   plan[4]: agent=<robot dog>(20) action=[grab] <cookie>(23)
+[FOLBP][ORACLE]   plan[5]: agent=<robot dog>(20) action=[putinto] <cookie>(23) into <basket>(22)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(21) action=[takeoff_from] <coffee table>(5)
+[FOLBP][ORACLE]   plan[7]: agent=<quadrotor>(21) action=[movetowards] <bar counter>(11)
+[FOLBP][ORACLE]   plan[8]: agent=<quadrotor>(21) action=[land_on] <bar counter>(11)
+[FOLBP][ORACLE]   plan[9]: agent=<robot arm>(19) action=[grab] <cookie>(23)
+[FOLBP][ORACLE]   plan[10]: agent=<robot arm>(19) action=[putinto] <cookie>(23) into <plastic bag>(24)
+[FOLBP][FOL] predicates: unary=75 binary=29 nodes=25
+[FOLBP][Z3] UNSAT @ step 2 core=['s2_p1_landable'] missing=[('landable', 5)]
+[FOLBP][R] repair disabled (shadow mode); returning UNSAT verdict.
+[FOLBP][SHADOW] UNSAT @ step 2 core=['s2_p1_landable'] — executing anyway (--verify shadow)
+[FOLBP][VAL] accepted — all 11 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 11 step(s)
+[FOLBP][EXEC] step[0] <quadrotor>(21) -> [takeoff_from] <bar counter>(10)
+[FOLBP][A] task_graph node=0 verb=takeoff_from agent=21 targets=[10]
+[FOLBP][ENV] step=1 executed=[takeoff_from]<quadrotor>(21) -> action=[takeoff_from] <bar counter>(10) done=False remaining_goals=['inside_<cookie>(23)_<plastic bag>(24)', 'on_<plastic bag>(24)_<bar counter>(11)']
+[FOLBP][EXEC] step[1] <quadrotor>(21) -> [movetowards] <coffee table>(5)
+[FOLBP][EXEC] runtime failure on step[1]: deterministic_action_not_available:[movetowards] <coffee table>(5)
+[FOLBP][CDCL] disabled; skipping learning step
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=2 env_steps=1/24
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] oracle plan cap reached (1); re-planning not permitted — failing task.
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=False steps=1
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 1, 'edges': 0, 'failed': 0, 'executed': 1}
+[FOLBP][FINAL] learned_clauses: []
+False
+---------Env:3---Task:17-------------------------
+failure
+steps: 1
+-------------------------------------
+average steps: 1.0
+success rate: 0.0
+successful tasks: None
+failed tasks: [17]

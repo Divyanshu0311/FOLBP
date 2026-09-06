@@ -1,0 +1,347 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Init Env
+[mode=standalone] Running symbolic planner only (no execution bridge)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:0 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <cookie>(23) inside the <plastic bag>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 20
+['[movetowards] <coffee table>(4)', '[movetowards] <coffee table>(5)', '[movetowards] <sofa>(6)', '[movetowards] <sofa>(7)', '[movetowards] <ottoman>(8)', '[movetowards] <ottoman>(9)', '[movetowards] <paper money>(16)', '[movetowards] <cookie>(23)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I will choose action H: [movetowards] <cookie>(23).
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+H. [movetowards] <cookie>(23)
+==============================================
+
+[movetowards] <cookie>(23)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <cookie>(23) satisfies Hello <robot dog>(20): #Please movetowards the <cookie>(23).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:1 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <cookie>(23) inside the <plastic bag>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 20
+['[grab] <cookie>(23)', '[movetowards] <coffee table>(4)', '[movetowards] <sofa>(6)', '[movetowards] <sofa>(7)', '[movetowards] <ottoman>(8)', '[movetowards] <ottoman>(9)', '[movetowards] <paper money>(16)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <cookie>(23)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [grab] <cookie>(23)
+==============================================
+
+[grab] <cookie>(23)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [grab] <cookie>(23) satisfies Hello <robot dog>(20): Please grab the <cookie>(23).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:2 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <cookie>(23) inside the <plastic bag>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[takeoff_from] <bar counter>(10)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <bar counter>(10)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <bar counter>(10)
+==============================================
+
+[takeoff_from] <bar counter>(10)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [takeoff_from] <bar counter>(10) satisfies Hello <quadrotor>(21): #Please takeoff.#.
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:3 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <cookie>(23) inside the <plastic bag>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <bar counter>(10)', '[movetowards] <restaurant floor>(1)', '[movetowards] <dining table>(2)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(11)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <restaurant floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <restaurant floor>(1)
+==============================================
+
+[movetowards] <restaurant floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <restaurant floor>(1) satisfies Hello <quadrotor>(21): #Please movetowards the <restaurant floor>(1).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:4 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <cookie>(23) inside the <plastic bag>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <restaurant floor>(1)', '[movetowards] <dining table>(2)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(10)', '[movetowards] <bar counter>(11)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <restaurant floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <restaurant floor>(1)
+==============================================
+
+[land_on] <restaurant floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [land_on] <restaurant floor>(1) satisfies Hello <quadrotor>(21): Please land on the <restaurant floor>(1).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:5 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <cookie>(23) inside the <plastic bag>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 20
+['[puton] <cookie>(23) on <coffee table>(5)', '[movetowards] <coffee table>(4)', '[movetowards] <sofa>(6)', '[movetowards] <sofa>(7)', '[movetowards] <ottoman>(8)', '[movetowards] <ottoman>(9)', '[movetowards] <paper money>(16)', '[movetowards] <basket>(22)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+H. [movetowards] <basket>(22)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+H. [movetowards] <basket>(22)
+==============================================
+
+[movetowards] <basket>(22)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <basket>(22) satisfies Hello <robot dog>(20): #Please movetowards the <basket>(22).#
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:6 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <cookie>(23) inside the <plastic bag>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot dog 20
+['[putinto] <cookie>(23) into <basket>(22)', '[movetowards] <coffee table>(4)', '[movetowards] <coffee table>(5)', '[movetowards] <sofa>(6)', '[movetowards] <sofa>(7)', '[movetowards] <ottoman>(8)', '[movetowards] <ottoman>(9)', '[movetowards] <paper money>(16)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I am currently holding the <cookie>(23) and I am close to the <basket>(22). The instruction is to put the <cookie>(23) into the <basket>(22). Action A directly allows me to do this.
+
+A. [putinto] <cookie>(23) into <basket>(22)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+A. [putinto] <cookie>(23) into <basket>(22)
+==============================================
+
+[putinto] <cookie>(23) into <basket>(22)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [putinto] <cookie>(23) into <basket>(22) satisfies Hello <robot dog>(20): Please put the <cookie>(23) into the <basket>(22).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:7 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <cookie>(23) inside the <plastic bag>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[takeoff_from] <restaurant floor>(1)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <restaurant floor>(1)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[takeoff_from] <restaurant floor>(1)
+==============================================
+
+[takeoff_from] <restaurant floor>(1)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [takeoff_from] <restaurant floor>(1) satisfies Hello <quadrotor>(21): Please takeoff from the <restaurant floor>(1).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:8 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <cookie>(23) inside the <plastic bag>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <restaurant floor>(1)', '[movetowards] <dining table>(2)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(10)', '[movetowards] <bar counter>(11)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <bar counter>(11)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[movetowards] <bar counter>(11)
+==============================================
+
+[movetowards] <bar counter>(11)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [movetowards] <bar counter>(11) satisfies Hello <quadrotor>(21): Please movetowards the <bar counter>(11).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:9 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <cookie>(23) inside the <plastic bag>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+quadrotor 21
+['[land_on] <bar counter>(11)', '[movetowards] <restaurant floor>(1)', '[movetowards] <dining table>(2)', '[movetowards] <dining table>(3)', '[movetowards] <bar counter>(10)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <bar counter>(11)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+[land_on] <bar counter>(11)
+==============================================
+
+[land_on] <bar counter>(11)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [land_on] <bar counter>(11) satisfies Hello <quadrotor>(21): Please land on the <bar counter>(11).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:10 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <cookie>(23) inside the <plastic bag>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot arm 19
+['[grab] <beer glass>(14)', '[grab] <beer bottle>(15)', '[open] <cash register>(17)', '[grab] <cookie>(23)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+I can grab the <cookie>(23) from the <basket>(22) because the <quadrotor>(21) with the <basket>(22) is landed on the same <bar counter>(11) where I am located, and the <cookie>(23) is inside the <basket>(22).
+
+My chosen action is:
+D. [grab] <cookie>(23)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+D. [grab] <cookie>(23)
+==============================================
+
+[grab] <cookie>(23)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [grab] <cookie>(23) satisfies Hello <robot arm>(19): Please grab the <cookie>(23) from the <basket>(22).
+==============================================
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@ Task_ID: 17 @@@@@@@@@@@
+$$$$$$$$$$$$$$$$$$$$$$$ Step:11 $$$$$$$$$$$$$$$$$$$$$$$
+Put the <cookie>(23) inside the <plastic bag>(24).
+>>> GEMINI REQUEST
+>>> GEMINI REQUEST
+robot arm 19
+['[puton] <cookie>(23) on <bar counter>(11)', '[putinto] <cookie>(23) into <basket>(22)', '[putinto] <cookie>(23) into <plastic bag>(24)']
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+C. [putinto] <cookie>(23) into <plastic bag>(24)
+==============================================
+
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+YES I CAN.
+C. [putinto] <cookie>(23) into <plastic bag>(24)
+==============================================
+
+[putinto] <cookie>(23) into <plastic bag>(24)
+
+========== GEMINI RAW OUTPUT (PEFA) ==========
+The action I performed [putinto] <cookie>(23) into <plastic bag>(24) satisfies Hello <robot arm>(19): #Please put the <cookie>(23) into the <plastic bag>(24).#
+==============================================
+
+
+=== Step-by-Step Action Log ===
+  Step  1: <robot dog>(20) -> [movetowards] <cookie>(23)
+  Step  2: <robot dog>(20) -> [grab] <cookie>(23)
+  Step  3: <quadrotor>(21) -> [takeoff_from] <bar counter>(10)
+  Step  4: <quadrotor>(21) -> [movetowards] <restaurant floor>(1)
+  Step  5: <quadrotor>(21) -> [land_on] <restaurant floor>(1)
+  Step  6: <robot dog>(20) -> [movetowards] <basket>(22)
+  Step  7: <robot dog>(20) -> [putinto] <cookie>(23) into <basket>(22)
+  Step  8: <quadrotor>(21) -> [takeoff_from] <restaurant floor>(1)
+  Step  9: <quadrotor>(21) -> [movetowards] <bar counter>(11)
+  Step 10: <quadrotor>(21) -> [land_on] <bar counter>(11)
+  Step 11: <robot arm>(19) -> [grab] <cookie>(23)
+  Step 12: <robot arm>(19) -> [putinto] <cookie>(23) into <plastic bag>(24)
+  Total steps executed: 12
+True
+---------Env:3---Task:17-------------------------
+success
+steps: 12
+-------------------------------------
+average steps: 12.0
+successful tasks: [17]
+failed tasks: None

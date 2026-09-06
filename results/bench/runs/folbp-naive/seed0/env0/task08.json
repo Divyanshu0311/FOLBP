@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "arm": "folbp-naive",
+  "seed": 0,
+  "env": "env0",
+  "env_id": 0,
+  "task_id": 8,
+  "task_name": "MultiAgent_0",
+  "goal": [
+    "Put the <socks>(29) on the <bed>(28)."
+  ],
+  "success": false,
+  "gt_steps": 5,
+  "executed_steps": 2,
+  "wall_clock_s": 8.652,
+  "outer_iters": 2,
+  "llm": {
+    "total_calls": 1,
+    "total_errors": 0,
+    "prompt_tokens": 3128,
+    "completion_tokens": 118,
+    "total_tokens": 3246,
+    "llm_latency_s": 8.615,
+    "oracle_calls": 1,
+    "repair_calls": 0,
+    "executor_calls": 0,
+    "judge_calls": 0,
+    "by_role": {
+      "oracle": {
+        "calls": 1,
+        "errors": 0,
+        "prompt_tokens": 3128,
+        "completion_tokens": 118,
+        "latency_s": 8.615
+      },
+      "repair": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "executor": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "judge": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "other": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      }
+    }
+  },
+  "verify": {
+    "mode": "shadow",
+    "z3_checks": 1,
+    "z3_unsat_events": 1,
+    "shadow_unsat_events": 1,
+    "unsat_cores": [
+      {
+        "step_index": 1,
+        "core": [
+          "s1_p1_close"
+        ],
+        "missing": [
+          "('close', 23, 29)"
+        ]
+      }
+    ]
+  },
+  "repair": {
+    "mode": "none",
+    "attempts": 0,
+    "successes": 0,
+    "escalations": 0
+  },
+  "cdcl": {
+    "enabled": false,
+    "clauses_learned": 0,
+    "clauses": []
+  },
+  "failures": [
+    {
+      "kind": "shadow_unsat",
+      "step_index": 1,
+      "detail": "['s1_p1_close']"
+    }
+  ],
+  "manifest": {
+    "git_sha": "17554a52792e302921bbb5e5fd3b4049e25b50d4",
+    "git_dirty": true,
+    "arm": "folbp-naive",
+    "seed": 0,
+    "model": "gemini-2.5-flash",
+    "temperature": 0.0,
+    "flags": {
+      "verify": "shadow",
+      "repair": "none",
+      "cdcl": false,
+      "max_oracle_plans": 1,
+      "max_replan_attempts": 5,
+      "executor_mode": "deterministic"
+    },
+    "timestamp": "2026-08-06T03:33:17+0530",
+    "host": "LAPTOP-3HB7L6DU",
+    "python": "3.10.12",
+    "argv": [
+      "--env",
+      "env0",
+      "--task",
+      "8",
+      "--arm",
+      "folbp-naive",
+      "--seed",
+      "0",
+      "--record_path",
+      "/home/cpp/sc627/COHERENT/results/bench/runs/folbp-naive/seed0/env0/task08.json",
+      "--lm_id",
+      "gemini-2.5-flash",
+      "--t",
+      "0.0",
+      "--api_key",
+      "<redacted>",
+      "--verify",
+      "shadow",
+      "--repair",
+      "none",
+      "--no-cdcl",
+      "--max_oracle_plans",
+      "1",
+      "--executor_mode",
+      "deterministic"
+    ]
+  },
+  "oracle_plans": 1
+}

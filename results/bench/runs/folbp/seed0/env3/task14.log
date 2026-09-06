@@ -1,0 +1,76 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env3 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=True lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp seed=0 verify=z3 repair=symbolic max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=14 env_id=3 name=MultiAgent_0 gt_steps=10
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <cash>(23) into the <cash register>(17).
+[FOLBP][TASK] agents: [('robot arm', 18), ('robot arm', 19), ('robot dog', 20), ('quadrotor', 21)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/20
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 10 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot dog>(20) action=[movetowards] <cash>(23)
+[FOLBP][ORACLE]   plan[1]: agent=<robot dog>(20) action=[grab] <cash>(23)
+[FOLBP][ORACLE]   plan[2]: agent=<robot dog>(20) action=[movetowards] <basket>(22)
+[FOLBP][ORACLE]   plan[3]: agent=<robot dog>(20) action=[putinto] <cash>(23) into <basket>(22)
+[FOLBP][ORACLE]   plan[4]: agent=<quadrotor>(21) action=[takeoff_from] <restaurant floor>(1)
+[FOLBP][ORACLE]   plan[5]: agent=<quadrotor>(21) action=[movetowards] <bar counter>(11)
+[FOLBP][ORACLE]   plan[6]: agent=<quadrotor>(21) action=[land_on] <bar counter>(11)
+[FOLBP][ORACLE]   plan[7]: agent=<robot arm>(19) action=[open] <cash register>(17)
+[FOLBP][ORACLE]   plan[8]: agent=<robot arm>(19) action=[grab] <cash>(23)
+[FOLBP][ORACLE]   plan[9]: agent=<robot arm>(19) action=[putinto] <cash>(23) into <cash register>(17)
+[FOLBP][FOL] predicates: unary=70 binary=28 nodes=24
+[FOLBP][Z3] SAT — all 10 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 10 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 10 step(s)
+[FOLBP][EXEC] step[0] <robot dog>(20) -> [movetowards] <cash>(23)
+[FOLBP][A] task_graph node=0 verb=movetowards agent=20 targets=[23]
+[FOLBP][ENV] step=1 executed=[movetowards]<robot dog>(20) -> action=[movetowards] <cash>(23) done=False remaining_goals=['inside_<cash>(23)_<cash register>(17)']
+[FOLBP][EXEC] step[1] <robot dog>(20) -> [grab] <cash>(23)
+[FOLBP][A] task_graph node=1 verb=grab agent=20 targets=[23]
+[FOLBP][ENV] step=2 executed=[grab]<robot dog>(20) -> action=[grab] <cash>(23) done=False remaining_goals=['inside_<cash>(23)_<cash register>(17)']
+[FOLBP][EXEC] step[2] <robot dog>(20) -> [movetowards] <basket>(22)
+[FOLBP][A] task_graph node=2 verb=movetowards agent=20 targets=[22]
+[FOLBP][ENV] step=3 executed=[movetowards]<robot dog>(20) -> action=[movetowards] <basket>(22) done=False remaining_goals=['inside_<cash>(23)_<cash register>(17)']
+[FOLBP][EXEC] step[3] <robot dog>(20) -> [putinto] <cash>(23) into <basket>(22)
+[FOLBP][A] task_graph node=3 verb=putinto agent=20 targets=[23, 22]
+[FOLBP][ENV] step=4 executed=[putinto]<robot dog>(20) -> action=[putinto] <cash>(23) into <basket>(22) done=False remaining_goals=['inside_<cash>(23)_<cash register>(17)']
+[FOLBP][EXEC] step[4] <quadrotor>(21) -> [takeoff_from] <restaurant floor>(1)
+[FOLBP][A] task_graph node=4 verb=takeoff_from agent=21 targets=[1]
+[FOLBP][ENV] step=5 executed=[takeoff_from]<quadrotor>(21) -> action=[takeoff_from] <restaurant floor>(1) done=False remaining_goals=['inside_<cash>(23)_<cash register>(17)']
+[FOLBP][EXEC] step[5] <quadrotor>(21) -> [movetowards] <bar counter>(11)
+[FOLBP][A] task_graph node=5 verb=movetowards agent=21 targets=[11]
+[FOLBP][ENV] step=6 executed=[movetowards]<quadrotor>(21) -> action=[movetowards] <bar counter>(11) done=False remaining_goals=['inside_<cash>(23)_<cash register>(17)']
+[FOLBP][EXEC] step[6] <quadrotor>(21) -> [land_on] <bar counter>(11)
+[FOLBP][A] task_graph node=6 verb=land_on agent=21 targets=[11]
+[FOLBP][ENV] step=7 executed=[land_on]<quadrotor>(21) -> action=[land_on] <bar counter>(11) done=False remaining_goals=['inside_<cash>(23)_<cash register>(17)']
+[FOLBP][EXEC] step[7] <robot arm>(19) -> [open] <cash register>(17)
+[FOLBP][A] task_graph node=7 verb=open agent=19 targets=[17]
+[FOLBP][ENV] step=8 executed=[open]<robot arm>(19) -> action=[open] <cash register>(17) done=False remaining_goals=['inside_<cash>(23)_<cash register>(17)']
+[FOLBP][EXEC] step[8] <robot arm>(19) -> [grab] <cash>(23)
+[FOLBP][A] task_graph node=8 verb=grab agent=19 targets=[23]
+[FOLBP][ENV] step=9 executed=[grab]<robot arm>(19) -> action=[grab] <cash>(23) done=False remaining_goals=['inside_<cash>(23)_<cash register>(17)']
+[FOLBP][EXEC] step[9] <robot arm>(19) -> [putinto] <cash>(23) into <cash register>(17)
+[FOLBP][A] task_graph node=9 verb=putinto agent=19 targets=[23, 17]
+[FOLBP][ENV] step=10 executed=[putinto]<robot arm>(19) -> action=[putinto] <cash>(23) into <cash register>(17) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=10
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 10, 'edges': 8, 'failed': 0, 'executed': 10}
+[FOLBP][FINAL] learned_clauses: []
+True
+---------Env:3---Task:14-------------------------
+success
+steps: 10
+-------------------------------------
+average steps: 10.0
+success rate: 1.0
+successful tasks: [14]
+failed tasks: None

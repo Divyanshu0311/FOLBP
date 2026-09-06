@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "arm": "folbp-llm-repair",
+  "seed": 0,
+  "env": "env1",
+  "env_id": 1,
+  "task_id": 8,
+  "task_name": "MultiAgent_0",
+  "goal": [
+    "The <quadrotor>(22) lands on the <dining table>(9) with the <bread>(25) in the <basket>(23). The <bread>(25) is originally in the <fridge>(7)."
+  ],
+  "success": true,
+  "gt_steps": 11,
+  "executed_steps": 16,
+  "wall_clock_s": 53.097,
+  "outer_iters": 2,
+  "llm": {
+    "total_calls": 4,
+    "total_errors": 0,
+    "prompt_tokens": 16348,
+    "completion_tokens": 1329,
+    "total_tokens": 17677,
+    "llm_latency_s": 52.769,
+    "oracle_calls": 2,
+    "repair_calls": 2,
+    "executor_calls": 0,
+    "judge_calls": 0,
+    "by_role": {
+      "oracle": {
+        "calls": 2,
+        "errors": 0,
+        "prompt_tokens": 8628,
+        "completion_tokens": 518,
+        "latency_s": 37.628
+      },
+      "repair": {
+        "calls": 2,
+        "errors": 0,
+        "prompt_tokens": 7720,
+        "completion_tokens": 811,
+        "latency_s": 15.141
+      },
+      "executor": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "judge": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "other": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      }
+    }
+  },
+  "verify": {
+    "mode": "z3",
+    "z3_checks": 4,
+    "z3_unsat_events": 2,
+    "shadow_unsat_events": 0,
+    "unsat_cores": [
+      {
+        "step_index": 2,
+        "core": [
+          "s2_p1_close"
+        ],
+        "missing": [
+          "('close', 21, 25)"
+        ]
+      },
+      {
+        "step_index": 6,
+        "core": [
+          "s6_p2_above"
+        ],
+        "missing": [
+          "('above', 22, 9)"
+        ]
+      }
+    ]
+  },
+  "repair": {
+    "mode": "llm",
+    "attempts": 2,
+    "successes": 1,
+    "escalations": 0
+  },
+  "cdcl": {
+    "enabled": true,
+    "clauses_learned": 1,
+    "clauses": [
+      [
+        "robot dog",
+        "movetowards",
+        "dining table",
+        "runtime_rejection"
+      ]
+    ]
+  },
+  "failures": [],
+  "manifest": {
+    "git_sha": "17554a52792e302921bbb5e5fd3b4049e25b50d4",
+    "git_dirty": true,
+    "arm": "folbp-llm-repair",
+    "seed": 0,
+    "model": "gemini-2.5-flash",
+    "temperature": 0.0,
+    "flags": {
+      "verify": "z3",
+      "repair": "llm",
+      "cdcl": true,
+      "max_oracle_plans": 0,
+      "max_replan_attempts": 5,
+      "executor_mode": "deterministic"
+    },
+    "timestamp": "2026-08-08T18:45:35+0530",
+    "host": "LAPTOP-3HB7L6DU",
+    "python": "3.10.12",
+    "argv": [
+      "--env",
+      "env1",
+      "--task",
+      "8",
+      "--arm",
+      "folbp-llm-repair",
+      "--seed",
+      "0",
+      "--record_path",
+      "/home/cpp/sc627/COHERENT/results/bench/runs/folbp-llm-repair/seed0/env1/task08.json",
+      "--lm_id",
+      "gemini-2.5-flash",
+      "--t",
+      "0.0",
+      "--api_key",
+      "<redacted>",
+      "--verify",
+      "z3",
+      "--repair",
+      "llm",
+      "--cdcl",
+      "--executor_mode",
+      "deterministic"
+    ]
+  },
+  "oracle_plans": 2
+}

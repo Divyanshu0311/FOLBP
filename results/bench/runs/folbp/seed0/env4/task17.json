@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "arm": "folbp",
+  "seed": 0,
+  "env": "env4",
+  "env_id": 4,
+  "task_id": 17,
+  "task_name": "MultiAgent_0",
+  "goal": [
+    "The <quadrotor>(25) lands on the <swing table>(16) with the <book>(34) and <bottle of milk>(35) in the <basket>(29). The <swing table>(16) is in the <garden>(5)."
+  ],
+  "success": true,
+  "gt_steps": 13,
+  "executed_steps": 13,
+  "wall_clock_s": 34.395,
+  "outer_iters": 3,
+  "llm": {
+    "total_calls": 3,
+    "total_errors": 0,
+    "prompt_tokens": 12370,
+    "completion_tokens": 594,
+    "total_tokens": 12964,
+    "llm_latency_s": 34.303,
+    "oracle_calls": 3,
+    "repair_calls": 0,
+    "executor_calls": 0,
+    "judge_calls": 0,
+    "by_role": {
+      "oracle": {
+        "calls": 3,
+        "errors": 0,
+        "prompt_tokens": 12370,
+        "completion_tokens": 594,
+        "latency_s": 34.303
+      },
+      "repair": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "executor": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "judge": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "other": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      }
+    }
+  },
+  "verify": {
+    "mode": "z3",
+    "z3_checks": 4,
+    "z3_unsat_events": 1,
+    "shadow_unsat_events": 0,
+    "unsat_cores": [
+      {
+        "step_index": 8,
+        "core": [
+          "s8_p2_above"
+        ],
+        "missing": [
+          "('above', 25, 16)"
+        ]
+      }
+    ]
+  },
+  "repair": {
+    "mode": "symbolic",
+    "attempts": 1,
+    "successes": 1,
+    "escalations": 0
+  },
+  "cdcl": {
+    "enabled": true,
+    "clauses_learned": 2,
+    "clauses": [
+      [
+        "robot dog",
+        "movetowards",
+        "basket",
+        "runtime_rejection"
+      ],
+      [
+        "quadrotor",
+        "movetowards",
+        "swing table",
+        "runtime_rejection"
+      ]
+    ]
+  },
+  "failures": [],
+  "manifest": {
+    "git_sha": "17554a52792e302921bbb5e5fd3b4049e25b50d4",
+    "git_dirty": true,
+    "arm": "folbp",
+    "seed": 0,
+    "model": "gemini-2.5-flash",
+    "temperature": 0.0,
+    "flags": {
+      "verify": "z3",
+      "repair": "symbolic",
+      "cdcl": true,
+      "max_oracle_plans": 0,
+      "max_replan_attempts": 5,
+      "executor_mode": "deterministic"
+    },
+    "timestamp": "2026-08-08T21:54:30+0530",
+    "host": "LAPTOP-3HB7L6DU",
+    "python": "3.10.12",
+    "argv": [
+      "--env",
+      "env4",
+      "--task",
+      "17",
+      "--arm",
+      "folbp",
+      "--seed",
+      "0",
+      "--record_path",
+      "/home/cpp/sc627/COHERENT/results/bench/runs/folbp/seed0/env4/task17.json",
+      "--lm_id",
+      "gemini-2.5-flash",
+      "--t",
+      "0.0",
+      "--api_key",
+      "<redacted>",
+      "--verify",
+      "z3",
+      "--repair",
+      "symbolic",
+      "--cdcl",
+      "--executor_mode",
+      "deterministic"
+    ]
+  },
+  "oracle_plans": 3
+}

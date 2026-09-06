@@ -1,0 +1,52 @@
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[FOLBP][INIT] FOLBP arena ready: agents=4 env=env3 executor_mode=deterministic max_replan_attempts=5 cdcl_enabled=True lm_id=gemini-2.5-flash
+[FOLBP][INIT] arm=folbp seed=0 verify=z3 repair=symbolic max_oracle_plans=unlimited t=0.0
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] task_id=1 env_id=3 name=MultiAgent_0 gt_steps=4
+[FOLBP][TASK] ============================================================
+[FOLBP][TASK] goal: Put the <beer glass>(14) and <beer bottle>(15) on the <tray>(23).
+[FOLBP][TASK] agents: [('robot arm', 18), ('robot arm', 19), ('robot dog', 20), ('quadrotor', 21)]
+[FOLBP][ITER] ============================================================
+[FOLBP][ITER] outer_iter=1 env_steps=0/8
+[FOLBP][ITER] ============================================================
+[FOLBP][ORACLE] requesting full plan (injected_constraints_chars=0)
+[FOLBP][ORACLE] received plan with 4 step(s)
+[FOLBP][ORACLE]   plan[0]: agent=<robot arm>(19) action=[grab] <beer glass>(14)
+[FOLBP][ORACLE]   plan[1]: agent=<robot arm>(19) action=[puton] <beer glass>(14) on <tray>(23)
+[FOLBP][ORACLE]   plan[2]: agent=<robot arm>(19) action=[grab] <beer bottle>(15)
+[FOLBP][ORACLE]   plan[3]: agent=<robot arm>(19) action=[puton] <beer bottle>(15) on <tray>(23)
+[FOLBP][FOL] predicates: unary=72 binary=28 nodes=24
+[FOLBP][Z3] SAT — all 4 step(s) preconditions satisfied
+[FOLBP][VAL] accepted — all 4 step(s) within capability + injected constraints
+[FOLBP][EXEC] mode=deterministic; executing 4 step(s)
+[FOLBP][EXEC] step[0] <robot arm>(19) -> [grab] <beer glass>(14)
+[FOLBP][A] task_graph node=0 verb=grab agent=19 targets=[14]
+[FOLBP][ENV] step=1 executed=[grab]<robot arm>(19) -> action=[grab] <beer glass>(14) done=False remaining_goals=['on_<beer glass>(14)_<tray>(23)', 'on_<beer bottle>(15)_<tray>(23)', 'on_<tray>(23)_<bar counter>(11)']
+[FOLBP][EXEC] step[1] <robot arm>(19) -> [puton] <beer glass>(14) on <tray>(23)
+[FOLBP][A] task_graph node=1 verb=puton agent=19 targets=[14, 23]
+[FOLBP][ENV] step=2 executed=[puton]<robot arm>(19) -> action=[puton] <beer glass>(14) on <tray>(23) done=False remaining_goals=['on_<beer bottle>(15)_<tray>(23)', 'on_<tray>(23)_<bar counter>(11)']
+[FOLBP][EXEC] step[2] <robot arm>(19) -> [grab] <beer bottle>(15)
+[FOLBP][A] task_graph node=2 verb=grab agent=19 targets=[15]
+[FOLBP][ENV] step=3 executed=[grab]<robot arm>(19) -> action=[grab] <beer bottle>(15) done=False remaining_goals=['on_<beer bottle>(15)_<tray>(23)', 'on_<tray>(23)_<bar counter>(11)']
+[FOLBP][EXEC] step[3] <robot arm>(19) -> [puton] <beer bottle>(15) on <tray>(23)
+[FOLBP][A] task_graph node=3 verb=puton agent=19 targets=[15, 23]
+[FOLBP][ENV] step=4 executed=[puton]<robot arm>(19) -> action=[puton] <beer bottle>(15) on <tray>(23) done=True remaining_goals=[]
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] success=True steps=4
+[FOLBP][FINAL] ============================================================
+[FOLBP][FINAL] cdcl: {'clauses_learned': 0, 'distinct_patterns_failed': 0}
+[FOLBP][FINAL] task_graph: {'nodes': 4, 'edges': 3, 'failed': 0, 'executed': 4}
+[FOLBP][FINAL] learned_clauses: []
+True
+---------Env:3---Task:1-------------------------
+success
+steps: 4
+-------------------------------------
+average steps: 4.0
+success rate: 1.0
+successful tasks: [1]
+failed tasks: None
