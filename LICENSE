@@ -1,0 +1,103 @@
+FOLBP — LICENSING NOTICE
+========================
+
+This repository is a fork of COHERENT (https://github.com/MrKeee/COHERENT) and
+therefore contains code under three different sets of terms. Read all three
+sections before redistributing any part of this tree.
+
+Nothing in this file grants you any right to the upstream COHERENT code. The
+MIT grant in Section 1 applies ONLY to the files listed in Section 1.
+
+
+-------------------------------------------------------------------------------
+SECTION 1 — Original FOLBP contributions: MIT License
+-------------------------------------------------------------------------------
+
+The following files and directories are original work by the FOLBP authors and
+are released under the MIT License reproduced at the end of this section:
+
+    src/experiment/FOLBP/
+    src/experiment/FOLBP_hard/
+    src/experiment/bench/
+    src/experiment/orchestrator_common.py
+    tools/
+    turtlebot/
+    crazyflie/
+    mpc.py
+    mpc_ori.py
+    ws_test_server.py
+    setup_env.example.sh
+    OmniGibson/Benchmark/recorder.py
+    OmniGibson/Benchmark/ros_hademo_ws/ros2_env.sh
+    results/bench/
+
+Modifications made by the FOLBP authors to upstream COHERENT files — the ROS 1
+to ROS 2 port, the Gemini LLM backend, and the result instrumentation — are
+likewise offered under the MIT License, but ONLY as to those modifications. The
+underlying upstream files remain governed by Section 2.
+
+    MIT License
+
+    Copyright (c) 2026 Divyanshu Gupta
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+
+-------------------------------------------------------------------------------
+SECTION 2 — Upstream COHERENT: all rights reserved
+-------------------------------------------------------------------------------
+
+    COHERENT: Collaboration of Heterogeneous Multi-Robot System with
+    Large Language Models
+    Copyright (c) 2024 Kehui Liu, Zixin Tang, Dong Wang, Zhigang Wang,
+    Bin Zhao, Xuelong Li
+    https://github.com/MrKeee/COHERENT
+
+The upstream COHERENT repository is published WITHOUT a license. Under default
+copyright law its authors retain all rights, and no permission to use, copy,
+modify, or redistribute their code has been granted to anyone.
+
+This fork exists solely under the forking permission in the GitHub Terms of
+Service (section D.5, "License Grant to Other Users"), which allows public
+GitHub repositories to be viewed and forked WITHIN GitHub. That permission does
+not extend beyond GitHub.
+
+Consequently, everything in this tree that is not listed in Section 1 or covered
+by Section 3 — including the benchmark task definitions under env/ and
+src/experiment/*/env/, the PEFA baseline,
+and the OmniGibson/Benchmark/ integration — remains the property of the COHERENT
+authors and is reproduced here only as necessary to reproduce the published
+comparison.
+
+If you wish to use the COHERENT code outside of GitHub, or under any terms other
+than the GitHub fork permission, you must obtain permission from its authors.
+
+
+-------------------------------------------------------------------------------
+SECTION 3 — OmniGibson: MIT License
+-------------------------------------------------------------------------------
+
+The OmniGibson/ directory is a vendored copy of OmniGibson v0.2.1 by the
+Stanford Vision and Learning Group, distributed under the MIT License. Its full
+text is retained at OmniGibson/LICENSE and governs that subtree, except for the
+FOLBP-authored files under OmniGibson/Benchmark/ listed in Section 1.
+
+The BEHAVIOR-1K dataset and the robot asset bundles are NOT contained in this
+repository. They are downloaded separately and carry their own terms — the
+BEHAVIOR-1K data is subject to its own EULA and is not redistributable here.
