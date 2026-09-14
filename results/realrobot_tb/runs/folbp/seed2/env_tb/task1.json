@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "arm": "folbp",
+  "seed": 2,
+  "env": "env_tb",
+  "env_id": 1,
+  "task_id": 1,
+  "task_name": "TB_BallToDroneBasket_Setpoint",
+  "goal": [
+    "Deliver the <ball>(300) to <setpoint A>(600). The <robot dog>(400) (a TurtleBot with an OpenMANIPULATOR-X arm) and the <drone>(401) both start on the <livingroom floor>(110), and the <ball>(300) is on the <livingroom floor>(110) as well. The <robot dog>(400) cannot fly, so the <ball>(300) must be put into the <basket>(700) the <drone>(401) carries; the <drone>(401) then flies it to <setpoint A>(600) and lands there. The three available landing setpoints are <setpoint A>(600), <setpoint B>(601) and <setpoint C>(602); for this task the drone must land specifically on <setpoint A>(600) and leave the other setpoints untouched."
+  ],
+  "success": true,
+  "gt_steps": 7,
+  "executed_steps": 7,
+  "wall_clock_s": 8.87,
+  "outer_iters": 1,
+  "llm": {
+    "total_calls": 1,
+    "total_errors": 0,
+    "prompt_tokens": 2841,
+    "completion_tokens": 218,
+    "total_tokens": 3059,
+    "llm_latency_s": 8.859,
+    "oracle_calls": 1,
+    "repair_calls": 0,
+    "executor_calls": 0,
+    "judge_calls": 0,
+    "by_role": {
+      "oracle": {
+        "calls": 1,
+        "errors": 0,
+        "prompt_tokens": 2841,
+        "completion_tokens": 218,
+        "latency_s": 8.859
+      },
+      "repair": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "executor": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "judge": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "other": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      }
+    }
+  },
+  "verify": {
+    "mode": "z3",
+    "z3_checks": 1,
+    "z3_unsat_events": 0,
+    "shadow_unsat_events": 0,
+    "unsat_cores": []
+  },
+  "repair": {
+    "mode": "symbolic",
+    "attempts": 0,
+    "successes": 0,
+    "escalations": 0
+  },
+  "cdcl": {
+    "enabled": true,
+    "clauses_learned": 0,
+    "clauses": []
+  },
+  "deadlock": {
+    "termination_reason": "goal_reached",
+    "deadlocked": false,
+    "validator_rejections": 0,
+    "forbidden_rejections": 0,
+    "hard_bans": 0,
+    "forbidden_triples": []
+  },
+  "failures": [],
+  "manifest": {
+    "git_sha": "17554a52792e302921bbb5e5fd3b4049e25b50d4",
+    "git_dirty": true,
+    "arm": "folbp",
+    "seed": 2,
+    "model": "gemini-2.5-flash",
+    "temperature": 0.5,
+    "flags": {
+      "verify": "z3",
+      "repair": "symbolic",
+      "cdcl": true,
+      "nudge": false,
+      "max_oracle_plans": 0,
+      "max_replan_attempts": 5,
+      "executor_mode": "deterministic"
+    },
+    "timestamp": "2026-09-14T18:40:30+0530",
+    "host": "arms",
+    "python": "3.10.13",
+    "argv": [
+      "--env",
+      "env_tb",
+      "--task",
+      "1",
+      "--arm",
+      "folbp",
+      "--seed",
+      "2",
+      "--record_path",
+      "/tmp/claude-1002/-home-admin-Desktop-COHERENT/1e1ce7ab-97ab-418f-9ccf-a93567c48f31/scratchpad/folbp_tb1_seed2.json",
+      "--lm_id",
+      "gemini-2.5-flash",
+      "--t",
+      "0.5",
+      "--verify",
+      "z3",
+      "--repair",
+      "symbolic",
+      "--cdcl",
+      "--executor_mode",
+      "deterministic"
+    ]
+  },
+  "oracle_plans": 1
+}

@@ -1,0 +1,16 @@
+env_tb Task 1 - TB_BallToDroneBasket_Setpoint (real-robot demo scene)
+TurtleBot3 + OpenMANIPULATOR-X ('robot dog' role) puts a ball into the drone's basket;
+the drone takes off, flies to setpoint A and lands. Ground truth: 7 steps.
+gemini-2.5-flash, t=0.5, --mode standalone: this measures the PLANNER-SIDE cost
+(calls / tokens / planning latency) on the real-robot scene graph; actions were
+not dispatched to the hardware in these runs.
+Run 2026-09-14. Records under runs/<arm>/seed<N>/env_tb/task1.json.
+
+arm      n   succ  steps/GT  calls    tokens     plan_lat_s
+-----------------------------------------------------------
+folbp    3   3/3    7.0/7      1.0      3.1k      8.2+-0.7
+pefa     3   3/3    7.0/7     35.0     65.7k    127.3+-2.3
+        per-role calls: oracle=14, executor=14, judge=7  (5 per executed step)
+
+Ratios (PEFA/FOLBP): calls 35.0x, tokens 21.5x, planning latency 15.4x
+Both planners returned exactly the 7 ground-truth steps in every run.

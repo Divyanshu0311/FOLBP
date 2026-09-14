@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "arm": "pefa",
+  "seed": 2,
+  "env": "env_tb",
+  "env_id": 1,
+  "task_id": 1,
+  "task_name": "TB_BallToDroneBasket_Setpoint",
+  "goal": [
+    "Deliver the <ball>(300) to <setpoint A>(600). The <robot dog>(400) (a TurtleBot with an OpenMANIPULATOR-X arm) and the <drone>(401) both start on the <livingroom floor>(110), and the <ball>(300) is on the <livingroom floor>(110) as well. The <robot dog>(400) cannot fly, so the <ball>(300) must be put into the <basket>(700) the <drone>(401) carries; the <drone>(401) then flies it to <setpoint A>(600) and lands there. The three available landing setpoints are <setpoint A>(600), <setpoint B>(601) and <setpoint C>(602); for this task the drone must land specifically on <setpoint A>(600) and leave the other setpoints untouched."
+  ],
+  "success": true,
+  "gt_steps": 7,
+  "executed_steps": 7,
+  "wall_clock_s": 124.148,
+  "outer_iters": null,
+  "llm": {
+    "total_calls": 35,
+    "total_errors": 0,
+    "prompt_tokens": 63454,
+    "completion_tokens": 2112,
+    "total_tokens": 65566,
+    "llm_latency_s": 124.112,
+    "oracle_calls": 14,
+    "repair_calls": 0,
+    "executor_calls": 14,
+    "judge_calls": 7,
+    "by_role": {
+      "oracle": {
+        "calls": 14,
+        "errors": 0,
+        "prompt_tokens": 34941,
+        "completion_tokens": 1397,
+        "latency_s": 71.862
+      },
+      "repair": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      },
+      "executor": {
+        "calls": 14,
+        "errors": 0,
+        "prompt_tokens": 26041,
+        "completion_tokens": 302,
+        "latency_s": 33.606
+      },
+      "judge": {
+        "calls": 7,
+        "errors": 0,
+        "prompt_tokens": 2472,
+        "completion_tokens": 413,
+        "latency_s": 18.645
+      },
+      "other": {
+        "calls": 0,
+        "errors": 0,
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "latency_s": 0.0
+      }
+    }
+  },
+  "verify": {},
+  "repair": {},
+  "cdcl": {},
+  "deadlock": {},
+  "failures": [],
+  "manifest": {
+    "git_sha": "17554a52792e302921bbb5e5fd3b4049e25b50d4",
+    "git_dirty": true,
+    "arm": "pefa",
+    "seed": 2,
+    "model": "gemini-2.5-flash",
+    "temperature": 0.5,
+    "flags": {
+      "mode": "standalone"
+    },
+    "timestamp": "2026-09-14T18:42:26+0530",
+    "host": "arms",
+    "python": "3.10.13",
+    "argv": [
+      "--env",
+      "env_tb",
+      "--task",
+      "1",
+      "--arm",
+      "pefa",
+      "--seed",
+      "2",
+      "--record_path",
+      "/tmp/claude-1002/-home-admin-Desktop-COHERENT/1e1ce7ab-97ab-418f-9ccf-a93567c48f31/scratchpad/pefa_tb1_seed2.json",
+      "--lm_id",
+      "gemini-2.5-flash",
+      "--t",
+      "0.5",
+      "--mode",
+      "standalone"
+    ]
+  }
+}
