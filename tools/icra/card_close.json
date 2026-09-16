@@ -1,0 +1,18 @@
+{
+  "seconds": 9,
+  "eyebrow": "ACROSS THE BENCHMARK",
+  "heading": [
+    "The same plans, for 41× fewer LLM calls"
+  ],
+  "body": [
+    "100 tasks  ·  2 seeds  ·  gemini-2.5-flash  ·  mean ± spread over seeds"
+  ],
+  "mono": [
+    "                       success      LLM calls / task    tokens / task    latency",
+    "   FOLBP  (ours)      97.5 ± 0.7           1.3               6.3k          19.7 s",
+    "   PEFA   (COHERENT)  96.0 ± 0.0          54.1             131.0k         208.0 s",
+    "",
+    "   Execution is unchanged — both dispatch the same actions. The saving is deliberation."
+  ],
+  "note": "Ablations, significance tests and the full tables are in the paper."
+}

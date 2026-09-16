@@ -1,0 +1,184 @@
+{
+  "seconds": 15,
+  "title": "The baseline: a model call at every corrective step",
+  "sub": "COHERENT / PEFA — Liu et al., ICRA 2025 — the strongest published centralized planner for heterogeneous teams",
+  "nodes": {
+    "oracle": {
+      "x": 120,
+      "y": 270,
+      "w": 330,
+      "h": 130,
+      "kind": "llm",
+      "at": 0.6,
+      "label": "Oracle",
+      "note": [
+        "propose the next action",
+        "LLM call"
+      ]
+    },
+    "executor": {
+      "x": 520,
+      "y": 270,
+      "w": 350,
+      "h": 130,
+      "kind": "llm",
+      "at": 2.2,
+      "label": "Robot Executor",
+      "note": [
+        "ground it for this robot",
+        "LLM call"
+      ]
+    },
+    "judge": {
+      "x": 940,
+      "y": 270,
+      "w": 330,
+      "h": 130,
+      "kind": "llm",
+      "at": 3.6,
+      "label": "Judge",
+      "note": [
+        "did that satisfy the instruction?",
+        "LLM call"
+      ]
+    },
+    "env": {
+      "x": 1340,
+      "y": 270,
+      "w": 330,
+      "h": 130,
+      "kind": "env",
+      "at": 5.0,
+      "label": "Environment",
+      "note": [
+        "execute one step,",
+        "return the observation"
+      ]
+    }
+  },
+  "edges": [
+    {
+      "from": "oracle",
+      "to": "executor",
+      "at": 2.2,
+      "kind": "llm"
+    },
+    {
+      "from": "executor",
+      "to": "judge",
+      "at": 3.6,
+      "kind": "llm"
+    },
+    {
+      "from": "judge",
+      "to": "env",
+      "at": 5.0,
+      "kind": "env"
+    },
+    {
+      "at": 6.2,
+      "kind": "bad",
+      "label": "next step — and the next, and the next",
+      "label_at": [
+        640,
+        490
+      ],
+      "path": [
+        [
+          1505,
+          400
+        ],
+        [
+          1505,
+          470
+        ],
+        [
+          285,
+          470
+        ],
+        [
+          285,
+          400
+        ]
+      ]
+    }
+  ],
+  "chips": [
+    {
+      "x": 120,
+      "y": 580,
+      "at": 7.6,
+      "kind": "bad",
+      "text": "5 LLM CALLS PER EXECUTED STEP"
+    },
+    {
+      "x": 120,
+      "y": 660,
+      "at": 9.6,
+      "kind": "learn",
+      "big": true,
+      "text": "54.1"
+    },
+    {
+      "x": 122,
+      "y": 726,
+      "at": 9.6,
+      "kind": "io",
+      "plain": true,
+      "text": "LLM calls / task"
+    },
+    {
+      "x": 520,
+      "y": 660,
+      "at": 10.4,
+      "kind": "learn",
+      "big": true,
+      "text": "131.0k"
+    },
+    {
+      "x": 522,
+      "y": 726,
+      "at": 10.4,
+      "kind": "io",
+      "plain": true,
+      "text": "tokens / task"
+    },
+    {
+      "x": 1000,
+      "y": 660,
+      "at": 11.2,
+      "kind": "learn",
+      "big": true,
+      "text": "211.5 s"
+    },
+    {
+      "x": 1002,
+      "y": 726,
+      "at": 11.2,
+      "kind": "io",
+      "plain": true,
+      "text": "planning latency / task"
+    },
+    {
+      "x": 120,
+      "y": 850,
+      "at": 12.6,
+      "kind": "bad",
+      "text": "COST SCALES WITH THE EXECUTION HORIZON, NOT THE TASK COUNT"
+    }
+  ],
+  "captions": [
+    [
+      0.0,
+      "Closed-loop LLM planners call the model at every corrective step."
+    ],
+    [
+      5.2,
+      "Oracle, executor, judge — five calls to take one step."
+    ],
+    [
+      9.6,
+      "Over the benchmark that is fifty-four calls and two hundred and eleven seconds per task."
+    ]
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "title": "Real-robot demonstration — deliver the ball to setpoint A",
+  "sub": "Success is recorded when the basket touches the table at setpoint A.  Playback 4.6×, identical on both sides; the clock is the recorded demonstration.",
+  "steps": [
+    [
+      "[movetowards] <ball>(300)",
+      "base drives partway, then stops"
+    ],
+    [
+      "[grab] <ball>(300)",
+      "closes the gap, arm picks the ball up"
+    ],
+    [
+      "[movetowards] <basket>(700)",
+      "drives to the drone's slung basket"
+    ],
+    [
+      "[putinto] <ball>(300) into <basket>(700)",
+      "arm drops the ball into the basket"
+    ],
+    [
+      "[takeoff_from] <livingroom floor>(110)",
+      "drone lifts, basket leaves the ground"
+    ],
+    [
+      "[movetowards] <setpoint A>(600)",
+      "flight across the arena"
+    ],
+    [
+      "[land_on] <setpoint A>(600)",
+      "basket touches the table — success"
+    ]
+  ],
+  "left": {
+    "video": "hardware_videos/FOLBP_Hardware.mp4",
+    "label": "FOLBP (ours)",
+    "sub": "1 Oracle call · 3.1k tokens · 8.2 s planning",
+    "cues": [
+      6.0,
+      11.5,
+      27.0,
+      37.0,
+      73.5,
+      76.5,
+      87.5
+    ],
+    "end": 89.4
+  },
+  "right": {
+    "video": "hardware_videos/PEFA_Hardware.mp4",
+    "label": "PEFA  (COHERENT baseline)",
+    "sub": "35 calls · 65.7k tokens · 127.3 s planning",
+    "cues": [
+      18.0,
+      30.0,
+      66.0,
+      100.0,
+      156.0,
+      160.0,
+      179.0
+    ],
+    "end": 183.9
+  },
+  "captions": [
+    [
+      0.0,
+      "On real hardware the TurtleBot must put the ball into the drone's basket."
+    ],
+    [
+      5.2,
+      "Move-towards brings the base partway; the approach finishes inside grab."
+    ],
+    [
+      10.4,
+      "FOLBP already holds all seven steps. PEFA is still deciding."
+    ],
+    [
+      15.7,
+      "FOLBP: ball in the basket, handing over to the drone."
+    ],
+    [
+      20.0,
+      "FOLBP is done — seven of seven, basket down at setpoint A."
+    ],
+    [
+      26.1,
+      "PEFA is still carrying the ball to the basket."
+    ],
+    [
+      33.0,
+      "PEFA's drone lifts off."
+    ],
+    [
+      38.3,
+      "Planning cost: one call against thirty-five, 8.2 seconds against 127."
+    ]
+  ]
+}

@@ -1,46 +1,74 @@
-# FOLBP — First-Order Logic Bounded Planning for Heterogeneous Multi-Robot Systems
+# FOLBP: First-Order Certification and Conflict-Directed Plan Repair for LLM-Based Task Planning in Heterogeneous Multi-Robot Systems
 
-FOLBP is an LLM task planner that puts a **decidable symbolic layer between the
-language model and the robots**. The LLM proposes a plan once; a Z3 encoding of
-first-order preconditions decides whether that plan is executable; UNSAT cores
-drive a symbolic repair; and a CDCL-style conflict store keeps the planner from
-re-proposing an already-refuted action.
+FOLBP is an LLM task planner that puts a **symbolic layer between the
+language model and the robots**. One LLM call proposes a complete multi-robot
+plan; the scene graph is compiled into ground first-order atoms; a forward
+simulator certifies every precondition and the goal, and returns the unsatisfied
+literals of the first infeasible step as a *conflict core*; core-directed repair
+splices in the missing prerequisite with no model call; and conflicts that
+survive are learned under a hard/soft split: invariant capability violations
+become bans, and state-dependent failures become advisories. Certification is a
+membership test over ground atoms, not a search; the Z3 wrapper only labels the
+failing literals.
 
-The baseline is **COHERENT / PEFA** (Liu et al., 2024) — its benchmark, its
+The baseline is **COHERENT / PEFA** (Liu et al., 2024): its benchmark, its
 simulator, and its planner, unmodified except for the LLM backend and result
 instrumentation. This repository is a fork of the COHERENT release; see
 [Relationship to COHERENT](#relationship-to-coherent) for exactly what changed.
 
 ## Results
 
-100 tasks (20 per env × 5 envs), `gemini-2.5-flash` at `temperature=0`, one seed.
-Both FOLBP and PEFA run against the *same* task definitions and the *same* model.
+These are the numbers from the paper (Table II). The setup is all 100 benchmark
+tasks (20 per env × 5 envs) under two models, `gemini-2.5-flash` and
+`gemini-3.1-flash-lite`, at `temperature=0.5` with two repeats, giving 200 runs
+per arm per model and 2800 runs in total. Each value is the mean ± std over the
+two repeats. Success counts all attempted runs: the nine runs that hit the 900 s
+wall-clock budget are scored as failures. Calls and tokens are averaged over
+completed runs.
 
-| arm | success | exec/GT | LLM calls/task | latency (s) |
-|---|---|---|---|---|
-| **FOLBP (full, ours)** | **96/100** | 1.03 | **1.5** | **20.4** |
-| &nbsp;&nbsp;− verification | 85/100 | 1.03 | 2.9 | 30.7 |
-| &nbsp;&nbsp;repair: LLM re-prompt | 93/99 | 1.03 | 4.0 | 59.5 |
-| &nbsp;&nbsp;− CDCL | 94/100 | 1.03 | 2.4 | 25.8 |
-| &nbsp;&nbsp;naive one-shot | 65/100 | 1.02 | 1.0 | 11.1 |
-| COHERENT / PEFA (baseline) | 95/100 | 1.03 | 54.5 | 201.7 |
+**gemini-2.5-flash**
 
-FOLBP matches the baseline's success rate while using **~36× fewer LLM calls**
-and running **~10× faster** (Wilcoxon, n=100, p≈4e-18 on both). The naive
-one-shot arm would have dispatched a physically infeasible action on 53/100
-tasks, which is the soundness case for the symbolic layer.
+| arm | success (%) | exec/GT | LLM calls/task | tokens/task | latency (s) |
+|---|---|---|---|---|---|
+| **FOLBP (full, ours)** | **97.0 ± 0.0** | 1.04 | **1.3** | **6.3k** | **24.1** |
+| &nbsp;&nbsp;− verification | 89.0 ± 1.4 | 1.03 | 1.9 | 8.6k | 20.9 |
+| &nbsp;&nbsp;repair: LLM re-prompt | 96.0 ± 0.0 | 1.03 | 2.1 | 10.2k | 62.3 |
+| &nbsp;&nbsp;− CDCL | 94.5 ± 0.7 | 1.03 | 1.2 | 5.7k | 14.1 |
+| &nbsp;&nbsp;constraints: hard | 92.0 ± 2.8 | 1.03 | 1.4 | 6.8k | 22.5 |
+| &nbsp;&nbsp;naive one-shot | 66.5 ± 7.8 | 1.02 | 1.0 | 4.8k | 11.7 |
+| COHERENT / PEFA (baseline) | 95.5 ± 0.7 | 1.03 | 54.1 | 131.0k | 211.5 |
 
-Full table with paired statistics, per-arm ablations and all 600 per-task records:
+**gemini-3.1-flash-lite**
 
-```
-results/bench/report.txt        # headline table + McNemar / Wilcoxon
-results/bench/table_main.md     # same table, markdown
-results/bench/table_main.tex    # same table, LaTeX
-results/bench/all_tasks.csv     # one row per (arm, seed, env, task)
-results/bench/runs/<arm>/seed0/<env>/task<NN>.json
-```
+| arm | success (%) | exec/GT | LLM calls/task | tokens/task | latency (s) |
+|---|---|---|---|---|---|
+| **FOLBP (full, ours)** | **92.0 ± 2.8** | 1.06 | **2.4** | **13.0k** | **3.8** |
+| &nbsp;&nbsp;− verification | 37.5 ± 0.7 | 1.06 | 4.8 | 22.9k | 7.2 |
+| &nbsp;&nbsp;repair: LLM re-prompt | 65.5 ± 0.7 | 1.06 | 19.7 | 103.9k | 33.9 |
+| &nbsp;&nbsp;− CDCL | 51.0 ± 1.4 | 1.03 | 2.0 | 9.8k | 3.0 |
+| &nbsp;&nbsp;constraints: hard | 69.5 ± 0.7 | 1.04 | 3.4 | 18.1k | 5.4 |
+| &nbsp;&nbsp;naive one-shot | 21.5 ± 2.1 | 1.05 | 1.0 | 4.7k | 1.5 |
+| COHERENT / PEFA (baseline) | 92.5 ± 2.1 | 1.09 | 60.2 | 158.5k | 70.6 |
 
-Regenerate the tables from the committed records without re-running anything:
+FOLBP matches PEFA's success rate under both models while using **25–42× fewer
+LLM calls**, **12–21× fewer tokens** and **9–19× less wall-clock time**:
+
+* On `gemini-2.5-flash` it uses 41.9× fewer calls, 20.9× fewer tokens and 8.8×
+  less latency. The success difference is not significant (McNemar, discordant
+  3–0, p = 0.25), and FOLBP is cheaper on every one of the 200 paired runs.
+* On `gemini-3.1-flash-lite` it uses 24.7× fewer calls, 12.2× fewer tokens and
+  18.8× less latency. Success is a tie (discordant 6–7, p = 1.0).
+
+Symbolic repair beats LLM re-prompting on the same diagnosis. It loses no paired
+task on `gemini-2.5-flash` and wins 59–6 on `gemini-3.1-flash-lite`.
+
+Treating every learned conflict as a hard ban costs 5.0 and 22.5 points of
+success and deadlocks 9 and 23 of 200 runs. The hard/soft split deadlocks none.
+
+The per-task records behind this table come from two gitignored local sweeps
+and are not in this repository. `results/bench/` holds an earlier single-seed
+`temperature=0` sweep on `gemini-2.5-flash`, with 600 per-task records under the
+same schema. Its tables regenerate without re-running anything:
 
 ```bash
 cd src/experiment && python3 -m bench.report
@@ -77,6 +105,39 @@ Regenerate any of them with `tools/record_demo.sh <scene> <framework>`. Raw
 captures (the ~150 MB `sim.mp4` plus per-run logs) stay under `results/videos/`
 and are not committed.
 
+### Real robot
+
+The hardware task pairs a TurtleBot3 carrying an OpenMANIPULATOR-X arm with a
+quadrotor that has a basket slung beneath it. Neither platform can finish it
+alone: the arm puts the object into the drone's basket, and the drone then takes
+off, flies to the delivery setpoint and lands. The ground truth is 7 steps, 4
+for the arm and 3 for the drone. This is `env_tb`, task 1. Both planners ran on
+`gemini-2.5-flash` and returned the 7 ground-truth steps. The planning cost is:
+
+| | LLM calls | tokens | planning latency |
+|---|---|---|---|
+| **FOLBP** | **1** | **3.1k** | **8.2 s** |
+| COHERENT / PEFA | 35 | 65.7k | 127.3 s |
+
+That is 35× fewer calls, 21× fewer tokens and 15.4× less planning latency.
+PEFA's 35 calls are five per executed step: two oracle calls, two
+executor-grounding calls and one judge call. Planner-side records are in
+`results/realrobot_tb/`.
+
+The footage is [FOLBP_Hardware.mp4](hardware_videos/FOLBP_Hardware.mp4) and
+[PEFA_Hardware.mp4](hardware_videos/PEFA_Hardware.mp4). In the recorded
+hardware runs the TurtleBot half ran on the real robot, and the drone's three
+steps were confirmed by an operator through the `manual` transport. Transcripts
+and full provenance are in
+[`results/realrobot_tb/hw_runs/`](results/realrobot_tb/hw_runs/README.md).
+
+### Supplementary video
+
+[folbp_icra2027.mp4](results/icra_video/folbp_icra2027.mp4) is the 3-minute
+paper video, with [subtitles](results/icra_video/folbp_icra2027.srt). The
+`_compact` and `_10mb` files are smaller encodes of the same cut. To rebuild it,
+run `tools/icra_reel.sh`; the shot specs are in `tools/icra/`.
+
 ## API keys
 
 **No key is hardcoded anywhere in this repository.** Every entry point reads it
@@ -111,8 +172,9 @@ python3 bench/sweep.py --report-only
 
 Arms are defined in one place, [`src/experiment/bench/arms.py`](src/experiment/bench/arms.py);
 every FOLBP arm is the same pipeline under different flags
-(`--verify` / `--repair` / `--cdcl` / `--max_oracle_plans`), never a forked copy
-of the code.
+(`--verify` / `--repair` / `--cdcl` / `--max_oracle_plans`). The one exception
+is `constraints: hard`, a one-file fork in `src/experiment/FOLBP_hard/` that
+turns every learned clause into a hard ban.
 
 The PEFA baseline is COHERENT's planner, unchanged apart from the LLM backend
 and result instrumentation:
@@ -134,10 +196,11 @@ This tree is a fork of [COHERENT](https://github.com/MrKeee/COHERENT)
 ([paper](https://arxiv.org/abs/2409.15146) · [video](https://youtu.be/dV1J-VXdEJA)).
 What was changed, and why it does not compromise the baseline comparison:
 
-* **LLM backend.** COHERENT used OpenAI GPT-4; both arms here use
-  `gemini-2.5-flash` at `temperature=0`. The baseline was ported, not
-  reimplemented — PEFA's prompts, its per-step oracle dialogue and its control
-  flow are untouched.
+* **LLM backend.** COHERENT used OpenAI GPT-4. Here both planners use the same
+  Gemini model in every comparison: `gemini-2.5-flash` or
+  `gemini-3.1-flash-lite`, at `temperature=0.5` for the paper's sweeps. The
+  baseline was ported, not reimplemented: PEFA's prompts, its per-step oracle
+  dialogue and its control flow are untouched.
 * **Instrumentation.** `PEFA/main.py` gained a `record_task()` call and an LLM
   call counter so it emits the same per-task JSON record as FOLBP. No planning
   logic was changed.
@@ -147,7 +210,8 @@ What was changed, and why it does not compromise the baseline comparison:
   number ever used; those were dropped so every env has the same shape. Tasks
   0–19 are byte-for-byte the upstream definitions.
 * **Real-robot mode.** PEFA gained `--mode ws` (WebSocket to OmniGibson) and
-  `--mode tb` (HTTP to physical devices) for the hardware demo, alongside
+  `--mode tb` (HTTP to physical devices, or `manual` operator confirmation
+  per agent) for the hardware demo, alongside
   `turtlebot/`, `crazyflie/` and `mpc.py`. The benchmark runs
   `--mode standalone`, which is the original code path.
 * **ROS 1 → ROS 2.** See [ROS 2 notes](#ros-2-notes).
@@ -245,8 +309,9 @@ built on and measured against.
 `@inproceedings` on acceptance.
 ```bibtex
 @unpublished{gupta2026folbp,
-  title  = {FOLBP: Certified Plan Repair and State-Aware Conflict Learning
-            for LLM-Based Heterogeneous Multi-Robot Task Planning},
+  title  = {FOLBP: First-Order Certification and Conflict-Directed Plan
+            Repair for LLM-Based Task Planning in Heterogeneous Multi-Robot
+            Systems},
   author = {Gupta, Divyanshu and Mitra, Anik and Sinha, Arpita},
   note   = {Submitted to the 2027 IEEE International Conference on
             Robotics and Automation (ICRA)},

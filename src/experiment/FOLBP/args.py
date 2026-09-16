@@ -22,14 +22,31 @@ def get_args():
     # Mirrors PEFA/args.py. 'standalone' is the benchmark code path and the default;
     # nothing in results/bench/ is affected by these existing.
     parser.add_argument('--mode', type=str, default='standalone',
-                        choices=['standalone', 'ws'],
+                        choices=['standalone', 'ws', 'tb'],
                         help="Execution mode: 'standalone' runs only the symbolic "
                              "planner (no simulator). 'ws' forwards each executed "
-                             "action to OmniGibson via WebSocket (requires --ws_url).")
+                             "action to OmniGibson via WebSocket (requires --ws_url). "
+                             "'tb' forwards each executed action to physical devices "
+                             "over HTTP (uses --tb_urls if provided, else --tb_url).")
     parser.add_argument('--ws_url', type=str,
                         default=os.environ.get('COHERENT_WS_URL', 'ws://127.0.0.1:8765'),
                         help='WebSocket URL of the OmniGibson bridge. Used when '
                              '--mode=ws. Override with $COHERENT_WS_URL.')
+    parser.add_argument('--tb_url', type=str,
+                        default=os.environ.get('COHERENT_TB_URL', 'http://127.0.0.1:8080'),
+                        help='HTTP URL of a single device bridge (web_client.py), e.g. '
+                             'http://<bot-ip>:8080. Used when --tb_urls is not set. '
+                             'Override with $COHERENT_TB_URL.')
+    parser.add_argument('--tb_urls', type=str, default=None,
+                        help='Path to a JSON file mapping agent class names (lowercase, '
+                             'e.g. "robot dog", "drone") to device targets, for '
+                             'multi-device setups. A target is an http:// bridge URL '
+                             '(POST /execute), a ws:// bridge URL (one JSON frame each '
+                             'way), or the literal "manual" (print the action and wait '
+                             'for the operator to press Enter). When set, overrides '
+                             '--tb_url; each action is routed by the acting agent class.')
+    parser.add_argument('--tb_timeout_s', type=float, default=180.0,
+                        help='Per-action HTTP timeout for the device bridge.')
 
     parser.add_argument('--source', default='gemini', choices=['gemini'],
                         help='LLM backend (only gemini supported).')

@@ -1,0 +1,5 @@
+{
+  "_comment": "Agent class -> device target. http:// = POST /execute on that bridge; 'manual' = print the action and wait for the operator to press Enter.",
+  "robot dog": "http://192.168.0.102:8080",
+  "drone": "manual"
+}

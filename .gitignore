@@ -56,9 +56,14 @@ total_gpt_cost.txt
 # final.mp4, all regenerable with tools/record_demo.sh. The four videos actually
 # referenced by the README live in results/demos/ and ARE committed.
 results/videos/
+# Original hardware captures. hardware_videos/ holds re-encodes under GitHub's
+# 100 MB file limit; the camera originals stay here, locally.
+hardware_videos/raw/
+# Intermediate clips of the ICRA video; tools/icra_reel.sh rebuilds them.
+results/icra_video/segments/
 
-# Abandoned / superseded sweeps. results/bench/ is the authoritative evidence
-# cited by the README; these are intermediate runs kept only locally.
+# Sweeps kept only locally. bench_25flash_fixed/ and bench_lite_probe/ are the
+# records behind the paper's Table II; results/bench/ is the committed earlier sweep.
 results/bench_25flash_fixed/
 results/bench_lite_probe/
 results/bench_multiseed/

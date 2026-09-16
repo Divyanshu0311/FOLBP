@@ -152,3 +152,145 @@ noticeable by shortening the walking stretches.
 
 **`moov atom not found`** — the compositor was still running. It writes the
 container's index on close; wait for the process to exit.
+
+## Hardware footage
+
+`compose_video.py` needs `frames.jsonl` and `events.jsonl` joined on
+`time.time()`. The real-robot runs in `results/realrobot_tb/hw_runs/` have
+neither: the footage came off a camera that never saw the planner, and the
+transcripts record how long each step took but not when it happened. So the
+video is the clock instead.
+
+```bash
+tools/hw_overlay.py --run_dir results/realrobot_tb/hw_runs/20260920-pefa-tb-task1-success_1
+```
+
+With no anchors that just prints the steps and their logged durations. Scrub the
+footage to where an action visibly starts and feed those times back:
+
+```bash
+tools/hw_overlay.py --run_dir results/realrobot_tb/hw_runs/20260920-pefa-tb-task1-success_1 \
+    --anchor 0=4.0 --anchor 4=1:20 --end 2:05 --burn raw.mp4
+```
+
+Output is `overlay.ass` (plus `.srt`) — a checklist that accumulates, green tick
+for done, highlighted for running, dim for pending.
+
+An anchor is never moved. Between two anchors the logged durations set the
+proportions, so `[grab]` at 26.57s takes 26.57s worth of the interval. One
+anchor plus durations already places every cue; more anchors exist because the
+gap between two steps is the planner deliberating and that time was never
+recorded, so a single anchor drifts over a two-minute clip. Anchoring the first
+step of each agent is usually enough.
+
+`20260920-folbp-tb-task1-success_1` predates the timing instrumentation and has
+no durations at all, so its steps fall back to equal shares — anchor it more
+densely, or anchor every step.
+
+Two clips side by side, once each is annotated:
+
+```bash
+ffmpeg -i folbp-annotated.mp4 -i pefa-annotated.mp4 \
+       -filter_complex hstack -c:v libx264 -crf 20 compare.mp4
+```
+
+For the submission reel that is not what runs — `compare_video.py` lays the two
+clips out itself, so the checklist is drawn once at full size underneath both
+panes instead of twice at half size inside them.
+
+# ICRA submission reel
+
+```bash
+tools/icra_reel.sh                  # render everything, then cut
+tools/icra_reel.sh --assemble-only  # re-cut without re-rendering
+```
+
+Output in `results/icra_video/`: the cut at 3:00, a compact encode, a sub-10 MB
+two-pass encode for a tight attachment limit, and the captions as a sidecar
+`.srt`. `--assemble-only` re-cuts from the rendered segments, which is what to
+use when only a card, a caption or the running order changed — the two
+comparison segments are the expensive part.
+
+| # | segment | source | length |
+|---|---------|--------|--------|
+| 1 | title | `icra/card_title.json` | 6s |
+| 2 | the baseline's per-step loop | `icra/slide_loop.json` | 15s |
+| 3 | FOLBP main path | `icra/slide_pipeline.json` | 20s |
+| 4 | repair, dispatch, learn | `icra/slide_repair.json` | 21s |
+| 5 | task 2 + the repair story | `icra/card_sim.json` | 4s |
+| 6 | sim, FOLBP ∥ PEFA | the two `house-*` run dirs | 52s |
+| 7 | real robots | `icra/card_hw.json` | 3s |
+| 8 | hardware, FOLBP ∥ PEFA | `icra/hw_cues.json` | 44s |
+| 9 | results, both models | `icra/slide_results.json` | 15s |
+
+`icra/SCRIPT.md` is the shot script, generated from those same specs, and is
+what to read aloud if the video is ever narrated.
+
+## Slides
+
+`explainer.py` draws slide 1 from boxes in its spec. Slides 3 and 4 do not draw
+anything: they load `paper/fig/architecture.png` — the figure the paper itself
+prints — wash it to 20%, and bring regions back to full colour on a schedule.
+Spotting rather than redrawing is deliberate; a hand-built copy of Fig. 1 would
+drift from the paper the first time either changed, and the reviewer would be
+looking at two versions of the same diagram.
+
+Spot rectangles are normalised to the figure, so they survive a re-render of the
+PDF at a different resolution. They are tuned to fall *between* the arrow
+labels: a rectangle that bisects `certified` leaves half a word bright and half
+washed out, which reads as a rendering fault rather than a highlight.
+
+## Why this does not reuse results/demos
+
+Those composites were paced with `--pace adaptive`, which compresses motion 8x
+and reasoning 1.5x. That is right for watching one run and wrong for showing two
+against each other: it makes FOLBP's 48s against PEFA's 219s look like a **4.5x**
+end-to-end speedup, where the runs' own wall clocks say **1.50x** (331.3s against
+494.9s). Anyone with the repo can recompute that from `frames.jsonl`.
+
+So both comparison segments play at one uniform rate, identical on each side.
+Both house runs captured frames at a steady ~4.55 fps, so `--speed 9.9` — 9.9
+wall-clock seconds per output second — preserves the true ratio. The claim the
+footage actually supports is the call count: **1 against 55**, with execution
+near-identical because both dispatch the same 11 steps.
+
+The `ELAPSED` counter stops at the last planner event, not the last captured
+frame. The recorder keeps rolling a few seconds after the run ends, and counting
+those gives 331s and 495s — numbers that are defensible but appear nowhere in
+the paper. Stopping at the run gives 326s and 490s, which is what §IV-G reports.
+
+## The band
+
+Not a transcript. The left column carries FOLBP's certified plan, complete from
+the moment the Oracle returns, ticking green as each step executes; the right
+column fills in one line at a time as PEFA's executor picks each action, with
+the `LLM CALLS` counter climbing behind it. The counter reads `LLM_CALL` events
+from `bench/llm_meter.py`, same as `compose_video.py`.
+
+The kebab run is worth the segment on its own: the Oracle returns **ten** steps,
+Z3 comes back `UNSAT @ step 2` because the dog is never brought close to the
+kebab, symbolic repair inserts `[movetowards] <kebab>(41)`, and the 11-step plan
+verifies — 11 ms, no second LLM call. It lands 9.1s into a 331s run, which at
+9.9x is over in under a second, so `card_sim.json` states it before the segment
+rather than letting it flash past.
+
+## Hardware cue times
+
+`hw_cues.json` holds seven cue times per side, scrubbed off the footage rather
+than taken from the transcripts. The logged per-step durations do not line up
+with either clip — neither recording is certainly the run its transcript
+describes, and `20260920-folbp-tb-task1-success_1` has no timing block at all.
+The video is the clock, exactly as `hw_overlay.py` assumes.
+
+Both clips run at `--speed 4.6` with no cuts, including the ~30s in each where
+the bot sits while the drone is positioned. Cutting that would have been
+defensible — it is operator time, not planner time — but it is ~30s on both
+sides, and removing it inflates the visible ratio from 2.05x to 2.57x. Leaving
+it in costs 13s of screen time and keeps the two clocks honest.
+
+The rate is 4.6 rather than a rounder number because the reel is pinned to
+exactly 3:00: the hardware segment is where slack is taken from or given back
+when a slide changes length. Changing it means rescaling the cue times in
+`hw_cues.json` by the same factor — they are video seconds, not run seconds —
+and updating the `4.6x` in that file's `sub`, which is the only place a viewer
+is told.

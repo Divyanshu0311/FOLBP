@@ -1,0 +1,10 @@
+{
+  "seconds": 4,
+  "eyebrow": "SIMULATION  ·  OmniGibson / BEHAVIOR-1K",
+  "heading": ["Put the kebab on the grill"],
+  "body": ["house_double_floor_lower  ·  quadrotor + robot dog + robot arm  ·  11 ground-truth steps"],
+  "mono": [
+    "The Oracle returns 10 steps. Z3: UNSAT at step 2 — the dog is never brought close to the <kebab>(41).",
+    "Repair inserts [movetowards] <kebab>(41); the 11-step plan certifies. 11 ms, and no second LLM call."
+  ]
+}

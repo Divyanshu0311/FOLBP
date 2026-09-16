@@ -18,6 +18,7 @@ import copy
 import json
 import os
 import sys
+import time
 import traceback
 from pathlib import Path
 from typing import Any, Dict, List
@@ -58,6 +59,17 @@ class ArenaMP:
         # PEFA uses -- {"agent", "action"} out, {"success", "info"} back.
         self.mode = getattr(args, 'mode', 'standalone')
         self.ws = None
+        self.tb_session = None
+        self.tb_targets = {}
+        self.tb_default_target = None
+        self.tb_ws_conns = {}
+        self.tb_timeout_s = getattr(args, 'tb_timeout_s', 180.0)
+        # Execution timing. manual_wait_s is the operator's own reaction time and is
+        # tracked apart from bridge_s so a run with hand-confirmed steps can still
+        # report a device-only execution figure.
+        self.bridge_s = 0.0
+        self.manual_wait_s = 0.0
+        self.step_timings = []
         self.name_mapping = {}
         if self.mode == 'ws':
             ws_url = getattr(args, 'ws_url', None)
@@ -70,6 +82,61 @@ class ArenaMP:
                 env_data = json.load(f)
             task_ids = getattr(args, 'task', [0])
             self.name_mapping = env_data[task_ids[0]].get('name_mapping', {})
+        elif self.mode == 'tb':
+            # Bridge to the physical devices. Every transport carries the same wire
+            # format as ws -- {"agent", "action"} out, {"success", "info"} back -- so
+            # the planner speaks symbolic names throughout and each device bridge
+            # resolves them against its own objects.json. No name_mapping here: that
+            # is an OmniGibson prim concern.
+            #
+            # A target is routed per acting agent class and may be any of:
+            #   http://host:port  POST /execute            (turtlebot/web_client.py)
+            #   ws://host:port    one JSON frame each way  (websocket bridge)
+            #   manual            print the action, wait for the operator's Enter
+            #
+            # 'manual' exists for a device with no bridge yet: the run blocks until a
+            # human confirms the action happened, then continues to the next step.
+            self.tb_targets = {}
+            self.tb_default_target = None
+            self.tb_ws_conns = {}
+            tb_urls_path = getattr(args, 'tb_urls', None)
+            if tb_urls_path:
+                with open(tb_urls_path) as f:
+                    raw = json.load(f)
+                # Skip metadata keys (anything starting with '_', e.g. "_comment").
+                self.tb_targets = {
+                    k.strip().lower(): self._classify_target(v)
+                    for k, v in raw.items()
+                    if not k.startswith('_') and isinstance(v, str)
+                }
+                print(f'[mode=tb] Device map: '
+                      f'{ {k: f"{t[0]}:{t[1]}" for k, t in self.tb_targets.items()} }',
+                      flush=True)
+            tb_url = getattr(args, 'tb_url', None)
+            if tb_url and not self.tb_targets:
+                self.tb_default_target = self._classify_target(tb_url)
+            if not self.tb_targets and not self.tb_default_target:
+                raise ValueError('--mode=tb requires --tb_url or --tb_urls')
+            if any(kind == 'http' for kind, _ in
+                   list(self.tb_targets.values()) + ([self.tb_default_target]
+                                                     if self.tb_default_target else [])):
+                import requests
+                self.tb_session = requests.Session()
+            # Probe each HTTP endpoint; warn but do not bail -- a device may come up
+            # later. ws targets are connected lazily; manual targets need no probe.
+            probe_targets = list(self.tb_targets.items())
+            if self.tb_default_target and not self.tb_targets:
+                probe_targets.append(('default', self.tb_default_target))
+            for label, (kind, target) in probe_targets:
+                if kind != 'http':
+                    print(f'[mode=tb] {label}: {kind} -> {target}', flush=True)
+                    continue
+                try:
+                    resp = self.tb_session.get(f'{target}/health', timeout=3.0)
+                    print(f'[mode=tb] /health {label} {target}: {resp.json()}', flush=True)
+                except Exception as e:
+                    print(f'[mode=tb] WARNING /health probe failed for {label} {target}: {e}',
+                          flush=True)
 
         self.client = self._build_gemini_client()
         self.sampling_params = {
@@ -483,6 +550,16 @@ class ArenaMP:
         self._log('FINAL', f'cdcl: {self.cdcl.stats()}')
         self._log('FINAL', f'task_graph: {self.task_graph.summary()}')
         self._log('FINAL', f'learned_clauses: {[(c.agent_class, c.verb, c.target_class, c.reason) for c in self.cdcl.clauses]}')
+        # Device time and operator time are reported apart: a run with hand-confirmed
+        # steps carries human reaction time in its wall clock, and quoting that as
+        # execution time would be meaningless.
+        if self.step_timings:
+            for e in self.step_timings:
+                self._log('FINAL', f"  {e['seconds']:>7.2f}s  {e['transport']:<7} "
+                                   f"{e['agent']} -> {e['action']}")
+            self._log('FINAL', f'execution: device {self.bridge_s:.2f}s | '
+                               f'operator {self.manual_wait_s:.2f}s | '
+                               f'total {self.bridge_s + self.manual_wait_s:.2f}s')
         return success, steps, saved_info
 
     # -------------------------------------------------- verification + repair (R)
@@ -826,6 +903,9 @@ class ArenaMP:
         feedback, and the caller feeds it to the CDCL layer. A transport failure
         is not that, and raises instead.
         """
+        if self.mode == 'tb':
+            return self._dispatch_tb(class_name, agent_id, action)
+
         if self.ws is None:
             return True, '', False
 
@@ -868,6 +948,156 @@ class ArenaMP:
         EVENTS.emit('WS_RECV', title='ok' if ok else 'rejected',
                     body=str(result.get('info', '')), success=ok,
                     timed_out=timed_out)
+        return ok, result.get('info', ''), timed_out
+
+    @staticmethod
+    def _classify_target(value):
+        """'http://h:p' / 'ws://h:p' / 'manual' -> (kind, target)."""
+        v = value.strip()
+        low = v.lower()
+        if low in ('manual', 'human', 'operator'):
+            return ('manual', 'operator')
+        if low.startswith(('ws://', 'wss://')):
+            return ('ws', v.rstrip('/'))
+        if low.startswith(('http://', 'https://')):
+            return ('http', v.rstrip('/'))
+        raise ValueError(f'unrecognised device target {value!r} — expected an '
+                         f'http://, ws:// URL or the literal "manual"')
+
+    def _dispatch_tb(self, class_name, agent_id, action):
+        """Route one grounded action to whichever bridge owns this agent class.
+
+        Routing is by acting agent class ("robot dog" -> the TurtleBot bridge,
+        "drone" -> its own), so one task can span devices on different transports.
+        Every transport returns (ok, info, timed_out) with the same meaning: ok=False
+        is real physical feedback and flows to the CDCL layer, while a transport
+        failure raises instead -- learning a clause from a dead socket would poison
+        the rest of the run.
+        """
+        target = self.tb_targets.get(class_name.strip().lower())
+        if target is None and not self.tb_targets:
+            target = self.tb_default_target
+        if target is None:
+            # A missing route is a configuration error, not the world pushing back.
+            raise RuntimeError(f'no device target registered for agent class {class_name!r}')
+
+        kind, endpoint = target
+        agent_label = f'{class_name}({agent_id})'
+        _t_step = time.time()
+        try:
+            if kind == 'http':
+                return self._dispatch_http(agent_label, endpoint, action)
+            if kind == 'ws':
+                return self._dispatch_device_ws(agent_label, endpoint, action)
+            return self._dispatch_manual(agent_label, action)
+        finally:
+            # finally, not a trailing statement: a transport failure raises, and an
+            # aborted step still consumed real time worth recording.
+            _dt = time.time() - _t_step
+            if kind == 'manual':
+                self.manual_wait_s += _dt
+            else:
+                self.bridge_s += _dt
+            self.step_timings.append({
+                'agent': agent_label, 'action': action,
+                'transport': kind, 'seconds': round(_dt, 2),
+            })
+            self._log('TB', f'step took {_dt:.2f}s ({kind})')
+
+    def _dispatch_http(self, agent_label, url, action):
+        """POST /execute and block until the bridge answers (web_client.py)."""
+        payload = {'agent': agent_label, 'action': action}
+        self._log('TB', f'send -> {url} {json.dumps(payload)}')
+        EVENTS.emit('WS_SEND', title=agent_label, body=action)
+        try:
+            resp = self.tb_session.post(f'{url}/execute', json=payload,
+                                        timeout=self.tb_timeout_s)
+            result = resp.json()
+        except Exception as e:
+            self._log('TB', f'transport error: {e} — aborting, the bridge is gone')
+            EVENTS.emit('WS_RECV', title='transport error', body=str(e), success=False)
+            raise RuntimeError(f'tb_transport_error: {e}')
+        return self._tb_result(result)
+
+    def _dispatch_device_ws(self, agent_label, url, action):
+        """Send one JSON frame to a device's websocket bridge and await its reply.
+
+        The connection is opened on first use and kept for the rest of the run, so
+        the device sees one session rather than a reconnect per action.
+        """
+        conn = self.tb_ws_conns.get(url)
+        if conn is None:
+            import websocket
+            try:
+                conn = websocket.create_connection(url, timeout=self.tb_timeout_s)
+            except Exception as e:
+                self._log('TB', f'cannot connect to {url}: {e}')
+                EVENTS.emit('WS_RECV', title='transport error', body=str(e), success=False)
+                raise RuntimeError(f'tb_transport_error: connect {url}: {e}')
+            self.tb_ws_conns[url] = conn
+            self._log('TB', f'connected to {url}')
+
+        msg = json.dumps({'agent': agent_label, 'action': action})
+        self._log('TB', f'send -> {url} {msg}')
+        EVENTS.emit('WS_SEND', title=agent_label, body=action)
+        try:
+            conn.send(msg)
+            raw = conn.recv()
+        except Exception as e:
+            self._log('TB', f'transport error: {e} — aborting, the bridge is gone')
+            EVENTS.emit('WS_RECV', title='transport error', body=str(e), success=False)
+            raise RuntimeError(f'tb_transport_error: {e}')
+        try:
+            result = json.loads(raw)
+        except Exception:
+            self._log('TB', f'unparseable reply from {url}: {str(raw)[:200]}')
+            EVENTS.emit('WS_RECV', title='bad reply', body=str(raw)[:200], success=False)
+            raise RuntimeError(f'bad_json_from_server: {str(raw)[:200]}')
+        return self._tb_result(result)
+
+    def _dispatch_manual(self, agent_label, action):
+        """Print the action and block until the operator reports the outcome.
+
+        Enter means the action happened, so the planner advances. 'f <reason>' is a
+        genuine failure report and reaches the CDCL layer exactly as a bridge
+        rejection would, which is the only way a human-driven device can teach the
+        planner anything. 'a' aborts the run.
+        """
+        self._log('TB', f'manual -> {agent_label} {action}')
+        EVENTS.emit('WS_SEND', title=agent_label, body=action)
+        banner = ('\n' + '=' * 68 + '\n'
+                  f'  MANUAL STEP — {agent_label}\n'
+                  f'  {action}\n' + '=' * 68 + '\n'
+                  '  [Enter] done   |   f <reason> failed   |   a abort\n> ')
+        try:
+            reply = input(banner).strip()
+        except EOFError:
+            # No operator attached (piped stdin, nohup). Blocking forever or silently
+            # passing would both be worse than saying so.
+            raise RuntimeError('manual transport needs an interactive terminal '
+                               '(stdin is closed) — run it in a real tty')
+        except KeyboardInterrupt:
+            raise RuntimeError('manual transport: aborted by operator')
+
+        low = reply.lower()
+        if low in ('a', 'abort', 'q', 'quit'):
+            raise RuntimeError('manual transport: aborted by operator')
+        if low.startswith('f'):
+            reason = reply[1:].strip(' :') or 'operator reported failure'
+            self._log('TB', f'manual FAILED: {reason}')
+            EVENTS.emit('WS_RECV', title='rejected', body=reason, success=False)
+            return False, reason, False
+        self._log('TB', 'manual confirmed')
+        EVENTS.emit('WS_RECV', title='ok', body='operator confirmed', success=True)
+        return True, 'operator confirmed', False
+
+    def _tb_result(self, result):
+        """Shared decoding of a bridge reply into (ok, info, timed_out)."""
+        self._log('TB', f'recv {json.dumps(result)}')
+        ok = bool(result.get('success', False))
+        timed_out = bool(result.get('timed_out', False))
+        EVENTS.emit('WS_RECV', title='ok' if ok else 'rejected',
+                    body=str(result.get('info', '')), success=ok, timed_out=timed_out)
         return ok, result.get('info', ''), timed_out
 
     def _dispatch_with_retry(self, class_name, agent_id, action):

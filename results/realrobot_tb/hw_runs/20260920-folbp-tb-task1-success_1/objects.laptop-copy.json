@@ -1,0 +1,10 @@
+{
+  "_comment": "Physical positions for objects the TurtleBot can reach. Distances in cm, angles in degrees, in the bot's local frame (origin = pose at localization start). 'visual_servo' flag controls whether the final approach uses the camera (red mask) — set false for non-red targets so the bot doesn't hang waiting to see red.",
+
+  "red object(300)":     {"x_cm": 100, "y_cm": -100, "theta_deg": -90, "visual_servo": true},
+  "kitchen table(200)":  {"x_cm":  60, "y_cm":   60, "theta_deg":   0, "visual_servo": false},
+
+  "_comment_task1": "Task 1 (TB_BallToDroneBasket_Setpoint) addresses the payload as ball(300) and the drone's basket as basket(700). POSITIONS BELOW ARE PLACEHOLDERS — set them to where the ball and the parked drone actually are before running on hardware.",
+  "ball(300)":           {"x_cm": 100, "y_cm": 0, "theta_deg": 0, "visual_servo": true},
+  "basket(700)":         {"x_cm":  200, "y_cm": 0, "theta_deg": 0, "visual_servo": false}
+}

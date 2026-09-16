@@ -29,8 +29,11 @@ def get_args():
                          'Override with $COHERENT_TB_URL. Used when --tb_urls is not set.')
     parser.add_argument('--tb_urls', type=str, default=None,
                     help='Path to a JSON file mapping agent class names (lowercase, e.g. '
-                         '"robot dog") to TB URLs, for multi-device setups. When set, '
-                         'overrides --tb_url; PEFA routes each action by class_name.')
+                         '"robot dog") to device targets, for multi-device setups. A '
+                         'target is an http:// bridge URL (POST /execute) or the literal '
+                         '"manual" (print the action and wait for the operator to press '
+                         'Enter). When set, overrides --tb_url; PEFA routes each action '
+                         'by class_name.')
     parser.add_argument('--tb_timeout_s', type=float, default=180.0,
                     help='Per-action HTTP timeout for the TurtleBot bridge.')
     parser.add_argument('--task', type=int, default=[0], nargs='+',

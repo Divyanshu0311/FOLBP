@@ -1,0 +1,136 @@
+1
+00:00:06,000 --> 00:00:11,200
+Closed-loop LLM planners call the model at every corrective step.
+
+2
+00:00:11,200 --> 00:00:15,600
+Oracle, executor, judge — five calls to take one step.
+
+3
+00:00:15,600 --> 00:00:21,000
+Over the benchmark that is fifty-four calls and two hundred and eleven seconds per task.
+
+4
+00:00:21,000 --> 00:00:23,600
+FOLBP restructures the loop around a symbolic core.
+
+5
+00:00:23,600 --> 00:00:27,600
+One LLM call proposes the complete multi-robot plan.
+
+6
+00:00:27,600 --> 00:00:31,400
+The scene graph compiles to ground first-order atoms, with no model involved.
+
+7
+00:00:31,400 --> 00:00:35,800
+Certification forward-simulates the plan and checks every precondition.
+
+8
+00:00:35,800 --> 00:00:38,600
+A validator checks it against each platform's declared capabilities.
+
+9
+00:00:38,600 --> 00:00:41,000
+Execution is a dispatch table. Only one block here is a language model.
+
+10
+00:00:41,000 --> 00:00:44,400
+Certification returns the unsatisfied literals as a conflict core.
+
+11
+00:00:44,400 --> 00:00:48,000
+Bounded repair splices in the prerequisite — with no model call.
+
+12
+00:00:48,000 --> 00:00:51,200
+Only conflicts no insertion can fix reach the proposer again.
+
+13
+00:00:51,200 --> 00:00:54,800
+Once certified and validated, the plan is dispatched — in simulation, or to the robots.
+
+14
+00:00:54,800 --> 00:00:58,400
+Reach the goal and the run is finished.
+
+15
+00:00:58,400 --> 00:01:02,000
+A runtime rejection is learned instead, and shapes the next proposal.
+
+16
+00:01:06,000 --> 00:01:10,000
+Both planners get the same scene graph and the same goal.
+
+17
+00:01:10,000 --> 00:01:15,000
+FOLBP's plan is certified before the first step runs.
+
+18
+00:01:15,000 --> 00:01:22,000
+PEFA decides one step at a time — five calls each.
+
+19
+00:01:22,000 --> 00:01:30,000
+FOLBP has not called the model since the plan was certified.
+
+20
+00:01:30,000 --> 00:01:39,000
+Same robots, same eleven steps. Only the deliberation differs.
+
+21
+00:01:39,000 --> 00:01:46,000
+FOLBP: eleven of eleven, 326 seconds, one LLM call.
+
+22
+00:01:46,000 --> 00:01:54,000
+PEFA is still executing.
+
+23
+00:01:54,000 --> 00:01:58,000
+PEFA: the same eleven steps, 490 seconds, fifty-five calls.
+
+24
+00:02:01,000 --> 00:02:06,200
+On real hardware the TurtleBot must put the ball into the drone's basket.
+
+25
+00:02:06,200 --> 00:02:11,400
+Move-towards brings the base partway; the approach finishes inside grab.
+
+26
+00:02:11,400 --> 00:02:16,700
+FOLBP already holds all seven steps. PEFA is still deciding.
+
+27
+00:02:16,700 --> 00:02:21,000
+FOLBP: ball in the basket, handing over to the drone.
+
+28
+00:02:21,000 --> 00:02:27,100
+FOLBP is done — seven of seven, basket down at setpoint A.
+
+29
+00:02:27,100 --> 00:02:34,000
+PEFA is still carrying the ball to the basket.
+
+30
+00:02:34,000 --> 00:02:39,300
+PEFA's drone lifts off.
+
+31
+00:02:39,300 --> 00:02:45,034
+Planning cost: one call against thirty-five, 8.2 seconds against 127.
+
+32
+00:02:45,034 --> 00:02:50,234
+Across one hundred tasks and two models, success matches.
+
+33
+00:02:50,234 --> 00:02:55,234
+The cost does not: twenty-five to forty-two times fewer calls.
+
+34
+00:02:55,234 --> 00:03:00,034
+Twelve to twenty-one times fewer tokens, and nine to nineteen times lower latency.
+

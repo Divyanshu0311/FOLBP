@@ -56,7 +56,15 @@ class ArenaMP(object):
         self.name_mapping = {}
         self.tb_url = None
         self.tb_session = None
+        self.tb_targets = {}
+        self.tb_default_target = None
         self.tb_timeout_s = float(getattr(args, 'tb_timeout_s', 180.0))
+        # Execution timing. manual_wait_s is the operator's own reaction time and is
+        # tracked apart from bridge_s so a run with hand-confirmed steps can still
+        # report a device-only execution figure.
+        self.bridge_s = 0.0
+        self.manual_wait_s = 0.0
+        self.step_timings = []
         self.mode = getattr(args, 'mode', 'standalone')
 
         if self.mode == 'ws':
@@ -78,35 +86,42 @@ class ArenaMP(object):
             # Build a class_name -> URL map. Two sources: a JSON file (preferred for
             # multi-device) or the single --tb_url fallback used when the map is empty
             # / has no entry for the requested class.
-            self.tb_url_map = {}
-            self.tb_default_url = None
+            # A target is routed per acting agent class and may be an http:// bridge
+            # URL (POST /execute) or the literal "manual" — print the action and wait
+            # for an operator to press Enter. 'manual' covers a device with no bridge
+            # yet; the run blocks until a human confirms the action happened.
             tb_urls_path = getattr(args, 'tb_urls', None)
             if tb_urls_path:
                 with open(tb_urls_path) as f:
                     raw = json.load(f)
                 # Skip metadata keys (anything starting with '_', e.g. "_comment").
-                self.tb_url_map = {
-                    k.strip().lower(): v.rstrip('/')
+                self.tb_targets = {
+                    k.strip().lower(): self._classify_target(v)
                     for k, v in raw.items()
                     if not k.startswith('_') and isinstance(v, str)
                 }
-                print(f"[mode=tb] Multi-device map: {self.tb_url_map}")
+                print(f"[mode=tb] Device map: "
+                      f"{ {k: f'{t[0]}:{t[1]}' for k, t in self.tb_targets.items()} }")
             tb_url = getattr(args, 'tb_url', None)
-            if tb_url:
-                self.tb_default_url = tb_url.rstrip('/')
-            if not self.tb_url_map and not self.tb_default_url:
+            if tb_url and not self.tb_targets:
+                self.tb_default_target = self._classify_target(tb_url)
+            if not self.tb_targets and not self.tb_default_target:
                 raise ValueError("--mode=tb requires --tb_url or --tb_urls")
 
-            # Probe each known endpoint; warn but don't bail — bots may come up later.
-            probe_targets = list(self.tb_url_map.items())
-            if self.tb_default_url and not self.tb_url_map:
-                probe_targets.append(('default', self.tb_default_url))
-            for label, url in probe_targets:
+            # Probe each HTTP endpoint; warn but don't bail — bots may come up later.
+            # manual targets need no probe.
+            probe_targets = list(self.tb_targets.items())
+            if self.tb_default_target and not self.tb_targets:
+                probe_targets.append(('default', self.tb_default_target))
+            for label, (kind, target) in probe_targets:
+                if kind != 'http':
+                    print(f"[mode=tb] {label}: {kind} -> {target}")
+                    continue
                 try:
-                    resp = self.tb_session.get(f"{url}/health", timeout=3.0)
-                    print(f"[mode=tb] /health {label} {url}: {resp.json()}")
+                    resp = self.tb_session.get(f"{target}/health", timeout=3.0)
+                    print(f"[mode=tb] /health {label} {target}: {resp.json()}")
                 except Exception as e:
-                    print(f"[mode=tb] WARNING /health probe failed for {label} {url}: {e}")
+                    print(f"[mode=tb] WARNING /health probe failed for {label} {target}: {e}")
         else:
             print("[mode=standalone] Running symbolic planner only (no execution bridge)")
 
@@ -446,25 +461,28 @@ class ArenaMP(object):
                                 body=str(result_obj.get('info', '')),
                                 success=bool(sim_success))
 
-                # ---- HTTP bridge to TurtleBot web_client.py ----
-                elif self.tb_session and (self.tb_url_map or self.tb_default_url):
+                # ---- Device bridge: HTTP to web_client.py, or a manual confirm ----
+                elif self.tb_targets or self.tb_default_target:
                     bridge_label = "TB"
-                    # Resolve which physical device to send this action to. The map is
-                    # keyed by class_name (lowercased). Fall back to --tb_url only when
-                    # the map is empty (single-device mode).
-                    target_url = self.tb_url_map.get(class_name.strip().lower())
-                    if target_url is None and not self.tb_url_map:
-                        target_url = self.tb_default_url
-                    if target_url is None:
+                    # Resolve which device owns this action. The map is keyed by
+                    # class_name (lowercased). Fall back to --tb_url only when the map
+                    # is empty (single-device mode).
+                    target = self.tb_targets.get(class_name.strip().lower())
+                    if target is None and not self.tb_targets:
+                        target = self.tb_default_target
+                    agent_label = f"{class_name}({real_id})"
+                    _t_step = time.time()
+                    kind = target[0] if target else None
+                    if target is None:
                         result_obj = {
                             "success": False,
-                            "info": f"no TB URL registered for agent class {class_name!r}",
+                            "info": f"no device target registered for agent class {class_name!r}",
                         }
+                    elif kind == 'manual':
+                        result_obj = self._manual_confirm(agent_label, agent_action)
                     else:
-                        payload = {
-                            "agent": f"{class_name}({real_id})",
-                            "action": agent_action,
-                        }
+                        target_url = target[1]
+                        payload = {"agent": agent_label, "action": agent_action}
                         print(f"[TB SEND -> {target_url}] {payload}")
                         self.write_log_to_file(f"[TB SEND -> {target_url}] {json.dumps(payload)}")
                         try:
@@ -476,8 +494,18 @@ class ArenaMP(object):
                             result_obj = resp.json()
                         except Exception as e:
                             result_obj = {"success": False, "info": f"http_error: {e}"}
-                    print(f"[TB RECV] {result_obj}")
-                    self.write_log_to_file(f"[TB RECV] {json.dumps(result_obj)}")
+                    _dt = time.time() - _t_step
+                    if kind == 'manual':
+                        self.manual_wait_s += _dt
+                    else:
+                        self.bridge_s += _dt
+                    self.step_timings.append({
+                        "agent": agent_label, "action": agent_action,
+                        "transport": kind or "unrouted", "seconds": round(_dt, 2),
+                    })
+                    print(f"[TB RECV] {result_obj}  ({_dt:.1f}s, {kind or 'unrouted'})")
+                    self.write_log_to_file(
+                        f"[TB RECV] {json.dumps(result_obj)} ({_dt:.2f}s, {kind or 'unrouted'})")
                     sim_success = bool(result_obj.get("success", False))
 
                 # If a bridge ran and reported failure, log it and let the LLM retry.
@@ -523,6 +551,49 @@ class ArenaMP(object):
         self.write_log_to_file(f"\nDIALOGUE_HISTORY:\n{self.dialogue_history}")
         steps = self.env.steps
         return (done, task_results, satisfied, unsatisfied, id_list, agent_action, agent_message, steps)
+
+    @staticmethod
+    def _classify_target(value):
+        """'http://h:p' -> ('http', url); 'manual' -> ('manual', 'operator')."""
+        v = value.strip()
+        low = v.lower()
+        if low in ('manual', 'human', 'operator'):
+            return ('manual', 'operator')
+        if low.startswith(('http://', 'https://')):
+            return ('http', v.rstrip('/'))
+        raise ValueError(f"unrecognised device target {value!r} — expected an "
+                         f"http:// URL or the literal \"manual\"")
+
+    def _manual_confirm(self, agent_label, action):
+        """Print the action and block until the operator reports the outcome.
+
+        Enter means it happened, so the planner advances. 'f <reason>' is a genuine
+        failure report and reaches the retry path exactly as a bridge rejection
+        would, which is the only way a hand-driven device can push back. 'a' aborts.
+        """
+        self.write_log_to_file(f"[TB MANUAL] {agent_label} {action}")
+        EVENTS.emit('WS_SEND', title=agent_label, body=action)
+        banner = ('\n' + '=' * 68 + '\n'
+                  f'  MANUAL STEP — {agent_label}\n'
+                  f'  {action}\n' + '=' * 68 + '\n'
+                  '  [Enter] done   |   f <reason> failed   |   a abort\n> ')
+        try:
+            reply = input(banner).strip()
+        except EOFError:
+            # No operator attached (piped stdin, nohup). Blocking forever or silently
+            # passing would both be worse than saying so.
+            raise RuntimeError('manual transport needs an interactive terminal '
+                               '(stdin is closed) — run it in a real tty')
+        except KeyboardInterrupt:
+            raise RuntimeError('manual transport: aborted by operator')
+
+        low = reply.lower()
+        if low in ('a', 'abort', 'q', 'quit'):
+            raise RuntimeError('manual transport: aborted by operator')
+        if low.startswith('f'):
+            reason = reply[1:].strip(' :') or 'operator reported failure'
+            return {"success": False, "info": f"manual: {reason}"}
+        return {"success": True, "info": "manual: operator confirmed"}
 
     def run(self):
         self.task_goal = copy.deepcopy(self.env.task_goal)
@@ -596,6 +667,23 @@ class ArenaMP(object):
             print(line)
         self.write_log_to_file(f"  Total steps executed: {len(self.step_action_log)}")
         print(f"  Total steps executed: {len(self.step_action_log)}")
+
+        # Execution timing. Device time and operator time are reported apart: a run
+        # with hand-confirmed steps has human reaction time in its wall clock, and
+        # quoting that as execution time would be meaningless.
+        if self.step_timings:
+            self.write_log_to_file("\n=== Execution Timing ===")
+            print("\n=== Execution Timing ===")
+            for e in self.step_timings:
+                line = (f"  {e['seconds']:>7.2f}s  {e['transport']:<7} "
+                        f"{e['agent']} -> {e['action']}")
+                self.write_log_to_file(line)
+                print(line)
+            total = self.bridge_s + self.manual_wait_s
+            summary = (f"  device {self.bridge_s:.2f}s | operator {self.manual_wait_s:.2f}s "
+                       f"| total {total:.2f}s")
+            self.write_log_to_file(summary)
+            print(summary)
 
         if saved_info:
             saved_info[steps - 1]["is_finished"] = success

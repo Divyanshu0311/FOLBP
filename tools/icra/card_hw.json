@@ -1,0 +1,7 @@
+{
+  "seconds": 3,
+  "eyebrow": "REAL ROBOTS",
+  "heading": ["Deliver the ball to setpoint A"],
+  "body": ["TurtleBot3 + OpenMANIPULATOR-X and a quadrotor carrying a slung basket  ·  7 ground-truth steps"],
+  "mono": ["Success is recorded when the basket touches the table at setpoint A."]
+}

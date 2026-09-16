@@ -1,0 +1,130 @@
+{
+  "seconds": 20,
+  "title": "FOLBP — one LLM call, then a decision procedure",
+  "sub": "Fig. 1, main path. Exactly one block in this pipeline is a language model.",
+  "image": {
+    "path": "paper/fig/architecture.png",
+    "x": 120,
+    "y": 118,
+    "w": 1680,
+    "wash": 0.82
+  },
+  "spots": [
+    {
+      "rect": [
+        0.03,
+        0.17,
+        0.165,
+        0.5
+      ],
+      "at": 0.6,
+      "kind": "io"
+    },
+    {
+      "rect": [
+        0.168,
+        0.17,
+        0.318,
+        0.36
+      ],
+      "at": 2.6,
+      "kind": "llm"
+    },
+    {
+      "rect": [
+        0.168,
+        0.355,
+        0.38,
+        0.545
+      ],
+      "at": 6.6,
+      "kind": "sym"
+    },
+    {
+      "rect": [
+        0.322,
+        0.228,
+        0.495,
+        0.5
+      ],
+      "at": 10.4,
+      "kind": "sym"
+    },
+    {
+      "rect": [
+        0.492,
+        0.27,
+        0.668,
+        0.43
+      ],
+      "at": 14.8,
+      "kind": "sym"
+    },
+    {
+      "rect": [
+        0.66,
+        0.26,
+        0.802,
+        0.44
+      ],
+      "at": 17.6,
+      "kind": "sym"
+    },
+    {
+      "rect": [
+        0.8,
+        0.27,
+        0.95,
+        0.43
+      ],
+      "at": 18.3,
+      "kind": "env"
+    },
+    {
+      "rect": [
+        0.928,
+        0.29,
+        1.0,
+        0.41
+      ],
+      "at": 18.9,
+      "kind": "sym"
+    },
+    {
+      "rect": [
+        0.04,
+        0.94,
+        0.395,
+        1.0
+      ],
+      "at": 18.9,
+      "kind": "io"
+    }
+  ],
+  "captions": [
+    [
+      0.0,
+      "FOLBP restructures the loop around a symbolic core."
+    ],
+    [
+      2.6,
+      "One LLM call proposes the complete multi-robot plan."
+    ],
+    [
+      6.6,
+      "The scene graph compiles to ground first-order atoms, with no model involved."
+    ],
+    [
+      10.4,
+      "Certification forward-simulates the plan and checks every precondition."
+    ],
+    [
+      14.8,
+      "A validator checks it against each platform's declared capabilities."
+    ],
+    [
+      17.6,
+      "Execution is a dispatch table. Only one block here is a language model."
+    ]
+  ]
+}

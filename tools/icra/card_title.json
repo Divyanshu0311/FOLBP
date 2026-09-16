@@ -1,0 +1,8 @@
+{
+  "seconds": 6,
+  "backdrop": {"path": "tools/icra/assets/title_backdrop.png", "dim": 0.84},
+  "eyebrow": "ICRA 2027 SUBMISSION  ·  SUPPLEMENTARY VIDEO",
+  "heading": ["FOLBP: First-Order Certification and", "Conflict-Directed Plan Repair for", "LLM-Based Task Planning"],
+  "body": ["Divyanshu Gupta   ·   Anik Mitra   ·   Arpita Sinha", "Indian Institute of Technology Bombay"],
+  "mono": ["github.com/Divyanshu0311/FOLBP"]
+}

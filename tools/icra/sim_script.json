@@ -1,0 +1,42 @@
+{
+  "title": "Task 2 — put the kebab on the grill  ·  OmniGibson, 3 agents, 11 ground-truth steps",
+  "sub": "Same scene, same goal. Both panes run at 9.9× wall clock — identical pacing, so the two durations stay in their true ratio.",
+  "left_label": "FOLBP (ours)",
+  "left_sub": "one Oracle call · Z3-certified · deterministic execution",
+  "right_label": "PEFA  (COHERENT baseline)",
+  "right_sub": "Oracle → Robot Executor → Judge, at every step",
+  "captions": [
+    [
+      0.0,
+      "Both planners get the same scene graph and the same goal."
+    ],
+    [
+      4.0,
+      "FOLBP's plan is certified before the first step runs."
+    ],
+    [
+      9.0,
+      "PEFA decides one step at a time — five calls each."
+    ],
+    [
+      16.0,
+      "FOLBP has not called the model since the plan was certified."
+    ],
+    [
+      24.0,
+      "Same robots, same eleven steps. Only the deliberation differs."
+    ],
+    [
+      33.0,
+      "FOLBP: eleven of eleven, 326 seconds, one LLM call."
+    ],
+    [
+      40.0,
+      "PEFA is still executing."
+    ],
+    [
+      48.0,
+      "PEFA: the same eleven steps, 490 seconds, fifty-five calls."
+    ]
+  ]
+}

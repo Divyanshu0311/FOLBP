@@ -1,0 +1,120 @@
+{
+  "seconds": 21,
+  "title": "Repair it, dispatch it, or learn from it",
+  "sub": "Bounded repair closes 68.3% of conflict episodes with no model call  ·  a certified plan is dispatched verbatim  ·  only what survives is learned",
+  "image": {
+    "path": "paper/fig/architecture.png",
+    "x": 120,
+    "y": 118,
+    "w": 1680,
+    "wash": 0.82
+  },
+  "spots": [
+    {
+      "rect": [
+        0.332,
+        0.228,
+        0.495,
+        0.5
+      ],
+      "at": 0.4,
+      "kind": "sym"
+    },
+    {
+      "rect": [
+        0.29,
+        0.0,
+        0.56,
+        0.25
+      ],
+      "at": 3.4,
+      "kind": "note"
+    },
+    {
+      "rect": [
+        0.5,
+        0.0,
+        0.76,
+        0.16
+      ],
+      "at": 7.0,
+      "kind": "llm"
+    },
+    {
+      "rect": [
+        0.492,
+        0.26,
+        0.802,
+        0.44
+      ],
+      "at": 10.2,
+      "kind": "sym"
+    },
+    {
+      "rect": [
+        0.8,
+        0.27,
+        1.0,
+        0.43
+      ],
+      "at": 12.2,
+      "kind": "env"
+    },
+    {
+      "rect": [
+        0.84,
+        0.42,
+        0.98,
+        0.72
+      ],
+      "at": 14.2,
+      "kind": "bad"
+    },
+    {
+      "rect": [
+        0.32,
+        0.66,
+        0.955,
+        0.93
+      ],
+      "at": 15.4,
+      "kind": "learn"
+    },
+    {
+      "rect": [
+        0.155,
+        0.02,
+        0.33,
+        0.72
+      ],
+      "at": 18.0,
+      "kind": "learn"
+    }
+  ],
+  "captions": [
+    [
+      0.0,
+      "Certification returns the unsatisfied literals as a conflict core."
+    ],
+    [
+      3.4,
+      "Bounded repair splices in the prerequisite — with no model call."
+    ],
+    [
+      7.0,
+      "Only conflicts no insertion can fix reach the proposer again."
+    ],
+    [
+      10.2,
+      "Once certified and validated, the plan is dispatched — in simulation, or to the robots."
+    ],
+    [
+      13.8,
+      "Reach the goal and the run is finished."
+    ],
+    [
+      17.4,
+      "A runtime rejection is learned instead, and shapes the next proposal."
+    ]
+  ]
+}
